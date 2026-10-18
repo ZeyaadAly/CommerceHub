@@ -4,7 +4,7 @@ Date: 2026-10-18 (Africa/Cairo). Authorized scope: human acceptance records, BA-
 
 ## Human acceptance and path resolution
 
-The [approval register](approval-register.md) records explicit project-owner approval for CH-P0-001, CH-P0-002 and the ADR directory convention. Stories 001/002 are DONE for accepted documentation, while GitHub integration is independently PENDING. CH-P0-003 remains BLOCKED until verified predecessor merge evidence exists. All unrelated story states and all specialist gates remain unchanged.
+The [approval register](approval-register.md) records explicit project-owner approval for CH-P0-001, CH-P0-002 and the ADR directory convention. Stories 001/002 are DONE and GitHub integration is independently MERGED and verified. CH-P0-003 is READY after predecessor/content proof, but has not been executed. All unrelated story states and all specialist gates remain unchanged.
 
 BA-16 is resolved narrowly: operative paths in 04 §3/§18, 07 §6/Prompt B, root instructions and canonical README now use docs/architecture/decisions/. Existing docs/decisions/README.md is a legacy pointer with labeled historical evidence. Other old path mentions in immutable dated audit/review snapshots remain historical, superseded by explicit approval addenda. No actual ADR files existed, no identifiers/decisions were changed and no ADR was moved. All other BA findings remain subject to their prior review.
 
@@ -25,14 +25,16 @@ BA-16 is resolved narrowly: operative paths in 04 §3/§18, 07 §6/Prompt B, roo
 | Human acceptance 001/002 | APPROVED 2026-10-18, CommerceHub project owner |
 | Governance branch | docs/CH-P0-001-002-governance-approval |
 | Review baseline | 3c028018183f2fdd6c9e65328407ac785528522d |
-| Governance commit | PENDING |
-| Pull request / target | PENDING / main |
-| Required checks/reviews | To inspect on actual PR; no fabricated review/check success |
-| GitHub merge | PENDING |
-| Merge SHA / origin-main content proof | PENDING |
-| CH-P0-003 | BLOCKED by missing merged predecessor evidence; not executed |
+| Governance commit | 341271461243ac5ec5b49c0a6afe005cc98366dd, 26 scoped Markdown paths |
+| Pull request / target | [PR #1](https://github.com/ZeyaadAly/CommerceHub/pull/1) / main |
+| Required checks/reviews | Verified before merge: unprotected main, no applicable rules, no required contexts, no reviews, zero registered status/check runs; local documentation checks passed; owner acceptance explicit |
+| GitHub merge | MERGED via normal squash; REST result and PR reread both confirm merged=true; 2026-10-18T19:20:11Z |
+| Merge SHA / origin-main content proof | b5dd1a3932d49b7fcbd7759cfa7e7365104a8e6c; successful fetch, log/tree inspection and git diff --exit-code HEAD origin/main verified identical governance content |
+| CH-P0-003 | READY for separately authorized limited toolchain setup; not executed |
 
-This table must be updated from actual commit/PR/server evidence. The owner authorizes merge only when actual required checks and review policies are satisfied; never bypass protections or manufacture reviewer approval. The owner acceptance in this task is real human approval of the governance deliverables, not a GitHub review submission. The recommended future protected-main/CI setup remains CH-P0-005; no protection policy is altered here.
+This table records actual commit/PR/server evidence. Authenticated pre-merge inspection confirmed PR head 3412714, base 3c02801, exactly one expected commit/26 Markdown files, mergeable=true and mergeable_state=clean, no draft/conflicts. The connector's PR-create endpoint returned 403, so existing Git Credential Manager authentication was used securely in memory for PR creation/policy inspection/normal merge; no token was written to files or emitted. The authenticated detailed protection endpoint returned 404 (not configured), branch rules returned empty and repository settings permit squash merge. Combined commit status reported pending with total_count=0, not a failed or passing CI run; no check/review was fabricated or bypassed. The owner acceptance in this task supplies the documented human approval, not a GitHub review submission. The future protected-main/CI setup remains CH-P0-005; no protection policy was changed.
+
+After merge, fetched origin/main matched b5dd1a3 and the reviewed tree; all 32 intended Markdown files were listed. Clean local main was updated by fast-forward only. A separate docs/CH-P0-001-002-integration-evidence follow-up records this observed merge and conditional READY state, rather than pretending these facts existed in the initial commit. No remote branch with unmerged work was deleted.
 
 ## Documentation and verification
 
@@ -47,3 +49,5 @@ Pre-staging checks actually passed: 32 readable Markdown files, 165 internal rel
 The CH-P0-003 prompt is prepared only. Do not execute it. After merged evidence is verified, readiness may become READY without closing unrelated specialist gates or unblocking unrelated stories. If integration is prevented by checks/review/permissions, leave the PR open and report precise evidence and next action instead of claiming success.
 
 Staging verification passed: cached --check returned exit 0; --stat/--name-status showed exactly 26 scoped Markdown paths (24 additions, two authorized baseline edits), with 1062 insertions and four deletions at that inspection. Each complete staged blob was read with git show :path and compared to the reviewed working-file content; all matched. This evidence records the pre-commit snapshot, so the final count can increase when this evidence line is staged. No unrelated path was staged.
+
+Post-merge evidence revalidation passed before its documentation-only follow-up commit: all 32 files remain Markdown, 161 current internal links resolve, all 59 functional/19 NFR IDs remain traced, all 26 original finding rows remain present, all specialist gates remain OPEN, and tracker counts are DONE=2/READY=1/BLOCKED=56. Only approval register, integration evidence, tracker and readiness changed in this follow-up. The actual PR #1 merge is already verified; the follow-up records evidence rather than executing CH-P0-003 or changing policy.
