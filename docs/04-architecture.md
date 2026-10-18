@@ -85,7 +85,7 @@ commercehub/
 │   └── config/                  # shared lint/TS/test config (optional)
 ├── docs/
 │   ├── bmad/                    # seven approved source documents
-│   ├── adr/                     # architecture decision records
+│   ├── architecture/decisions/  # architecture decision records
 │   ├── runbooks/                # operations, incidents, restore, rotation
 │   └── api/                     # generated OpenAPI specs
 ├── infrastructure/
@@ -402,7 +402,7 @@ These are **illustrative domain names**, not reserved addresses. Hosting selecti
 
 ## 18. Architecture decision records (ADRs)
 
-All entries are **proposed for approval**, not retrospectively approved. On approval, copy/update as individual `docs/adr/ADR-XXX-*.md` files, including alternatives, consequences, owner, date, and reversal conditions.
+All entries are **proposed for approval**, not retrospectively approved. On approval, copy/update as individual `docs/architecture/decisions/ADR-XXX-*.md` files, including alternatives, consequences, owner, date, and reversal conditions. Directory convention approved by the CommerceHub project owner on 2026-10-18; this path approval does not approve any ADR decision or specialist policy.
 
 | ADR | Decision | Alternatives / rationale | Status / owner |
 |---|---|---|---|
