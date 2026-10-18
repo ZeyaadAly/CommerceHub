@@ -1,0 +1,13 @@
+# Shared API client instructions
+
+Extend [root instructions](../../AGENTS.md). Sources: [API §§2–3/10/12–13](../../docs/06-api-design.md), [UX §10](../../docs/03-ux-specification.md), [architecture §§6/13](../../docs/04-architecture.md).
+
+- Own typed /api/v1 calls and safe DTO/error handling. Use approved public wire types/schemas; never import Prisma, NestJS internals or app modules. No direct database/Supabase business-data connections or provider integration.
+- Keep browser and server entrypoints explicit. Server-side forwarding is request-scoped and restricted to approved API origins; do not forward credentials to arbitrary URLs or store them in a module-global client. No DB/provider secrets in either frontend deployment.
+- Cookie credentials and CSRF/origin negotiation must follow the reviewed SEC-01 transport. Never expose HttpOnly session secrets to JavaScript or store auth tokens in localStorage/sessionStorage. Do not invent cookie names/BFF/session-refresh endpoints to close BA-14.
+- Parse stable success/error envelopes, 204 no-body responses, decimal-string money, timestamps and bounded pagination. Preserve safe request IDs, retry classification and actionable error codes; never display raw provider/SQL responses.
+- Support AbortSignal, bounded timeout and cancellation. Distinguish cancelled/unknown financial requests from confirmed failure. Never automatically retry a write without approved idempotent semantics and the same logical operation key/payload; do not generate a new key for each retry. Respect bounded backoff/Retry-After where meaningful.
+- APIs remain authoritative for quotes, stock, payment and permissions. The client must not compute final totals, synthesize paid state or turn a browser return URL into confirmation. Retrieve durable outcome through approved status contracts after uncertainty.
+- Export callable operations, not global fetch-on-import behavior. Apps own route-specific TanStack Query keys/caching/invalidation; the client must not fetch all modules, retain shared principal state or create polling loops. Share safe transport logic without coupling app business flows.
+- Keep package imports acyclic; the client may consume safe types/validation but those packages must not import the client back. Schema parsing is not backend authorization.
+- Verify URL/origin credential safety, typed error/status mapping, 204 handling, cancellation, idempotent retries and no unsafe write replay with contract/transport tests once tooling exists. Add consumer compatibility checks against OpenAPI; report NOT RUN until executable tools are available.
