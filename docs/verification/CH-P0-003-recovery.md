@@ -5,7 +5,7 @@ The project owner explicitly APPROVED WITH ENVIRONMENT LIMITATION on this date;
 see [approval register](../implementation/approval-register.md). This records human
 acceptance, not a successful recovery or merge. Story remains REVIEW, not DONE.
 Original failed builds and successful C: evidence remain in
-[implementation evidence](CH-P0-003.md) and [acceptance](CH-P0-003-acceptance.md).
+[implementation evidence](CH-P0-003-original-implementation.md) and [acceptance](CH-P0-003-acceptance.md).
 
 ## Current preflight
 

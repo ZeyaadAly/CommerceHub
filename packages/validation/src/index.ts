@@ -1,2 +1,2 @@
-// No domain schemas are defined before the CH-P0-007 contract work.
+// Package boundary only. Contracts and behavior belong to later stories.
 export {};

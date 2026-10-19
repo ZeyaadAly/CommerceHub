@@ -1,2 +1,2 @@
-// Public wire types will be introduced with approved contracts in CH-P0-007.
+// Package boundary only. Contracts and behavior belong to later stories.
 export {};

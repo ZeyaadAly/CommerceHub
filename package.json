@@ -2,23 +2,24 @@
   "name": "commercehub",
   "version": "0.0.0",
   "private": true,
-  "packageManager": "pnpm@12.14.0",
+  "packageManager": "pnpm@11.28.6",
   "engines": {
-    "node": ">=24.22.0 <25",
-    "pnpm": "12.14.0"
+    "node": ">=24.19.0 <25"
   },
   "scripts": {
-    "dev": "pnpm --parallel --filter \"./apps/**\" run dev",
+    "dev": "pnpm --parallel --filter ./apps/* dev",
     "dev:storefront": "pnpm --filter @commercehub/storefront dev",
     "dev:admin": "pnpm --filter @commercehub/admin dev",
     "dev:api": "pnpm --filter @commercehub/api dev",
-    "build": "pnpm --recursive --sort run build",
-    "typecheck": "pnpm --recursive run typecheck",
-    "test": "node --test scripts/workspace.test.mjs",
+    "build": "pnpm -r --workspace-concurrency=1 build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs",
+    "test:smoke": "node scripts/smoke.mjs",
     "check:architecture": "node --test scripts/workspace.test.mjs"
   },
   "devDependencies": {
+    "typescript": "5.9.3",
     "@types/node": "24.19.2",
-    "typescript": "6.0.3"
+    "@next/swc-wasm-nodejs": "16.4.2"
   }
 }
