@@ -45,3 +45,7 @@ Historical 2026-10-18 003 update: human approval is recorded separately from int
 All other 25 BA findings retain their existing dispositions; their proposed resolutions are not accepted by these approvals. FIN-01, FIN-02, INV-01, SEC-01, PAY-01, OPS-01, LEG-01 and PAY-LIVE remain OPEN. FIN-01 revision, DB-0/DB-01, API-01, UX readiness, quality budgets and P2 scope reviews remain applicable and OPEN as recorded in the [gate register](gate-register.md).
 
 Path alignment preserves proposed ADR identifiers/content and does not adopt any architecture ADR or alter finance, API behavior, security, inventory, legal, hosting or release policy. The earlier 001/002 approval did not authorize 003 execution; its later separate authorization/approval is recorded above. No schema, migration, deployment, specialist policy or later development story is authorized by these approvals.
+
+## CH-P0-005 approved-scope execution evidence - 2026-10-19
+
+The exact exception is implemented in 677b2ae and verified by successful Linux run 39248014281. Main protection was applied after that green check and independently read back with admin enforcement, PR requirement, app-bound commercehub-quality, conversations, no force/deletion and zero impossible solo approvals. Disposable PR #10 proved failures BLOCKED and exact-source recovery SUCCESS/CLEAN in run 39248970590; it was closed unmerged and only its owned branches deleted. This evidence does not constitute owner story acceptance; CH-P0-005 remains REVIEW and PR #8 must remain unmerged. Specialist gates remain OPEN.

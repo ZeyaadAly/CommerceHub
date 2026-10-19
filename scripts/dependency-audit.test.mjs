@@ -228,6 +228,9 @@ const negatives = {
   'duplicate policy records': (s) => {
     s.evidence.policy.exceptions.push(structuredClone(s.evidence.policy.exceptions[0]));
   },
+  'array-shaped object instead of exception array': (s) => {
+    s.evidence.policy.exceptions = { 0: s.evidence.policy.exceptions[0], length: 1 };
+  },
   'missing snapshot': (s) => {
     delete s.evidence.lock.snapshots['braces@3.0.3'];
   },

@@ -30,7 +30,9 @@ export function validatePolicy(policy, now = new Date()) {
   requireThat(object(policy), 'Missing/invalid exception policy');
   same(Object.keys(policy).sort(), ['exceptions', 'schemaVersion'], 'Unsupported policy schema');
   requireThat(
-    policy.schemaVersion === 1 && policy.exceptions?.length === 1,
+    policy.schemaVersion === 1 &&
+      Array.isArray(policy.exceptions) &&
+      policy.exceptions.length === 1,
     'Exactly one approved exception required',
   );
   const entry = policy.exceptions[0];

@@ -2,7 +2,7 @@
 
 ## CH-P0-005 temporary exception execution - 2026-10-19
 
-Status **REVIEW**. Owner approved the exact time-limited GHSA-vfj7-8cjw-p6xm exception, not story acceptance or merge. Fail-closed implementation and verification are in progress; final observed outcomes are recorded in [005 evidence](../verification/CH-P0-005.md). Expiry 2026-11-02T00:00:00Z; reassessment 2026-10-26. All specialist gates remain OPEN. No subsequent story is readied or started. Earlier blocker/proposal snapshots below are historical.
+Status **REVIEW**. Owner approved the exact time-limited GHSA-vfj7-8cjw-p6xm exception, not story acceptance or merge. Fail-closed implementation and green Linux CI are verified; main protection is active with admin enforcement and an app-bound required check. Lint/type/security negative PRs report BLOCKED; exact-source recovery is SUCCESS/CLEAN, and disposable PR #10 is closed unmerged with its owned branches deleted. Evidence and final observed outcomes are recorded in [005 evidence](../verification/CH-P0-005.md). Expiry 2026-11-02T00:00:00Z; reassessment 2026-10-26. All specialist gates remain OPEN. No subsequent story is readied or started. Earlier blocker/proposal snapshots below are historical.
 
 
 ## CH-P0-005 execution - 2026-10-19
