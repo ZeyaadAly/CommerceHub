@@ -1,0 +1,9 @@
+packages:
+  - apps/*
+  - packages/*
+
+# Only the native image dependency may run its installation check.
+# Nest's optional funding prompt is unnecessary for this scaffold.
+allowBuilds:
+  '@nestjs/core': false
+  sharp: true

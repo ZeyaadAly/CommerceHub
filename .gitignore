@@ -1,0 +1,25 @@
+# Dependencies and local tool downloads
+node_modules/
+.pnpm-store/
+.tools/
+
+# Generated builds, type declarations and test output
+.next/
+dist/
+coverage/
+.cache/
+*.tsbuildinfo
+next-env.d.ts
+
+# Local configuration; examples are safe to review
+.env
+.env.*
+!.env.example
+!**/.env.example
+
+# Logs and editor/OS files
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+
