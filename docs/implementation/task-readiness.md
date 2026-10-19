@@ -1,5 +1,14 @@
 # CommerceHub task readiness
 
+## CH-P0-005 temporary exception execution - 2026-10-19
+
+Status **REVIEW**. Owner approved the exact time-limited GHSA-vfj7-8cjw-p6xm exception, not story acceptance or merge. Fail-closed implementation and green Linux CI are verified; main protection is active with admin enforcement and an app-bound required check. Lint/type/security negative PRs report BLOCKED; exact-source recovery is SUCCESS/CLEAN, and disposable PR #10 is closed unmerged with its owned branches deleted. Evidence and final observed outcomes are recorded in [005 evidence](../verification/CH-P0-005.md). Expiry 2026-11-02T00:00:00Z; reassessment 2026-10-26. All specialist gates remain OPEN. No subsequent story is readied or started. Earlier blocker/proposal snapshots below are historical.
+
+
+## CH-P0-005 execution - 2026-10-19
+
+The owner explicitly authorized CI implementation, isolated remote PR verification and safe protection preparation/configuration; no PR merge or next story is authorized. Status REVIEW on chore/CH-P0-005-ci-and-branch-protection from verified main aae250908ff8797cde4727551204df772e43d5d3. BA-17/22 live refinements above are preserved; all specialist gates remain OPEN. Real GitHub Actions on Ubuntu verified exact Node/pnpm, frozen install, lint/format/typecheck, all seven builds, thirteen tests and real Linux hooks. Isolated lint/type failures and fixture recovery were observed; test PR #9 was closed unmerged and its owned branch deleted. Existing high braces advisory still fails audit and blocks a fully green run/protection activation; owner authorized scoped investigation only, with review before existing version changes. No compatible published remediation was found, no exception applied, no main policy changed. Implementation [PR #8](https://github.com/ZeyaadAly/CommerceHub/pull/8) remains open/unmerged; human review and security-remediation decision are pending. See [005 evidence](../verification/CH-P0-005.md). Earlier readiness snapshots below are historical.
+
 ## CH-P0-004 DONE and CH-P0-005 readiness - 2026-10-19
 
 **CH-P0-004 is DONE; CH-P0-005 is READY for separate owner execution authorization.** [PR #6](https://github.com/ZeyaadAly/CommerceHub/pull/6) is verified MERGED at 5cbb86aea0f70f489a47245204c1850e80ee0264; fetched main's tree equals reviewed head ce5e8e36d4f83a88a22cc49723ff4c8d62404608. The owner approved the implementation report on 2026-10-19, and final integration conditions passed. [Integration evidence](../verification/CH-P0-004-integration.md) records local checks, real hook execution, exact line-ending exclusions and actual GitHub policy/review/check observations. This is a documentation-only tracking follow-up; no CI or branch control has been implemented.
@@ -58,7 +67,7 @@ Deployment readiness is separate: [Vercel preparation](../deployment/vercel-fron
 
 The project owner has APPROVED the C: scaffold. Its implementation is complete and reviewed; GitHub integration of this version is PENDING, so CH-P0-003 remains REVIEW and CH-P0-004 remains BLOCKED until the follow-up merge is verified. [Finalization evidence](../verification/CH-P0-003-integration.md) distinguishes the earlier merged PR #3 from the accepted C: version. Earlier D: environment/approval snapshots below remain historical. No deployment or next-story execution is authorized.
 
-## CH-P0-003 execution update ? 2026-10-19
+## CH-P0-003 execution update - 2026-10-19
 
 The owner explicitly authorized CH-P0-003 only. Its limited workspace scaffold is now **REVIEW**, with local install, fresh frozen install, strict typecheck, build, four scaffold tests, independent application HTTP probes and 360/768/1440 browser layout checks passed. See [verification evidence](../verification/CH-P0-003.md). Human acceptance and authorized commit/merge remain pending; no GitHub delivery or gate closure is claimed. All 56 other unfinished stories remain BLOCKED. CH-P0-004 was not started. The 2026-10-18 readiness statements below are retained as historical preparation evidence, superseded by this execution update.
 

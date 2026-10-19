@@ -1,5 +1,11 @@
 # CommerceHub approval register
 
+## CH-P0-005 exact temporary advisory exception - 2026-10-19
+
+Owner ZeyaadAly explicitly APPROVED temporary risk acceptance for GHSA-vfj7-8cjw-p6xm, braces@3.0.3, only root dev @next/eslint-plugin-next@16.4.2 > fast-glob@3.3.1 > micromatch@4.0.8 > braces@3.0.3. Conservative approval interval: 2026-10-19T00:00:00Z <= execution < 2026-11-02T00:00:00Z. Reassess 2026-10-26 and before expiry; no automatic renewal. [Decision](../verification/CH-P0-005-advisory-review.md).
+
+Authorized: exact fail-closed policy/tests, normal commit/push/update PR #8, actual green CI, safe main protection after green, disposable unmerged positive/negative PRs. No version upgrades, PR merges, next story, specialist gate closure, database/cloud/deployment changes. This approval does not accept CH-P0-005; status remains REVIEW awaiting human acceptance.
+
 ## CH-P0-004 verified integration - 2026-10-19
 
 **Human acceptance: APPROVED. Integration: MERGED. Story: DONE.** Owner approval is the dated report-based acceptance below; the final staged-diff/line-ending/check/policy conditions were verified before integration. [PR #6](https://github.com/ZeyaadAly/CommerceHub/pull/6) was squash-merged at 5cbb86aea0f70f489a47245204c1850e80ee0264 on 2026-10-19T08:34:17Z, from reviewed head ce5e8e36d4f83a88a22cc49723ff4c8d62404608. GitHub MERGED metadata and fetched main's exact reviewed tree were independently verified; local main was fast-forwarded safely.
@@ -39,3 +45,7 @@ Historical 2026-10-18 003 update: human approval is recorded separately from int
 All other 25 BA findings retain their existing dispositions; their proposed resolutions are not accepted by these approvals. FIN-01, FIN-02, INV-01, SEC-01, PAY-01, OPS-01, LEG-01 and PAY-LIVE remain OPEN. FIN-01 revision, DB-0/DB-01, API-01, UX readiness, quality budgets and P2 scope reviews remain applicable and OPEN as recorded in the [gate register](gate-register.md).
 
 Path alignment preserves proposed ADR identifiers/content and does not adopt any architecture ADR or alter finance, API behavior, security, inventory, legal, hosting or release policy. The earlier 001/002 approval did not authorize 003 execution; its later separate authorization/approval is recorded above. No schema, migration, deployment, specialist policy or later development story is authorized by these approvals.
+
+## CH-P0-005 approved-scope execution evidence - 2026-10-19
+
+The exact exception is implemented in 677b2ae and verified by successful Linux run 39248014281. Main protection was applied after that green check and independently read back with admin enforcement, PR requirement, app-bound commercehub-quality, conversations, no force/deletion and zero impossible solo approvals. Disposable PR #10 proved failures BLOCKED and exact-source recovery SUCCESS/CLEAN in run 39248970590; it was closed unmerged and only its owned branches deleted. This evidence does not constitute owner story acceptance; CH-P0-005 remains REVIEW and PR #8 must remain unmerged. Specialist gates remain OPEN.

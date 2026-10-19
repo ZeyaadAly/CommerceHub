@@ -1,0 +1,27 @@
+{
+  "schemaVersion": 1,
+  "exceptions": [
+    {
+      "advisory": "GHSA-vfj7-8cjw-p6xm",
+      "package": "braces",
+      "version": "3.0.3",
+      "chain": [
+        "@next/eslint-plugin-next@16.4.2",
+        "fast-glob@3.3.1",
+        "micromatch@4.0.8",
+        "braces@3.0.3"
+      ],
+      "auditPath": ".>@next/eslint-plugin-next>fast-glob>micromatch>braces",
+      "maximumSeverity": "high",
+      "owner": "ZeyaadAly",
+      "approvedOn": "2026-10-19",
+      "expiresAt": "2026-11-02T00:00:00Z",
+      "reviewOn": "2026-10-26",
+      "riskClassification": "temporary CI availability risk acceptance; not remediation",
+      "reason": "No supported patch is published; only the exact root development lint chain is accepted temporarily.",
+      "reference": "docs/verification/CH-P0-005-advisory-review.md",
+      "runtimeExposure": "development-only; no production dependency path",
+      "automaticRenewal": false
+    }
+  ]
+}
