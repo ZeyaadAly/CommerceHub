@@ -1,5 +1,25 @@
 # CommerceHub task readiness
 
+## CH-P0-005 DONE and CH-P0-006 readiness review - 2026-10-19
+
+**CH-P0-005: DONE.** Owner acceptance and actual protected squash merge of [PR #8](https://github.com/ZeyaadAly/CommerceHub/pull/8), 30545f77f139cb8fcf629b27b87da9f628b627bd, are verified. Main's exact reviewed tree, required check and retained protection are verified. [Final evidence](../verification/CH-P0-005-integration.md). All specialist gates remain OPEN; advisory review is due 2026-10-26, expiry 2026-11-02T00:00:00Z, no renewal.
+
+### CH-P0-006 decision: BLOCKED - environment prerequisite
+
+Sources: 07 section 12 CH-P0-006; 08 CH-P0-006 specification; architecture sections 3/14/16; database design configuration/least-privilege boundaries; gate register OPS-01; baseline audit BA-22. Declared dependency remains CH-P0-003, not silently changed. The owner's readiness review additionally verified 003/004/005 acceptance/merge: PR #4 / 111a2ce752e9f8aa18ef970bfc972f3b39e8b50f; PR #6 / 5cbb86aea0f70f489a47245204c1850e80ee0264; PR #8 / 30545f77f139cb8fcf629b27b87da9f628b627bd. Pinned Node24.19.0/pnpm11.28.6, strict tooling, frozen install and secret scanning are available and verified.
+
+Current workstation: Get-Command docker returns no executable; standard Docker Desktop binary path is absent. wsl.exe --status exits 1 and reports WSL is not installed. No usable Docker/Compose engine has been verified. A working Docker/Compose environment (this workstation or a separately approved reproducible execution environment) is the exact outstanding prerequisite for the clean-bootstrap acceptance. No installation, daemon, image pull or container operation was performed. Do not describe missing CH-P0-006 deliverables as missing predecessors.
+
+### Limited scope and proposed observable acceptance refinement (BA-22)
+
+- Inventory existing environment consumers first. The current .env.example documents localhost URLs only and says no values are consumed. Document public frontend configuration separately from trusted API/worker-only DB/Redis/secrets; no new authentication/session transport policy, production values or Supabase business access. Exact future local variable names and image versions must be reviewed during separately authorized 006; no connection contract is frozen here.
+- Document and, only when separately authorized, create isolated disposable local PostgreSQL/Redis development services with synthetic credentials/data, loopback exposure, distinct local configuration, bounded health readiness and explicit owned-volume teardown. No application database connection, Prisma schema/migration, shared/cloud provisioning, workers or commerce code is prerequisite.
+- Verify normal clean local bootstrap and teardown on a usable engine; repeat bootstrap without cross-environment writes or unintended persistent effects. Demonstrate predictable diagnostics for missing/invalid local configuration, occupied ports and unavailable engine/service, without printing secrets. Document any platform prerequisite and destructive local-data cleanup separately.
+- Verify no real credentials enter Git, frontend bundles or logs; pnpm scan:secrets and existing protected quality checks must pass. Examples stay fake; DB/admin/service-role credentials remain prohibited in both Next.js applications. Existing scaffold HTTP/build/type/test behavior remains intact.
+- Keep shared infrastructure, hosting, production secrets, recovery/retention targets and operational specialist policies OPS-01 gated. Local-only scope does not close OPS-01, SEC-01 or any DB/business gate; a Supabase project is not authorization to use it.
+
+These are story-specific readiness proposals within the authorized review, not changes to approved baseline tables or specialist decisions. The safety boundary is sufficiently defined to prepare 006, but runtime bootstrap remains BLOCKED until engine availability is evidenced. Separate owner authorization is required for execution. No 006 implementation, Docker file/service, schema, migration, cloud operation or scheduled reminder was created. CH-P0-007 and later stories are not automatically readied. Earlier readiness snapshots below remain historical.
+
 ## CH-P0-005 temporary exception execution - 2026-10-19
 
 Status **REVIEW**. Owner approved the exact time-limited GHSA-vfj7-8cjw-p6xm exception, not story acceptance or merge. Fail-closed implementation and green Linux CI are verified; main protection is active with admin enforcement and an app-bound required check. Lint/type/security negative PRs report BLOCKED; exact-source recovery is SUCCESS/CLEAN, and disposable PR #10 is closed unmerged with its owned branches deleted. Evidence and final observed outcomes are recorded in [005 evidence](../verification/CH-P0-005.md). Expiry 2026-11-02T00:00:00Z; reassessment 2026-10-26. All specialist gates remain OPEN. No subsequent story is readied or started. Earlier blocker/proposal snapshots below are historical.

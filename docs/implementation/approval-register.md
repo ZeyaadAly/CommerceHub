@@ -1,5 +1,13 @@
 # CommerceHub approval register
 
+## CH-P0-005 final owner acceptance and verified integration - 2026-10-19
+
+**Implementation: APPROVED. Integration: MERGED. Story: DONE.** The project owner explicitly approved final integration on 2026-10-19, conditional on current diff, check, review/conversation, protection and security verification. This records report-based owner acceptance; no owner line-by-line or submitted GitHub review is invented. Separate advisory risk approval remains unchanged.
+
+All final conditions passed. [PR #8](https://github.com/ZeyaadAly/CommerceHub/pull/8) was normally squash-merged at 30545f77f139cb8fcf629b27b87da9f628b627bd on 2026-10-19T12:32:40Z from reviewed head f5b792f7bf96b29e2a345ee93f78a4bfc4f078bc. Required Actions check commercehub-quality (GitHub Actions app15368), [run 39249701923](https://github.com/ZeyaadAly/CommerceHub/actions/runs/39249701923), succeeded. Effective main protection was read before and after merge; no bypass or setting change. Exact merged-tree equality and clean local fast-forward verified. Both automatic frontend Vercel commit statuses succeeded; no manual deployment.
+
+[Final integration evidence](../verification/CH-P0-005-integration.md) records the review, local checks, negative tests and environment readiness. Exception GHSA-vfj7-8cjw-p6xm remains temporary, owner ZeyaadAly, review 2026-10-26, exclusive expiry 2026-11-02T00:00:00Z, no renewal. All specialist gates remain OPEN. CH-P0-006 readiness only is reviewed; implementation is not authorized. This documentation follow-up must itself pass protected CI and merge; its integration is not pre-claimed. Earlier entries below are historical.
+
 ## CH-P0-005 exact temporary advisory exception - 2026-10-19
 
 Owner ZeyaadAly explicitly APPROVED temporary risk acceptance for GHSA-vfj7-8cjw-p6xm, braces@3.0.3, only root dev @next/eslint-plugin-next@16.4.2 > fast-glob@3.3.1 > micromatch@4.0.8 > braces@3.0.3. Conservative approval interval: 2026-10-19T00:00:00Z <= execution < 2026-11-02T00:00:00Z. Reassess 2026-10-26 and before expiry; no automatic renewal. [Decision](../verification/CH-P0-005-advisory-review.md).
