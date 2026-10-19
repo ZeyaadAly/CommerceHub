@@ -1,5 +1,10 @@
 # CommerceHub story tracker
 
+## CH-P0-005 temporary exception execution - 2026-10-19
+
+Status **REVIEW**. Owner approved the exact time-limited GHSA-vfj7-8cjw-p6xm exception, not story acceptance or merge. Fail-closed implementation and verification are in progress; final observed outcomes are recorded in [005 evidence](../verification/CH-P0-005.md). Expiry 2026-11-02T00:00:00Z; reassessment 2026-10-26. All specialist gates remain OPEN. No subsequent story is readied or started. Earlier blocker/proposal snapshots below are historical.
+
+
 As of 2026-10-19. Source: [07 §12](../07-implementation-plan.md) and [08 index/specifications](../08-epics-and-stories.md). Actual 59 parent IDs retained; no new story IDs. Declared dependencies and gates are preserved verbatim in meaning, normalized to full IDs. Audit additions are recommendations/blockers, not approved graph edits.
 
 Status vocabulary: NOT_STARTED = no execution evidence and no current blocking prerequisite; READY = reviewed scope, predecessors and gates satisfied; BLOCKED = unmet predecessor, gate or readiness issue; IN_PROGRESS = executing authorized work; REVIEW = deliverable awaiting acceptance; DONE includes verified human-reviewed/merged evidence. Human approval for CH-P0-001/002: APPROVED 2026-10-18, CommerceHub project owner; GitHub integration: MERGED in PR #1 at b5dd1a3932d49b7fcbd7759cfa7e7365104a8e6c, fetched origin/main content verified. Counts: DONE=4, REVIEW=1 (005 only), BLOCKED=54; other statuses zero. 003 is human APPROVED and its accepted C: implementation is verified MERGED in PR #4; 004 is human APPROVED and verified MERGED in PR #6; 005 readiness is reviewed for CI/protected PR scope only, with separate execution authorization required. Other stories are not automatically unblocked. See [approval register](approval-register.md), [formal review](formal-review-001-002.md) and [integration evidence](governance-finalization.md).

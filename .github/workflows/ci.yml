@@ -64,5 +64,5 @@ jobs:
         run: pnpm test
       - name: Explicit tooling verification
         run: pnpm test:quality
-      - name: Dependency advisories (high and critical)
-        run: pnpm audit --audit-level high
+      - name: Dependency security audit and scoped exception validation
+        run: pnpm audit:ci

@@ -28,3 +28,5 @@ infrastructure/**
 !.github/workflows/
 !.github/workflows/ci.yml
 !docs/verification/CH-P0-005.md
+
+!docs/verification/CH-P0-005-advisory-review.md

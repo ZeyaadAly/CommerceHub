@@ -55,7 +55,7 @@ test('workflow parses and retains the unprivileged, unconditional required-check
     'pnpm build',
     'pnpm test',
     'pnpm test:quality',
-    'pnpm audit --audit-level high',
+    'pnpm audit:ci',
   ])
     assert.ok(commands.includes(command), command);
   assert.ok(commands.indexOf('pnpm build') < commands.indexOf('pnpm test'));
