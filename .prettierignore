@@ -1,0 +1,25 @@
+**/node_modules/**
+**/.next/**
+**/dist/**
+**/coverage/**
+**/.cache/**
+**/.pnpm-store/**
+.tools/**
+.verification/**
+.husky/_/**
+**/next-env.d.ts
+**/*.tsbuildinfo
+**/generated/**
+**/.env*
+pnpm-lock.yaml
+**/AGENTS.md
+.github/**
+# Preserve approved baselines and historical governance; review their formatting separately.
+docs/0*.md
+docs/implementation/**
+docs/architecture/**
+docs/decisions/**
+docs/deployment/**
+docs/verification/*
+!docs/verification/CH-P0-004.md
+infrastructure/**
