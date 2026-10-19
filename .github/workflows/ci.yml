@@ -51,6 +51,8 @@ jobs:
         run: pnpm install --frozen-lockfile
       - name: Validate CI policy and scanner
         run: pnpm test:ci
+      - name: CH-P0-005 isolated additional-advisory and expiry rejection
+        run: node scripts/CH-P0-005-security-negative.mjs
       - name: Check formatting
         run: pnpm format:check
       - name: Lint all workspaces
