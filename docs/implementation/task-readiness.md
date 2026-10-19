@@ -1,6 +1,6 @@
 # CommerceHub task readiness
 
-## C: finalization ? 2026-10-19
+## C: finalization - 2026-10-19
 
 The project owner has APPROVED the C: scaffold. Its implementation is complete and reviewed; GitHub integration of this version is PENDING, so CH-P0-003 remains REVIEW and CH-P0-004 remains BLOCKED until the follow-up merge is verified. [Finalization evidence](../verification/CH-P0-003-integration.md) distinguishes the earlier merged PR #3 from the accepted C: version. Earlier D: environment/approval snapshots below remain historical. No deployment or next-story execution is authorized.
 
@@ -10,7 +10,7 @@ The owner explicitly authorized CH-P0-003 only. Its limited workspace scaffold i
 
 Date: 2026-10-18 (Africa/Cairo). Current authority: [approval register](approval-register.md) and [governance integration evidence](governance-finalization.md). Human-approved task deliverables and GitHub integration are distinct.
 
-## Current readiness after CH-P0-003 execution
+## Historical 2026-10-18 D: readiness after execution
 
 The project owner explicitly APPROVED CH-P0-001 and CH-P0-002 on 2026-10-18 after their formal review PASS. Both are DONE for accepted documentation, and GitHub integration is independently MERGED: [PR #1](https://github.com/ZeyaadAly/CommerceHub/pull/1), merge SHA b5dd1a3932d49b7fcbd7759cfa7e7365104a8e6c. A successful fetch verified that origin/main contains the exact reviewed governance tree, including all eight AGENTS and source-path alignment. No specialist gate was approved.
 

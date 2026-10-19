@@ -1,6 +1,6 @@
 # CommerceHub approval register
 
-## CH-P0-003 C: approval ? 2026-10-19
+## CH-P0-003 C: approval - 2026-10-19
 
 **APPROVED by the CommerceHub project owner**, based on the verified C: implementation report and explicit Finalization, GitHub Integration & Vercel Preparation instruction. Accepted scope: pnpm/strict TypeScript; two Next.js scaffolds; static Nest health; four shared boundaries; safe examples, reproducible checks and responsive placeholders. Accepted limitation: Windows native pnpm 12/SWC unavailable; verified pnpm 11.28.6 and Webpack/WebAssembly fallback.
 
@@ -15,7 +15,7 @@ Human approval date: **2026-10-18** (Africa/Cairo). Authority: **CommerceHub pro
 | CH-P0-003 | APPROVED WITH ENVIRONMENT LIMITATION; CommerceHub project owner, 2026-10-18, explicit Environment Recovery, Acceptance and GitHub Integration instruction; scaffold scope only | [Acceptance](../verification/CH-P0-003-acceptance.md), [recovery outcome](../verification/CH-P0-003-recovery.md); D: capacity/external-root Turbopack limitation remains unresolved | PENDING; no task commit/PR/merge; required safe-capacity remediation cannot be completed from disposable project artifacts |
 | BA-16 ADR convention | APPROVED; canonical path docs/architecture/decisions/ only; RESOLVED after references/README alignment and checks | [Canonical README](../architecture/decisions/README.md); path-only changes to 04/07/root; original audit finding retained | MERGED with PR #1; canonical README and source paths verified; no actual ADR files moved |
 
-Current 003 update: human approval is recorded separately from integration. CH-P0-003 remains REVIEW, not DONE, because integration is pending and environment recovery is blocked. CH-P0-004 remains BLOCKED. No specialist gate is waived. Historical 001/002 integration was independently verified MERGED; the earlier 003 READY/not-executed state was superseded by its separately authorized execution and approval above.
+Historical 2026-10-18 003 update: human approval is recorded separately from integration. CH-P0-003 remains REVIEW, not DONE, because integration is pending and environment recovery is blocked. CH-P0-004 remains BLOCKED. No specialist gate is waived. Historical 001/002 integration was independently verified MERGED; the earlier 003 READY/not-executed state was superseded by its separately authorized execution and approval above.
 
 ## Decisions excluded from approval
 
