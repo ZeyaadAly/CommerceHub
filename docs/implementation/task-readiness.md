@@ -1,5 +1,9 @@
 # CommerceHub task readiness
 
+## CH-P0-005 execution - 2026-10-19
+
+The owner explicitly authorized CI implementation, isolated remote PR verification and safe protection preparation/configuration; no PR merge or next story is authorized. Status IN_PROGRESS on chore/CH-P0-005-ci-and-branch-protection from verified main aae250908ff8797cde4727551204df772e43d5d3. BA-17/22 live refinements above are preserved; all specialist gates remain OPEN. Existing high braces advisory blocks a fully green audit; owner authorized scoped investigation only, with review before existing version changes. See [005 evidence](../verification/CH-P0-005.md). Earlier readiness snapshots below are historical.
+
 ## CH-P0-004 DONE and CH-P0-005 readiness - 2026-10-19
 
 **CH-P0-004 is DONE; CH-P0-005 is READY for separate owner execution authorization.** [PR #6](https://github.com/ZeyaadAly/CommerceHub/pull/6) is verified MERGED at 5cbb86aea0f70f489a47245204c1850e80ee0264; fetched main's tree equals reviewed head ce5e8e36d4f83a88a22cc49723ff4c8d62404608. The owner approved the implementation report on 2026-10-19, and final integration conditions passed. [Integration evidence](../verification/CH-P0-004-integration.md) records local checks, real hook execution, exact line-ending exclusions and actual GitHub policy/review/check observations. This is a documentation-only tracking follow-up; no CI or branch control has been implemented.

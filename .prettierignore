@@ -23,3 +23,8 @@ docs/deployment/**
 docs/verification/*
 !docs/verification/CH-P0-004.md
 infrastructure/**
+
+# CH-P0-005 owns these new files; historical GitHub/governance files stay protected.
+!.github/workflows/
+!.github/workflows/ci.yml
+!docs/verification/CH-P0-005.md
