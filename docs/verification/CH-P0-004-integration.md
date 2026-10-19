@@ -1,7 +1,7 @@
 # CH-P0-004 final approval and integration
 
-Date: 2026-10-19. Human acceptance: APPROVED, subject to final integration conditions.
-Implementation story status: REVIEW; merge is not yet claimed.
+Date: 2026-10-19. Human acceptance: APPROVED; final integration conditions satisfied.
+Implementation story status: DONE following verified PR #6 merge. The pre-merge review below is retained chronologically.
 
 ## Authority and baseline
 
@@ -73,3 +73,21 @@ Preflight public branch API: main protected=false, protection.enabled=false, req
 ## Limits and next-story boundary
 
 ESLint 9 warning and existing Windows SWC/Webpack/WASM fallback remain documented. Native Linux execution of the new hook is NOT VERIFIED. CH-P0-005 requires verified 003 and 004 merges, a reviewed BA-17 readiness refinement, precise positive/negative CI scope and separate execution authorization. No GitHub Actions, CI tooling or branch rules are implemented here. All specialist gates remain OPEN. No Supabase, migration, Vercel configuration or manual deployment operations are performed.
+
+## Verified integration outcome
+
+- Task branch: chore/CH-P0-004-code-quality-tooling. Commit/head: ce5e8e36d4f83a88a22cc49723ff4c8d62404608. Real Husky output showed backup, ESLint fixes, Prettier, staging and cleanup success; commit exit 0, no override. The committed patch exactly matched the pre-hook reviewed patch (SHA256 38a862b5e9cc7efd9cc31aa6e8e61ad59f498117b5a4be462baa0cee31554ea7). All 36 expected files committed; working tree clean.
+- [PR #6](https://github.com/ZeyaadAly/CommerceHub/pull/6) targets main and has exactly the reviewed 36 paths. GitHub connector creation returned HTTP 403 Resource not accessible by integration; the authorized PR was created using the existing Git credential through GitHub REST (HTTP 201). No policy bypass or credential disclosure occurred.
+- Immediately before merge: exact expected head, mergeable=true, mergeable_state=clean, no draft/conflicts, no requested/submitted reviews, no inline comments/unresolved threads. Owner acceptance is recorded separately; no formal GitHub review approval was fabricated. Authenticated main protection returned Branch not protected; rulesets/effective rules empty, no required checks/reviews. GitHub Actions runs: zero.
+- Automatic Vercel preview statuses both succeeded: [storefront](https://vercel.com/zeyadali408-1717s-projects/commercehub-storefront/7xL7izbA1Tv8ihZpYQM7KDCbFf5r), [admin](https://vercel.com/zeyadali408-1717s-projects/commercehub-admin/9gPZDffNL9AeU7m1j8DXjWqRdvRC). Vercel Preview Comments check succeeded, zero unresolved feedback. These statuses do not constitute the planned GitHub Actions quality pipeline.
+- Squash merge HTTP 200, merged=true. Merge SHA: 5cbb86aea0f70f489a47245204c1850e80ee0264; merged_at 2026-10-19T08:34:17Z. GitHub MERGED metadata independently re-read.
+- Fetch verified origin/main at that exact merge SHA. Reviewed task HEAD, fetched main and fast-forwarded local main all had tree 8d4d6eba85247a4385424507ad50d88ea3f25710. Thus no post-review source drift. Protected BMAD/AGENTS diff empty. No generated output or credential paths committed.
+- The owner-authorized documentation-only branch docs/CH-P0-004-integration-readiness records DONE, the actual merge and 005 readiness. Its delivery is through a separate PR, not a direct main push or history edit; its own merge metadata is not pre-claimed in this file. No application check was rerun solely for these documentation edits; local link/inventory/whitespace checks and real pre-commit remain appropriate.
+
+Automatic production deployments on merged code SHA 5cbb86aea0f70f489a47245204c1850e80ee0264 were observed via GitHub commit statuses: [admin](https://vercel.com/zeyadali408-1717s-projects/commercehub-admin/GYg8hXgvJJJjmVUHX691sh2utdUG) SUCCESS and [storefront](https://vercel.com/zeyadali408-1717s-projects/commercehub-storefront/34TGdtmGBQtuak6vFm3aPqCRFgxU) SUCCESS. No Vercel project settings or environment was accessed/modified and no manual redeployment was requested.
+
+## CH-P0-005 readiness outcome
+
+READY for separate execution authorization, not implemented. The [readiness record](../implementation/task-readiness.md) refines BA-17 to require both 003 and 004 merges, preserves immutable baseline dependency columns, defines a Linux Node/pnpm matrix, actual quality scripts, positive/negative remote merge-blocking proof and least-privilege/no-production-secret controls. Future GitHub policy capability and required check names must be verified during the separately authorized story. All specialist gates remain OPEN; no gate directly blocks this limited CI scope. Native Linux hook/full-suite proof remains NOT VERIFIED, a future execution measurement rather than an invented prerequisite result. No CI/protection setting was changed here.
+
+Documentation follow-up validation: 50 local links resolve; 59 original story rows retained with DONE=4 / READY=1 / BLOCKED=54; only 004/005 rows changed. An initial inventory comparison flagged checkout CRLF against Git LF; normalizing only comparison line endings confirmed all unrelated rows unchanged. Exactly four intended Markdown files changed. Root format:check and diff whitespace checks passed. BMAD/AGENTS remain unchanged.

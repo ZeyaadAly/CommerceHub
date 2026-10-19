@@ -1,5 +1,40 @@
 # CommerceHub task readiness
 
+## CH-P0-004 DONE and CH-P0-005 readiness - 2026-10-19
+
+**CH-P0-004 is DONE; CH-P0-005 is READY for separate owner execution authorization.** [PR #6](https://github.com/ZeyaadAly/CommerceHub/pull/6) is verified MERGED at 5cbb86aea0f70f489a47245204c1850e80ee0264; fetched main's tree equals reviewed head ce5e8e36d4f83a88a22cc49723ff4c8d62404608. The owner approved the implementation report on 2026-10-19, and final integration conditions passed. [Integration evidence](../verification/CH-P0-004-integration.md) records local checks, real hook execution, exact line-ending exclusions and actual GitHub policy/review/check observations. This is a documentation-only tracking follow-up; no CI or branch control has been implemented.
+
+### CH-P0-005 scope and BA-17 readiness refinement
+
+Sources: 07 section 12 CH-P0-005 and Prompt D; 08 CH-P0-005; PRD NFR-TEST-01/NFR-SEC-06; architecture sections 3/17; GitHub workflow CI/protected-main recommendations. The 07 registry and 08 declare only 003; 07 Prompt D also requires 004. Under the owner's explicit readiness-review instruction, the live readiness contract requires BOTH 003 and 004 accepted and merged. Both now are. This explicitly addresses BA-17 for this execution boundary without rewriting either approved baseline or adopting other dependency recommendations. The discrepancy remains visible in the historical audit; no baseline dependency column is silently changed.
+
+Proposed next authorized task: GitHub Actions PR quality checks and protected PR workflow only. Use pinned Node 24.19.0 and pnpm 11.28.6, frozen install, format/lint/strict typecheck, existing tests and seven-workspace builds. Preserve TypeScript 5.9.3, framework pins, the current native/WASM fallback and lifecycle permissions. Include secret/dependency advisory controls, least-privilege token scopes, correctly scoped caches, concurrency cancellation and no production secrets. No business API, auth, data/migrations, Supabase, hosting or deployment work is needed for this limited story.
+
+### Observable acceptance refinement (BA-22)
+
+1. A clean PR on an Ubuntu Linux runner with the pinned Node/pnpm toolchain installs from the frozen lockfile and runs the real root quality scripts, all existing tests and builds. Node/pnpm/OS/cache inputs and exact required check names are documented. Linux is the initial CI matrix; a Windows matrix is not silently promised.
+2. A safe disposable PR/fixture deliberately failing lint, strict types or a test produces failed GitHub checks; required policy prevents merge. Correcting it produces successful checks and permits the normal reviewed flow. No production secrets, force push, hook override or protection bypass is used; remove/restore all fixtures and report actual remote evidence. A local failure alone cannot prove merge protection.
+3. Verify actual repository capabilities and current policy first. Document/implement only separately owner-authorized controls: PR requirement, independent approval, named required checks, resolved conversations, restrictions on force push/deletion and applicable bypass rules. Do not infer that these controls already exist. Report any permission/plan limitation and stop the dependent control; never weaken it to make a test pass.
+4. Use read-only default GitHub token permissions and reviewed immutable action versions; untrusted PR code receives no production secrets or privileged write context. Scan secrets/dependency advisories with evidence and explicit findings; do not invent thresholds/exceptions or silently ignore failures.
+5. Preserve all eight BMAD documents, eight AGENTS instructions, workspace boundaries and application placeholders. CI database/integration/browser jobs are conditional on actual future suites; no nonexistent suites or coverage targets are claimed. DONE requires observed positive/negative remote checks, human acceptance and verified integration.
+
+### Readiness evidence
+
+| Question | Assessment |
+| --- | --- |
+| 003 DONE/merged | PASS: accepted PR #4 and integration records |
+| 004 DONE/merged | PASS: owner acceptance, PR #6, exact fetched tree |
+| Root lint and formatting | PASS: both exit 0, negative fixtures each expected exit 1 |
+| Typecheck/build/tests | PASS: seven workspaces, ten tests, focused quality suite |
+| Reproducible toolchain | PASS: pinned Node/pnpm, frozen install, unchanged lock hash |
+| Linux feasibility | Reasonable for execution: supported JS tooling/runtime peers and successful automatic cloud frontend builds; native Linux hook/full suite remain NOT VERIFIED and must be measured in 005 |
+| CI matrix and negative cases | Defined above; implementation/remote proof NOT RUN |
+| Branch protection requirements | Documented; actual main currently unprotected with no rulesets; controls/negative proof are future authorized 005 work |
+| BA-17 | Explicit BOTH-predecessor readiness refinement above; baseline registry preserved |
+| Specialist gates | None directly blocks this limited CI scope; all remain OPEN for dependent business/infrastructure slices |
+
+Readiness is permission to request the next implementation task, not self-authorization to execute it. No Actions files, repository settings/rulesets or CI tooling were created/changed here. Other story statuses are unchanged. The earlier readiness/approval snapshots below are historical.
+
 ## CH-P0-004 approval and integration review - 2026-10-19
 
 CH-P0-004 is human APPROVED based on the implementation report, subject to final diff/line-ending/check/policy conditions. Status remains REVIEW until verified merge. The owner now authorizes task commit, push, PR and merge if actual repository requirements permit. This supersedes the earlier implementation-turn no-write restriction below. See [approval](approval-register.md) and [integration review](../verification/CH-P0-004-integration.md). CH-P0-005 readiness will be assessed after integration; it is not implemented or authorized by this review. All specialist gates remain OPEN.

@@ -1,5 +1,11 @@
 # CommerceHub approval register
 
+## CH-P0-004 verified integration - 2026-10-19
+
+**Human acceptance: APPROVED. Integration: MERGED. Story: DONE.** Owner approval is the dated report-based acceptance below; the final staged-diff/line-ending/check/policy conditions were verified before integration. [PR #6](https://github.com/ZeyaadAly/CommerceHub/pull/6) was squash-merged at 5cbb86aea0f70f489a47245204c1850e80ee0264 on 2026-10-19T08:34:17Z, from reviewed head ce5e8e36d4f83a88a22cc49723ff4c8d62404608. GitHub MERGED metadata and fetched main's exact reviewed tree were independently verified; local main was fast-forwarded safely.
+
+The real commit ran Husky without bypass and matched the reviewed staged patch. All required local checks passed; both automatic PR preview deployment statuses succeeded; GitHub Actions runs and submitted reviews were absent, and authenticated policy reads found no required checks/reviews or applicable protections/rulesets. No setting was changed. Known limitations remain accepted and visible. See [final integration evidence](../verification/CH-P0-004-integration.md). This tracking update is delivered through a separate documentation PR; its own merge is not pre-claimed. CH-P0-005 readiness review is authorized, implementation is not. All specialist gates remain OPEN. Earlier entries below record the REVIEW/approval chronology.
+
 ## CH-P0-004 owner approval - 2026-10-19
 
 **Story:** CH-P0-004. **Decision:** APPROVED. **Date:** 2026-10-19.
