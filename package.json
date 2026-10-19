@@ -1,0 +1,24 @@
+{
+  "name": "commercehub",
+  "version": "0.0.0",
+  "private": true,
+  "packageManager": "pnpm@11.28.6",
+  "engines": {
+    "node": ">=24.19.0 <25"
+  },
+  "scripts": {
+    "dev": "pnpm --parallel --filter ./apps/* dev",
+    "dev:storefront": "pnpm --filter @commercehub/storefront dev",
+    "dev:admin": "pnpm --filter @commercehub/admin dev",
+    "dev:api": "pnpm --filter @commercehub/api dev",
+    "build": "pnpm -r --workspace-concurrency=1 build",
+    "typecheck": "pnpm -r typecheck",
+    "test": "node --test scripts/scaffold.test.mjs",
+    "test:smoke": "node scripts/smoke.mjs"
+  },
+  "devDependencies": {
+    "typescript": "5.9.3",
+    "@types/node": "24.19.2",
+    "@next/swc-wasm-nodejs": "16.4.2"
+  }
+}

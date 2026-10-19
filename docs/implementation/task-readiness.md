@@ -1,5 +1,9 @@
 # CommerceHub task readiness
 
+## CH-P0-003 execution update ? 2026-10-19
+
+The owner explicitly authorized CH-P0-003 only. Its limited workspace scaffold is now **REVIEW**, with local install, fresh frozen install, strict typecheck, build, four scaffold tests, independent application HTTP probes and 360/768/1440 browser layout checks passed. See [verification evidence](../verification/CH-P0-003.md). Human acceptance and authorized commit/merge remain pending; no GitHub delivery or gate closure is claimed. All 56 other unfinished stories remain BLOCKED. CH-P0-004 was not started. The 2026-10-18 readiness statements below are retained as historical preparation evidence, superseded by this execution update.
+
 Date: 2026-10-18 (Africa/Cairo). Current authority: [approval register](approval-register.md) and [governance integration evidence](governance-finalization.md). Human-approved task deliverables and GitHub integration are distinct.
 
 ## Current readiness after human approval

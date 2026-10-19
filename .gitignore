@@ -1,0 +1,9 @@
+node_modules/
+.tools/
+.next/
+dist/
+*.tsbuildinfo
+.env*
+!.env.example
+.verification/
+coverage/
