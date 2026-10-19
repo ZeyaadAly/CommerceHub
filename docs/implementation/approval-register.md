@@ -1,5 +1,16 @@
 # CommerceHub approval register
 
+## CH-P0-004 owner approval - 2026-10-19
+
+**Story:** CH-P0-004. **Decision:** APPROVED. **Date:** 2026-10-19.
+**Authority:** CommerceHub project owner, explicit Final Approval, GitHub Integration & CH-P0-005 Readiness instruction.
+**Acceptance basis:** Reported implementation verification, quality checks, negative fixtures and actual isolated Git hook tests. This records the owner's report-based acceptance; it does not claim line-by-line owner inspection.
+**Conditions:** Reviewed final staged diff, exclusion of unintended line-ending-only changes, successful final candidate checks and actual GitHub policy compliance before merge.
+**Known limitations:** Existing Windows native-binding constraints, ESLint 9 compatibility/deprecation warning, native Linux hook execution unverified.
+**Integration:** PENDING; story remains REVIEW until actual PR merge is verified. Commit/push/PR and policy-compliant merge are authorized for this story. No subsequent implementation, specialist gate closure or infrastructure change is authorized.
+See [integration review](../verification/CH-P0-004-integration.md). Earlier records below are chronological snapshots.
+
+
 ## CH-P0-003 C: approval - 2026-10-19
 
 **APPROVED by the CommerceHub project owner**, based on the verified C: implementation report and explicit Finalization, GitHub Integration & Vercel Preparation instruction. Accepted scope: pnpm/strict TypeScript; two Next.js scaffolds; static Nest health; four shared boundaries; safe examples, reproducible checks and responsive placeholders. Accepted limitation: Windows native pnpm 12/SWC unavailable; verified pnpm 11.28.6 and Webpack/WebAssembly fallback.

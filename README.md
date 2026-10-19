@@ -38,8 +38,10 @@ it checks emitted shared entrypoints as well as strict compiler rejection cases
 and workspace dependency/import boundaries. `skipLibCheck` skips third-party
 library declaration internals; strict checks remain enabled for project source.
 
-Lint, formatting policy and hooks are owned by CH-P0-004. No `lint`, `format`,
-or `format:check` commands exist yet. CI belongs to CH-P0-005.
+Code quality tooling is provided by CH-P0-004: run `pnpm lint`, `pnpm format:check`,
+and `pnpm test:quality`. `pnpm install` initializes the local pre-commit hook. See
+[the code quality guide](docs/development/code-quality.md) for policy, fixes and
+workspace commands. CI remains CH-P0-005.
 
 ## Run locally
 
@@ -58,11 +60,11 @@ Or use `pnpm dev` for all three. Stop with Ctrl+C. Each listener binds to loopba
 With the three apps running, `pnpm test:smoke` checks their actual HTTP responses
 and API unknown-route/unsupported-method cases.
 
-| Application | URL | Production build startup |
-|---|---|---|
-| Storefront | http://localhost:3000/ | pnpm --filter @commercehub/storefront start |
-| Admin | http://localhost:3001/ | pnpm --filter @commercehub/admin start |
-| API | http://localhost:3002/health | pnpm --filter @commercehub/api start |
+| Application | URL                          | Production build startup                    |
+| ----------- | ---------------------------- | ------------------------------------------- |
+| Storefront  | http://localhost:3000/       | pnpm --filter @commercehub/storefront start |
+| Admin       | http://localhost:3001/       | pnpm --filter @commercehub/admin start      |
+| API         | http://localhost:3002/health | pnpm --filter @commercehub/api start        |
 
 After startup, PowerShell HTTP probes are:
 
@@ -104,7 +106,7 @@ Version selection, official compatibility sources, verification results and
 limitations are recorded in [CH-P0-003 evidence](docs/verification/CH-P0-003.md).
 All eight planning documents and AGENTS instructions remain authoritative.
 
-Integration retains the earlier architecture suite: `pnpm test` now runs seven
-scaffold checks across both suites. `pnpm check:architecture` runs the original
+Integration retains the earlier architecture suite: `pnpm test` runs the seven existing
+scaffold checks and the CH-P0-004 tooling/isolated-hook tests. `pnpm check:architecture` runs the original
 three checks independently. Historical D: evidence is preserved separately; see
 [finalization](docs/verification/CH-P0-003-integration.md).

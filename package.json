@@ -13,13 +13,31 @@
     "dev:api": "pnpm --filter @commercehub/api dev",
     "build": "pnpm -r --workspace-concurrency=1 build",
     "typecheck": "pnpm -r typecheck",
-    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs",
+    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs scripts/code-quality.test.mjs",
     "test:smoke": "node scripts/smoke.mjs",
-    "check:architecture": "node --test scripts/workspace.test.mjs"
+    "check:architecture": "node --test scripts/workspace.test.mjs",
+    "lint": "eslint . --max-warnings=0",
+    "lint:fix": "eslint . --fix --max-warnings=0",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "prepare": "husky",
+    "test:quality": "node --test scripts/code-quality.test.mjs"
   },
   "devDependencies": {
-    "typescript": "5.9.3",
+    "@eslint/js": "9.39.5",
+    "@next/eslint-plugin-next": "16.4.2",
+    "@next/swc-wasm-nodejs": "16.4.2",
     "@types/node": "24.19.2",
-    "@next/swc-wasm-nodejs": "16.4.2"
+    "eslint": "9.39.5",
+    "eslint-config-prettier": "10.1.8",
+    "eslint-plugin-jsx-a11y": "6.10.2",
+    "eslint-plugin-react": "7.37.5",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.13.0",
+    "husky": "9.1.7",
+    "lint-staged": "17.6.0",
+    "prettier": "3.9.10",
+    "typescript": "5.9.3",
+    "typescript-eslint": "8.71.2"
   }
 }

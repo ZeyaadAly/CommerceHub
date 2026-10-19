@@ -1,0 +1,14 @@
+# Keep code and hooks consistent on Windows and Linux without rewriting governance Markdown.
+*.ts text eol=lf
+*.tsx text eol=lf
+*.js text eol=lf
+*.mjs text eol=lf
+*.cjs text eol=lf
+*.json text eol=lf
+*.yaml text eol=lf
+*.yml text eol=lf
+*.css text eol=lf
+/.husky/* text eol=lf
+/README.md text eol=lf
+/docs/development/** text eol=lf
+/docs/verification/CH-P0-004.md text eol=lf

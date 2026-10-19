@@ -1,5 +1,14 @@
 # CommerceHub task readiness
 
+## CH-P0-004 approval and integration review - 2026-10-19
+
+CH-P0-004 is human APPROVED based on the implementation report, subject to final diff/line-ending/check/policy conditions. Status remains REVIEW until verified merge. The owner now authorizes task commit, push, PR and merge if actual repository requirements permit. This supersedes the earlier implementation-turn no-write restriction below. See [approval](approval-register.md) and [integration review](../verification/CH-P0-004-integration.md). CH-P0-005 readiness will be assessed after integration; it is not implemented or authorized by this review. All specialist gates remain OPEN.
+
+
+## CH-P0-004 execution - 2026-10-19
+
+The owner explicitly authorized CH-P0-004 tooling only. Status is REVIEW on chore/CH-P0-004-code-quality-tooling from reviewed main ae21727644e33cd1ac7415f7bf2df909038a7ca9. PR #5 is verified MERGED and includes the accepted predecessor/readiness records. All specialist gates and other stories retain their states. No commit, push, PR or merge is authorized for this implementation turn. ESLint/Prettier policy, all seven workspace lint scripts, Husky/lint-staged and isolated positive/negative/staging-safety tests are implemented. Frozen install, lint, formatting, strict compilation, all workspace builds, ten tests and independent local HTTP checks passed; see [004 evidence](../verification/CH-P0-004.md). Human acceptance and integration are pending. CH-P0-005 is not started or automatically readied. Earlier readiness snapshots below are historical.
+
 ## Verified integration and CH-P0-004 readiness - 2026-10-19
 
 **CH-P0-003 is DONE. CH-P0-004 is READY, not started.** The owner explicitly approved the C: implementation on 2026-10-19. [PR #4](https://github.com/ZeyaadAly/CommerceHub/pull/4) is independently verified MERGED at 111a2ce752e9f8aa18ef970bfc972f3b39e8b50f; fetched origin/main exactly matches the reviewed integration tree. Local main was safely fast-forwarded. See [final evidence](../verification/CH-P0-003-integration.md).
