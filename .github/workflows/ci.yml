@@ -53,6 +53,9 @@ jobs:
         run: pnpm test:ci
       - name: Check formatting
         run: pnpm format:check
+      - name: CH-P0-005 isolated negative lint fixture
+        run: |
+          printf '%s\n' 'const deliberatelyUnused = 1;' 'export {};' > scripts/CH-P0-005-negative-lint.mjs
       - name: Lint all workspaces
         run: pnpm lint
       - name: Strict TypeScript
