@@ -13,8 +13,9 @@
     "dev:api": "pnpm --filter @commercehub/api dev",
     "build": "pnpm -r --workspace-concurrency=1 build",
     "typecheck": "pnpm -r typecheck",
-    "test": "node --test scripts/scaffold.test.mjs",
-    "test:smoke": "node scripts/smoke.mjs"
+    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs",
+    "test:smoke": "node scripts/smoke.mjs",
+    "check:architecture": "node --test scripts/workspace.test.mjs"
   },
   "devDependencies": {
     "typescript": "5.9.3",

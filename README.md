@@ -103,3 +103,8 @@ architecture lint policy.
 Version selection, official compatibility sources, verification results and
 limitations are recorded in [CH-P0-003 evidence](docs/verification/CH-P0-003.md).
 All eight planning documents and AGENTS instructions remain authoritative.
+
+Integration retains the earlier architecture suite: `pnpm test` now runs seven
+scaffold checks across both suites. `pnpm check:architecture` runs the original
+three checks independently. Historical D: evidence is preserved separately; see
+[finalization](docs/verification/CH-P0-003-integration.md).

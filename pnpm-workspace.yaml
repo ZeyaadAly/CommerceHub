@@ -5,3 +5,5 @@ minimumReleaseAgeExclude:
   - postcss@8.5.31
 allowBuilds:
   esbuild@0.28.2: true
+engineStrict: true
+saveExact: true
