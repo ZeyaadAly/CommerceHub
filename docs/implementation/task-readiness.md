@@ -1,5 +1,15 @@
 # CommerceHub task readiness
 
+## Verified integration and CH-P0-004 readiness - 2026-10-19
+
+**CH-P0-003 is DONE. CH-P0-004 is READY, not started.** The owner explicitly approved the C: implementation on 2026-10-19. [PR #4](https://github.com/ZeyaadAly/CommerceHub/pull/4) is independently verified MERGED at 111a2ce752e9f8aa18ef970bfc972f3b39e8b50f; fetched origin/main exactly matches the reviewed integration tree. Local main was safely fast-forwarded. See [final evidence](../verification/CH-P0-003-integration.md).
+
+004's sole declared predecessor, 003, is accepted and merged. The C: workspace has successful frozen installation, strict compilation, all seven workspace builds, seven retained scaffold/architecture tests and independent built-app HTTP probes. The owner acknowledged Windows native-binding limitations; the tested pnpm 11/Webpack/WASM configuration is stable. No specialist gate directly blocks this limited local tooling story; all FIN/INV/SEC/PAY/OPS/LEG and DB/API/UX gates remain open for their dependent scopes.
+
+Readiness refinement from 07 section 12 and 08 CH-P0-004 (BA-22): the next separately authorized story must provide one shared lint/format policy and truthful scripts across all seven workspaces; successful checks on valid source; deliberate lint/format violations that return nonzero and are restored afterward; working local hooks/staged-file behavior without changing unrelated files; and preserved strict compilation, package boundaries, build/test behavior, BMAD/AGENTS and commerce exclusions. Tool choices/configuration and script implementation remain 004 work. No ESLint, Prettier, Husky, lint-staged or CI package/config/hook was installed. BA-17 still requires reviewing the later 005 dependency on 004; no dependency graph was edited.
+
+Deployment readiness is separate: [Vercel preparation](../deployment/vercel-frontend-setup.md) is complete as documentation, but clean Linux builds and pnpm 11 cloud compatibility remain NOT RUN/unverified. They do not block local 004 tooling. No Vercel project or database operation occurred. All earlier preparation, D: recovery and pre-merge statements below are historical snapshots superseded by this dated result.
+
 ## C: finalization - 2026-10-19
 
 The project owner has APPROVED the C: scaffold. Its implementation is complete and reviewed; GitHub integration of this version is PENDING, so CH-P0-003 remains REVIEW and CH-P0-004 remains BLOCKED until the follow-up merge is verified. [Finalization evidence](../verification/CH-P0-003-integration.md) distinguishes the earlier merged PR #3 from the accepted C: version. Earlier D: environment/approval snapshots below remain historical. No deployment or next-story execution is authorized.

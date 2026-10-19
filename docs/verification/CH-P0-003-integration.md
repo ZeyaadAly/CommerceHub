@@ -1,5 +1,7 @@
 ﻿# CH-P0-003 integration finalization
 
+**Current result: APPROVED / DONE.** The dated starting-state and pre-merge sections below are historical. The accepted C: scaffold is verified merged in PR #4; the post-merge evidence follows. CH-P0-004 is READY only; deployment preparation is documentation with explicit unverified hosting prerequisites.
+
 Date: 2026-10-19 (Africa/Cairo). Owner authority: the explicit CH-P0-003
 Finalization, GitHub Integration & Vercel Preparation request accepts the C:
 implementation and its documented Windows native-binding limitation. Integration
@@ -49,7 +51,7 @@ remote acceptance and recovery records remain historical evidence.
 
 Normal merge of origin/main into the task branch required 39 reviewed conflicts.
 Resolved implementation conflicts to the owner-accepted C: sources and pins.
-Preserved the earlier implementation report byte-for-byte as
+Preserved the earlier implementation report with original content (Git line endings may differ) as
 [original implementation](CH-P0-003-original-implementation.md), retained earlier
 acceptance/recovery reports and pointed their implementation links to that archive.
 Retained the remote architecture suite unchanged and included all seven tests in
@@ -87,3 +89,47 @@ pins remain the accepted C: tree. Additional merged-suite verification follows.
 No Supabase CLI, database query, migration, credentials access or project change was
 performed. The owner-provided project uktducdwfzakyoolysvt / eu-central-1 is only
 recorded as the intended later backend boundary, not independently audited here.
+
+## Verified GitHub integration
+
+| Field | Actual evidence |
+|---|---|
+| Accepted local implementation | c165f3a6c2a170b8a0af72e901ce8dbeb004efd3; pre-existing owner commit retained |
+| Normal reconciliation merge commit | 25e3cf8e051aac7650e1698c94b1d8853d8c8c45; preserves both prior histories |
+| Reviewed task head / correction commit | 547b545a2161a9de361668aef93334c3430de198 |
+| Task branch | chore/CH-P0-003-monorepo-foundation; normal push, no force/history rewrite |
+| PR / state | [PR #4](https://github.com/ZeyaadAly/CommerceHub/pull/4), MERGED; API re-read confirms merged=true |
+| Actual merge method / SHA | Squash, 111a2ce752e9f8aa18ef970bfc972f3b39e8b50f; merged 2026-10-19T07:33:07Z |
+| Pre-merge base | 0c2ac3e7883eda15c3c05619a48d56b09ab3022f, earlier PR #3 |
+| Policy/check evidence | Main protected=false; protection enabled=false, no contexts; detailed protection endpoint 404; rulesets and applicable branch rules empty; no check runs or deployments; combined status pending with total_count=0 |
+| Review/discussion evidence | Zero submitted GitHub reviews/comments; owner human acceptance is the explicit 2026-10-19 instruction, not a fabricated GitHub review |
+| Final pre-merge review | mergeable=true / clean; 3 expected commits, all 52 PR paths matched the reviewed local diff; exact expected head SHA supplied to normal merge API |
+| Fetched main verification | git diff --exit-code HEAD origin/main passed after fetch; all three app/four package manifests, exports and workspace lockfile present |
+| Protected baseline verification | git diff --exit-code 60d26b9 origin/main over eight BMAD and eight AGENTS passed |
+| Local synchronization | Switched clean local main and used git merge --ff-only origin/main; no discard/reset/clean/rebase |
+
+No CI success is claimed. CI/protection setup remains 005. No protections were
+changed or bypassed. Full staged blobs, changed-file inventories, diff checks,
+source/output patterns and baseline preservation were reviewed. During final
+ignore review, the union's broad env pattern was reordered so safe .env.example
+exceptions remain effective; git check-ignore confirmed the example is not ignored.
+No artifact/cache/credential paths were committed. The two superseded .mjs configs
+were the only removed remote files. Archive preserves the earlier implementation
+report with original content (Git line endings may differ); its acceptance/recovery reports remain with corrected links.
+
+## 004 readiness and deployment preparation
+
+003 has owner acceptance plus exact merged-tree proof; the stable C: installation,
+compilation, builds, seven tests and HTTP evidence satisfy its limited predecessor
+requirements. 004 is READY for a separate authorized task; its refined acceptance
+and no-direct-specialist-gate assessment are in [task readiness](../implementation/task-readiness.md).
+No 004 tooling or implementation was added. Other stories remain BLOCKED.
+
+[Vercel frontend setup](../deployment/vercel-frontend-setup.md) prepares two projects
+with app roots, main production branch, Node 24, app-local build commands, pinned
+Corepack/pnpm candidate, no app credentials, smoke/rollback/security and approval
+checklists. No active Vercel config, project, link, domain or deployment is created.
+Vercel's published default table lists pnpm only through 10; pnpm 11 cloud support
+and clean Linux builds are explicitly unverified. No machine or cloud resources
+were provisioned to hide that limitation. Owner authorization and compatibility
+proof remain required before any deployment.
