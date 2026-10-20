@@ -45,8 +45,11 @@ workspace commands. CI remains CH-P0-005.
 
 ## Run locally
 
-No environment file is required. `.env.example` contains safe local URL comments
-only. Never put database or provider credentials in frontend environments.
+No environment file is required for development defaults. The root `.env.example`
+indexes safe app-scoped templates. See the [Docker-free setup and environment
+ownership guide](docs/development/docker-free-setup.md) for configuration precedence,
+optional template setup, security boundaries and Windows troubleshooting. Never put
+database or provider credentials in frontend environments.
 
 Run these in separate terminals, with pnpm available on PATH:
 
@@ -76,7 +79,9 @@ Invoke-WebRequest http://localhost:3002/health -UseBasicParsing
 
 The first two return placeholder HTML; health returns `{"status":"ok"}`.
 Health is a scaffold liveness response, not dependency readiness or a completed
-CH-P0-011 API contract. The API port is fixed at 3002 for this scaffold.
+CH-P0-011 API contract. The API defaults to port 3002 in development/test;
+an optional API-only `PORT` override is validated. `NODE_ENV=production` requires
+an explicit port, without granting deployment authority.
 
 ## Workspace boundaries
 

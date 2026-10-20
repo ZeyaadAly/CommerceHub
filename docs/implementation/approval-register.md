@@ -1,5 +1,11 @@
 # CommerceHub approval register
 
+## CH-P0-006 limited preparation authorization - 2026-10-20
+
+The owner request, "CommerceHub - CH-P0-006 Limited Docker-Free Implementation", explicitly authorizes environment ownership inventory, safe scoped templates, minimal scaffold configuration validation, tests/runbook, full existing quality checks, local Node startup, a Husky-enabled commit, implementation-branch push and an open review PR. It prohibits full infrastructure bootstrap, service installation/provisioning, database/Redis connections, schemas/migrations, deployment, merging and CH-P0-007. This supersedes earlier no-implementation statements only for that limited scope.
+
+Governance [PR #12](https://github.com/ZeyaadAly/CommerceHub/pull/12) is verified merged at `bce93821870ad7d966a2e33d7945d226e4f3261f` from reviewed head `703f7b6b097a2673493f1bdc16f81bd495a0653e`. Limited-phase evidence is [recorded separately](../verification/CH-P0-006-limited.md); no implementation acceptance or merge is inferred. Full CH-P0-006 is not DONE. All specialist gates remain OPEN, resource/provider choices remain undecided, and the existing advisory exception/expiry is unchanged. Earlier governance entries below are historical.
+
 ## CH-P0-006 narrow Docker-free policy approval — 2026-10-19
 
 **APPROVED by the CommerceHub project owner:** Docker Desktop, WSL 2 and local Docker Compose cease to be mandatory workstation prerequisites. PostgreSQL/Prisma, Redis/BullMQ, backend-only database access, isolated real integration testing and reproducibility remain required. The [formal amendment and exact session evidence](CH-P0-006-container-free-decision.md) record the narrow decision, impact inventory and refined acceptance for REVIEW. No vendor, paid service, topology or sensitive contract is approved. All specialist gates, including OPS-01, remain OPEN.

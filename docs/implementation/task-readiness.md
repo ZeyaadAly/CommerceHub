@@ -1,5 +1,11 @@
 # CommerceHub task readiness
 
+## CH-P0-006 limited preparation review - 2026-10-20
+
+**Limited phase: REVIEW. Full story: BLOCKED on deferred isolated-resource/runtime evidence, not DONE.** The owner separately authorized this phase after verified governance PR #12 merge (`bce93821870ad7d966a2e33d7945d226e4f3261f`). [Limited evidence](../verification/CH-P0-006-limited.md) records actual consumers, scoped templates, API port validation, tests and Node startup verification; [runbook](../development/docker-free-setup.md) describes the current contract. Earlier no-implementation/not-started/open-governance-PR statements below are dated history.
+
+No database/cache resource is selected or available by inference. PostgreSQL/Redis bootstrap, connection/auth/TLS/forbidden-target validation and real integration tests remain BLOCKED pending explicit target/disposability approval, compatible Redis selection and later owning modules. Configuration tests and liveness do not discharge those criteria. Declared dependency CH-P0-003 is unchanged and satisfied; 001-005 remain DONE, CH-P0-007 remains BLOCKED/not started, and all specialist gates remain OPEN. Human review of this limited PR is next; no next story, merge or deployment is authorized.
+
 ## CH-P0-006 Docker-free reassessment — 2026-10-19
 
 **READY for limited documentation/configuration preparation; implementation NOT authorized.** The owner's workstation-policy decision removes mandatory Docker Desktop/WSL 2/Compose. Declared predecessor CH-P0-003 is satisfied; 003/004/005 DONE/merge evidence remains as recorded below. The [formal amendment](CH-P0-006-container-free-decision.md) supersedes the mandatory-engine conclusion and local-container-specific refinement below; AC-006-01–15 are reviewable future acceptance, not implemented checks.
