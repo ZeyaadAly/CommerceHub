@@ -112,17 +112,21 @@ export async function authenticateOnly(
     },
   });
   const send = connection._send.bind(connection);
+  let responses = 0;
   connection._send = (buffer) => {
     if (buffer[0] !== 0x70) {
       connection.stream.destroy();
       throw new Error('PROTOCOL_FORBIDDEN');
     }
+    responses++;
     return send(buffer);
   };
   return new Promise((resolve) => {
     let finished = false;
     let authenticated = false;
     let challenged = false;
+    let sasl = false;
+    let saslFinal = false;
     const finish = (result: VerificationResult) => {
       if (finished) return;
       finished = true;
@@ -142,10 +146,18 @@ export async function authenticateOnly(
         challenged = true;
       });
     }
+    connection.once('authenticationSASL', () => {
+      sasl = true;
+    });
+    connection.once('authenticationSASLFinal', () => {
+      saslFinal = true;
+    });
     connection.once('authenticationOk', () => {
       if (finished) return;
       if (
         !challenged ||
+        responses < 1 ||
+        (sasl && (!saslFinal || responses !== 2)) ||
         !(connection.stream instanceof TLSSocket) ||
         !connection.stream.authorized
       ) {

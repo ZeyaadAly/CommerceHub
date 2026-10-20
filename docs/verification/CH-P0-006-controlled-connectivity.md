@@ -60,7 +60,7 @@ The internal send boundary permits password/SASL responses only; startup and
 Terminate use separately reviewed driver paths. At AuthenticationOk it immediately
 sends Terminate and waits for closure, without waiting for ReadyForQuery or sending
 SQL. An actual TLS-authorized socket and prior authentication challenge are required.
-No pools, retries, fallback, ORM initialization, replication or application hooks.
+SCRAM success also requires both client responses and validated server-final proof; premature AuthenticationOk is denied. No pools, retries, fallback, ORM initialization, replication or application hooks.
 Pinned internal APIs require renewed source/wire review on any future upgrade.
 
 Loopback fixtures inspect every decrypted client frame, including SCRAM proof,
@@ -150,7 +150,7 @@ retained, managed Redis/spending DEFERRED. No Docker/WSL requirement or operatio
 | Local validation                                                                                        | Actual result                                                                                                                                                                            |
 | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | Frozen install, strict typecheck, all seven workspace builds, lint                                      | PASS on pinned Node 24.19.0/pnpm 11.28.6                                                                                                                                                 |
-| Existing/full test run                                                                                  | PASS: final 95 tests, including all 16 offline verifier cases; zero failures/skips                                                                                                       |
+| Existing/full test run                                                                                  | PASS: final 96 tests, including all 17 offline verifier cases; zero failures/skips                                                                                                       |
 | pnpm.cmd audit:ci                                                                                       | PASS with registry access; restricted-network attempt failed unsupported response schema, without bypass; unchanged approved braces exception only                                       |
 | pnpm.cmd format:check                                                                                   | PASS after proving unchanged CH-P0-005.md normalized equality and temporarily checking its recorded Git bytes; initial CRLF checkout failure retained, historical file restored/excluded |
 | Explicit report Prettier check                                                                          | PASS                                                                                                                                                                                     |

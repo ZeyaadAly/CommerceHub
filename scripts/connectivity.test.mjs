@@ -150,6 +150,10 @@ async function fixture(t, mode = 'scram') {
                 .split(',')
                 .find((x) => x.startsWith('r='))
                 .slice(2);
+              if (mode === 'premature-ok') {
+                socket.write(auth(0));
+                continue;
+              }
               serverFirst = `r=${nonce}server,s=c3ludGhldGljLXNhbHQ=,i=4096`;
               socket.write(auth(11, Buffer.from(serverFirst)));
             } else {
@@ -211,7 +215,16 @@ test('TLS protected password authentication also immediately terminates without 
   assert.equal((await authenticateOnly(f.input, 2000)).status, 'PASS');
   assert.deepEqual(f.frames, ['SSLRequest', 'Startup', 'p', 'X']);
 });
-for (const mode of ['reject', 'bad-proof', 'no-tls', 'stall', 'tls-stall', 'auth-stall', 'trust']) {
+for (const mode of [
+  'reject',
+  'bad-proof',
+  'premature-ok',
+  'no-tls',
+  'stall',
+  'tls-stall',
+  'auth-stall',
+  'trust',
+]) {
   test(`${mode} fails closed, cleans up and exposes no server/credential error text`, async (t) => {
     const f = await fixture(t, mode);
     const result = await authenticateOnly(f.input, 350);
