@@ -1,5 +1,9 @@
 # CommerceHub approval register
 
+## CH-P0-006 connectivity planning authorization - 2026-10-20
+
+PR #15 is verified merged at `3d23052205af7dfe5927cc7fc431c42a8085dbe3`; protected main was fetched and safely fast-forwarded. The owner authorizes only a [secure connectivity-readiness plan](../verification/CH-P0-006-postgres-connectivity-readiness.md), documentation checks and a Husky commit/push/open review PR. No credentials, PostgreSQL connection, SQL, resources, migrations, spending, merge or CH-P0-007 are authorized. The existing environment choice remains approved; technical readiness is unverified. Full CH-P0-006 remains BLOCKED, all specialist gates OPEN and managed Redis/spending DEFERRED. Earlier delivery snapshots are historical.
+
 ## CH-P0-006 persistent Supabase dev designation - 2026-10-20
 
 **Owner-approved environment choice only:** the owner designates the existing Supabase `commercehub` project in ZeyaadAly's Org as persistent non-production PostgreSQL development, for NestJS backend access. The owner attests it is new, reportedly empty and under their lifecycle/access authority; empty state and technical safety are not independently verified. [Designation and exact scope](CH-P0-006-supabase-dev-designation.md). No connection, SQL, credentials, settings, migration, reset, resource creation, billing, deployment or next-story authority follows. Managed Redis and spending are DEFERRED; all specialist gates remain OPEN.

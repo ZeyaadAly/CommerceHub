@@ -1,5 +1,9 @@
 # CommerceHub task readiness
 
+## CH-P0-006 connectivity readiness planning - 2026-10-20
+
+**Planning: REVIEW; connectivity verification: NOT RUN; full story: BLOCKED.** PR #15 designation is merged at `3d23052205af7dfe5927cc7fc431c42a8085dbe3`. The [readiness report](../verification/CH-P0-006-postgres-connectivity-readiness.md) recommends a conditional Windows Session Pooler path and specifies verified TLS, backend secret custody, target isolation and a separately authorized query-free procedure. No technical PASS is inferred; AC-006-01-15 retain their prior statuses. CH-P0-001-005 remain DONE; CH-P0-007 NOT STARTED/readiness BLOCKED. All specialist gates OPEN; managed Redis/spending DEFERRED. No database access, SQL or implementation is authorized. Earlier dated snapshots remain history.
+
 ## CH-P0-006 dev designation recorded - 2026-10-20
 
 **Persistent dev environment choice: owner APPROVED. Connectivity/setup: not authorized or verified. Full story: BLOCKED, not DONE.** [Designation](CH-P0-006-supabase-dev-designation.md) records reuse of existing `commercehub` and the owner's unverified new/empty attestation. PR #14 is verified merged at `0ea8195d8d4daf9a4c4d198929cd4af640ebb2da`; limited implementation remains MERGED in PR #13. Managed Redis/subscriptions/spending are DEFERRED.
