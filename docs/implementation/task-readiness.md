@@ -1,5 +1,13 @@
 # CommerceHub task readiness
 
+## CH-P0-006 Docker-free reassessment — 2026-10-19
+
+**READY for limited documentation/configuration preparation; implementation NOT authorized.** The owner's workstation-policy decision removes mandatory Docker Desktop/WSL 2/Compose. Declared predecessor CH-P0-003 is satisfied; 003/004/005 DONE/merge evidence remains as recorded below. The [formal amendment](CH-P0-006-container-free-decision.md) supersedes the mandatory-engine conclusion and local-container-specific refinement below; AC-006-01–15 are reviewable future acceptance, not implemented checks.
+
+Independent future preparation can inventory consumers, document boundaries, prepare safe templates/config validation and Node startup guidance without installing services. **Runtime bootstrap/integration verification remains BLOCKED pending explicit isolated PostgreSQL/Redis resource approval, target identity and compatible Redis selection.** No resource existence, provisioning approval, new sensitive variable name, session behavior or implementation permission is implied. No migration or application DB connection belongs to this phase. Pending runtime evidence cannot become skipped-success acceptance; full DONE requires actual acceptance and protected integration.
+
+OPS-01 remains OPEN for shared infrastructure; all other gates/dependencies and later-story statuses are unchanged. CI containers and optional contributor Docker remain permissible; production architecture is unchanged. This governance revision awaits review/integration. Earlier dated sections are preserved history.
+
 ## CH-P0-005 DONE and CH-P0-006 readiness review - 2026-10-19
 
 **CH-P0-005: DONE.** Owner acceptance and actual protected squash merge of [PR #8](https://github.com/ZeyaadAly/CommerceHub/pull/8), 30545f77f139cb8fcf629b27b87da9f628b627bd, are verified. Main's exact reviewed tree, required check and retained protection are verified. [Final evidence](../verification/CH-P0-005-integration.md). All specialist gates remain OPEN; advisory review is due 2026-10-26, expiry 2026-11-02T00:00:00Z, no renewal.

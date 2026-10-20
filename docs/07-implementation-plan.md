@@ -144,6 +144,8 @@ Verified against public skills.sh listings and published CLI docs on 2026-10-18;
 
 ## 10. CI/CD, environments and operations
 
+> **2026-10-19 local-development amendment:** [CH-P0-006 Docker-free decision](implementation/CH-P0-006-container-free-decision.md) supersedes mandatory local Docker/WSL/Compose interpretations here and in the E0/006 row. Node-based local development is required; optional Docker and CI service containers remain permissible. Historical wording below is retained. PostgreSQL/Redis isolation, secret scan, clean bootstrap, dependency 003 and OPS-01 for shared infrastructure remain. Resource choices are undecided; implementation is not authorized.
+
 - Environments: developer local (Docker Postgres/Redis or reviewed managed sandbox), isolated CI ephemeral Postgres, staging on dedicated non-production DB, production after gates and restore proof. No shared production credential in preview builds.
 - GitHub Actions: on PR install via frozen lockfile -> formatting/lint/typecheck -> unit/contract -> DB integration -> build -> Playwright smoke when applicable -> dependency and secret checks. PR previews for frontends are non-production only with safe API mocks/staging permissions.
 - Main merge: produce signed/provenance-tagged build artifact where supported; deploy staging API/worker and frontends independently with health checks; apply migrations through reviewed job with safe forward/backout strategy; run smoke, then manual promotion to prod when OPS-01/SEC-01/FIN-01 satisfied.

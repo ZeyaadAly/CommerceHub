@@ -182,6 +182,8 @@ A story is `DONE` only when its approved requirements are mapped, its dependenci
 
 #### CH-P0-006 — Document env/secret boundary and local Docker
 
+> **2026-10-19 superseding amendment:** [Docker-free CH-P0-006 decision and refined AC-006-01–15](implementation/CH-P0-006-container-free-decision.md) remove mandatory local Docker Desktop/WSL 2/Compose from this story and its index title. Historical title, user story and original criteria remain below for audit; current limited readiness is in the live tracker. Security, isolated PostgreSQL/Redis, real integration tests and reproducible bootstrap remain. Dependency 003 and OPS-01 shared-infrastructure gate are unchanged. Refined criteria await review; implementation and provisioning are not authorized.
+
 **Release:** P0 · **Status:** NOT STARTED · **Dependencies:** `003` · **Decision gates:** `OPS-01 for shared infra only`.  
 **User story:** As a platform maintainer, I need the platform to document env/secret boundary and local Docker, so that the related commerce capability is delivered reliably, securely, and consistently with the approved product scope.  
 **Scope / expected outcome:** No secrets in git; dev DB and Redis isolated.  

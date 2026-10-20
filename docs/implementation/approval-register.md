@@ -1,5 +1,11 @@
 # CommerceHub approval register
 
+## CH-P0-006 narrow Docker-free policy approval — 2026-10-19
+
+**APPROVED by the CommerceHub project owner:** Docker Desktop, WSL 2 and local Docker Compose cease to be mandatory workstation prerequisites. PostgreSQL/Prisma, Redis/BullMQ, backend-only database access, isolated real integration testing and reproducibility remain required. The [formal amendment and exact session evidence](CH-P0-006-container-free-decision.md) record the narrow decision, impact inventory and refined acceptance for REVIEW. No vendor, paid service, topology or sensitive contract is approved. All specialist gates, including OPS-01, remain OPEN.
+
+**Implementation is NOT authorized.** No resources, installations, connections, migrations, deployment, dependency changes or next story. CH-P0-006 is READY only for limited documentation/configuration preparation, not started; actual service verification awaits approved isolated targets. This authored revision is not owner-accepted or merged. Earlier Docker-blocked snapshots below are historical.
+
 ## CH-P0-005 final owner acceptance and verified integration - 2026-10-19
 
 **Implementation: APPROVED. Integration: MERGED. Story: DONE.** The project owner explicitly approved final integration on 2026-10-19, conditional on current diff, check, review/conversation, protection and security verification. This records report-based owner acceptance; no owner line-by-line or submitted GitHub review is invented. Separate advisory risk approval remains unchanged.
