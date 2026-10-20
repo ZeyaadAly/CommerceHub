@@ -1,5 +1,11 @@
 # CommerceHub approval register
 
+## CH-P0-006 persistent Supabase dev designation - 2026-10-20
+
+**Owner-approved environment choice only:** the owner designates the existing Supabase `commercehub` project in ZeyaadAly's Org as persistent non-production PostgreSQL development, for NestJS backend access. The owner attests it is new, reportedly empty and under their lifecycle/access authority; empty state and technical safety are not independently verified. [Designation and exact scope](CH-P0-006-supabase-dev-designation.md). No connection, SQL, credentials, settings, migration, reset, resource creation, billing, deployment or next-story authority follows. Managed Redis and spending are DEFERRED; all specialist gates remain OPEN.
+
+Prerequisite PR #14 is verified merged at `0ea8195d8d4daf9a4c4d198929cd4af640ebb2da`, reviewed head `8a3eed57c0227a346384fdc63177fe7af2f5de0f`, 2026-10-20T12:24:21Z; protected main and exact tree match verified. This merges the proposal as governance evidence, not blanket approval of its provider recommendations or technical readiness. Full CH-P0-006 remains BLOCKED/not DONE. Earlier proposal-choice and delivery states below are historical.
+
 ## CH-P0-006 limited phase merged; infrastructure proposal - 2026-10-20
 
 Verified [PR #13](https://github.com/ZeyaadAly/CommerceHub/pull/13), `d45cc09b87bf1d1b1b2c4d68266562776af15afd`, reviewed head `5ab16ff0fbbd97bb9a5f9febf7f4e8d4ed3a825f`; GitHub reports merged at 2026-10-20T11:45:09Z. Fetched main has the same tree as the reviewed limited head. This records limited integration only, not full-story DONE or specialist approval. The owner separately authorizes read-only infrastructure research, documentation and a focused review PR. The [resource proposal](CH-P0-006-infrastructure-proposal.md) remains PROPOSED; no target use, creation, cost, credentials, migration, integration or deployment is approved. [Checkpoint evidence](../verification/CH-P0-006-infrastructure-checkpoint.md). All specialist gates and the existing advisory exception/expiry remain unchanged. Earlier limited-phase REVIEW statements below are historical.
