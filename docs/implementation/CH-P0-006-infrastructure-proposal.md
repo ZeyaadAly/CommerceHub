@@ -1,5 +1,7 @@
 # CH-P0-006 infrastructure approval proposal
 
+**2026-10-20 superseding owner-choice note:** This proposal merged in PR #14 at `0ea8195d8d4daf9a4c4d198929cd4af640ebb2da`. The owner now [designates existing Supabase `commercehub` for persistent non-production dev](CH-P0-006-supabase-dev-designation.md), without database/credential/connection authority. Managed Redis/subscriptions/spending are DEFERRED. Earlier PROPOSED/provider-spend/target-not-approved statements below preserve the research checkpoint, not the current action direction; technical prerequisites and all OPEN specialist gates remain unsatisfied.
+
 Date: 2026-10-20 (Africa/Cairo). **PROPOSED - owner decision pending.** This is
 read-only provider discovery plus documentation, not an approved ADR, service
 order, spending authorization or integration implementation. OPS-01 and every

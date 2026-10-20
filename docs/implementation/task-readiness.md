@@ -1,5 +1,11 @@
 # CommerceHub task readiness
 
+## CH-P0-006 dev designation recorded - 2026-10-20
+
+**Persistent dev environment choice: owner APPROVED. Connectivity/setup: not authorized or verified. Full story: BLOCKED, not DONE.** [Designation](CH-P0-006-supabase-dev-designation.md) records reuse of existing `commercehub` and the owner's unverified new/empty attestation. PR #14 is verified merged at `0ea8195d8d4daf9a4c4d198929cd4af640ebb2da`; limited implementation remains MERGED in PR #13. Managed Redis/subscriptions/spending are DEFERRED.
+
+Next is separate owner approval for a bounded nondestructive connectivity-readiness phase: exact target/ownership and preservation evidence, credential custody, least-privilege roles/distinct migration authority, IPv4/IPv6 and direct/Session choice, verified TLS/network controls and forbidden-target denial. No credentials, connection/SQL, migration, reset, provider setting, CI-service change or other story is authorized here. AC-006-04-09/12/14 remain BLOCKED; all specialist gates remain OPEN. CH-P0-007 is NOT STARTED (tracker BLOCKED). Earlier recommendations/approval states below are historical.
+
 ## CH-P0-006 infrastructure approval checkpoint - 2026-10-20
 
 **Limited phase: MERGED in PR #13. Full story: BLOCKED, not DONE. Infrastructure proposal: REVIEW/PROPOSED.** [PR #13](https://github.com/ZeyaadAly/CommerceHub/pull/13), `d45cc09b87bf1d1b1b2c4d68266562776af15afd`, reviewed head `5ab16ff0fbbd97bb9a5f9febf7f4e8d4ed3a825f` is verified on fetched protected main. [Proposal](CH-P0-006-infrastructure-proposal.md) and [read-only evidence](../verification/CH-P0-006-infrastructure-checkpoint.md) separate retained PASS criteria from resource/module blockers. Two active projects are visible in the Free Supabase organization; no spare slot or safe existing target is assumed. Paid Redis Cloud is recommended conditionally; neither paid nor Free alternative is authorized.
