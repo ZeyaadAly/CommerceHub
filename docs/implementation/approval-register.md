@@ -1,5 +1,9 @@
 # CommerceHub approval register
 
+## CH-P0-006 limited phase merged; infrastructure proposal - 2026-10-20
+
+Verified [PR #13](https://github.com/ZeyaadAly/CommerceHub/pull/13), `d45cc09b87bf1d1b1b2c4d68266562776af15afd`, reviewed head `5ab16ff0fbbd97bb9a5f9febf7f4e8d4ed3a825f`; GitHub reports merged at 2026-10-20T11:45:09Z. Fetched main has the same tree as the reviewed limited head. This records limited integration only, not full-story DONE or specialist approval. The owner separately authorizes read-only infrastructure research, documentation and a focused review PR. The [resource proposal](CH-P0-006-infrastructure-proposal.md) remains PROPOSED; no target use, creation, cost, credentials, migration, integration or deployment is approved. [Checkpoint evidence](../verification/CH-P0-006-infrastructure-checkpoint.md). All specialist gates and the existing advisory exception/expiry remain unchanged. Earlier limited-phase REVIEW statements below are historical.
+
 ## CH-P0-006 limited preparation authorization - 2026-10-20
 
 The owner request, "CommerceHub - CH-P0-006 Limited Docker-Free Implementation", explicitly authorizes environment ownership inventory, safe scoped templates, minimal scaffold configuration validation, tests/runbook, full existing quality checks, local Node startup, a Husky-enabled commit, implementation-branch push and an open review PR. It prohibits full infrastructure bootstrap, service installation/provisioning, database/Redis connections, schemas/migrations, deployment, merging and CH-P0-007. This supersedes earlier no-implementation statements only for that limited scope.
