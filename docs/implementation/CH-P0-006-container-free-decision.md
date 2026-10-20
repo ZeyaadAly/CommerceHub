@@ -1,5 +1,7 @@
 # CH-P0-006 — Docker-free Windows development amendment
 
+**2026-10-20 superseding delivery/authority note:** [PR #12](https://github.com/ZeyaadAly/CommerceHub/pull/12) merged at `bce93821870ad7d966a2e33d7945d226e4f3261f`, reviewed head `703f7b6b097a2673493f1bdc16f81bd495a0653e`; fetched origin/main and GitHub merge state verified. The owner subsequently authorized only the [limited preparation phase](../verification/CH-P0-006-limited.md). Earlier REVIEW/open-PR/not-started/no-implementation statements below record the governance revision at delivery time and are historical. All 15 criteria and architecture constraints are preserved; this does not accept the full story, provision resources, close gates or authorize migration/deployment.
+
 Decision date: **2026-10-19 (Africa/Cairo)**. Decision owner: **CommerceHub project owner (ZeyaadAly)**. Governance deliverable: REVIEW; PR #12 is open pending human approval. This document and PR are not approved or merged; CH-P0-006 implementation has not started. See current delivery status below.
 
 ## Decision and authority
