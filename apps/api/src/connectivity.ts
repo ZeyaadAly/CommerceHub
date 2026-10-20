@@ -53,7 +53,7 @@ export function validateManifest(value: unknown, identityDigest: string): value 
 
 export function cleanProcessEnvironment(env: NodeJS.ProcessEnv): boolean {
   return !Object.keys(env).some((key) =>
-    /^(PG|DATABASE_URL$|DIRECT_URL$|SUPABASE_DB|NODE_OPTIONS$|NODE_DEBUG|NODE_EXTRA_CA_CERTS$|NODE_TLS_REJECT_UNAUTHORIZED$)/.test(
+    /^(PG|DATABASE_URL$|DIRECT_URL$|SUPABASE_DB|NODE_OPTIONS$|NODE_DEBUG|NODE_EXTRA_CA_CERTS$|NODE_TLS_REJECT_UNAUTHORIZED$)/i.test(
       key,
     ),
   );

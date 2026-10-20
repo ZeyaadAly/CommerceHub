@@ -293,6 +293,8 @@ test('ambiguous driver/TLS environment is rejected rather than inherited', () =>
   assert.equal(cleanProcessEnvironment({ PATH: 'synthetic' }), true);
   for (const key of [
     'PGHOST',
+    'pGhOsT',
+    'node_debug',
     'PGOPTIONS',
     'PGPASSWORD',
     'DATABASE_URL',
