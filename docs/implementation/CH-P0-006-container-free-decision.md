@@ -1,6 +1,6 @@
 # CH-P0-006 — Docker-free Windows development amendment
 
-Decision date: **2026-10-19 (Africa/Cairo)**. Decision owner: **CommerceHub project owner (ZeyaadAly)**. Governance deliverable: REVIEW; no commit, PR, merge or implementation acceptance is claimed.
+Decision date: **2026-10-19 (Africa/Cairo)**. Decision owner: **CommerceHub project owner (ZeyaadAly)**. Governance deliverable: REVIEW; PR #12 is open pending human approval. This document and PR are not approved or merged; CH-P0-006 implementation has not started. See current delivery status below.
 
 ## Decision and authority
 
@@ -14,7 +14,7 @@ This is a story-specific change-control record under PRD §2.1, rather than a ne
 
 ## Baseline and reason
 
-Actual workspace is `D:\E-commerce`, rather than the request's historical C: path. Origin is `https://github.com/ZeyaadAly/E-commerce.git`; the existing GitHub workflow record documents its CommerceHub rename continuity. Initial main and cached origin/main were clean at `dc1022f8aa02976b464dd1273c4ec66f13ab998a`. A successful fetch independently confirmed the same current origin/main before creating `docs/CH-P0-006-docker-free-design-revision` from it. No main push is authorized.
+Historical local preparation workspace was `D:\E-commerce`, rather than the request's historical C: path. The origin recorded then was `https://github.com/ZeyaadAly/E-commerce.git`; the existing GitHub workflow record documents its CommerceHub rename continuity. Initial main and cached origin/main were clean at `dc1022f8aa02976b464dd1273c4ec66f13ab998a`. A successful fetch independently confirmed the same current origin/main before creating `docs/CH-P0-006-docker-free-design-revision` from it. No main push is authorized.
 
 Git initially rejected ownership. Read checks used command-scoped `safe.directory`; no global configuration was changed. Initial sandbox fetch could not write FETCH_HEAD; the approved elevated fetch succeeded. Predecessor acceptance/merge evidence is recorded in the approval register and CH-P0-005 integration report: 003 PR #4 (`111a2ce752e9f8aa18ef970bfc972f3b39e8b50f`), 004 PR #6 (`5cbb86aea0f70f489a47245204c1850e80ee0264`), 005 PR #8 (`30545f77f139cb8fcf629b27b87da9f628b627bd`). All remain DONE. Current protection is not freshly attested by this task; the protected required check is preserved without edits.
 
@@ -134,7 +134,7 @@ Reversal requires a new dated owner change-control decision that identifies affe
 
 ## Historical preparation verification record
 
-Scope is documentation only: this decision, approval register, tracker, readiness and minimal superseding notes in 07/08. Existing runtime, templates, workflow, lockfile, gate register and production architecture are unchanged. Historical readiness/integration text is retained as dated evidence. Verification outcomes and exact commands are recorded below after review; no application or integration PASS is inferred from document checks.
+The following observations describe the earlier local preparation phase, before delivery authorization and PR creation; they are historical, not current delivery status. Scope was documentation only: this decision, approval register, tracker, readiness and minimal superseding notes in 07/08. Existing runtime, templates, workflow, lockfile, gate register and production architecture are unchanged. Historical readiness/integration text is retained as dated evidence. Verification outcomes and exact commands are recorded below after review; no application or integration PASS is inferred from document checks.
 
 | Check / exact command or method                                                                                                                                                                                                              | Result                                                                                                                                                                                                           |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -178,4 +178,12 @@ Subsequent pnpm commands use the same layout via `--config.store-dir="$env:TEMP\
 | GitHub branch/main read                                                                                            | PASS: unchanged baseline SHA, protected=true, commercehub-quality required for everyone and bound to GitHub Actions app 15368. Detailed protection endpoint returned connector 403; no settings changed.             |
 | Local lint/typecheck/build/unit/application/DB/Redis/browser suites                                                | NOT RUN for this documentation-only revision. The actual unchanged full required CI job must run on the PR; no future DB/cache suite is claimed to exist.                                                            |
 
-The owner-authorized Husky commit, push, PR URL, exact head SHA and actual required CI outcome are reported in the PR/final result after they occur. They are not pre-claimed by this document. Merge remains prohibited and human review remains pending.
+At the end of local preparation, the owner-authorized Husky commit, push, PR URL, exact head SHA and actual required CI outcome were still pending and were to be reported after delivery. The current delivery record below supersedes that historical pending status. Merge remains prohibited and human review remains pending.
+
+## Current delivery status - 2026-10-20
+
+[GitHub PR #12](https://github.com/ZeyaadAly/CommerceHub/pull/12) exists on branch `docs/CH-P0-006-docker-free-design-revision`. The original reviewed head is `fe568fa6c3dedbcf060b06147019bfc0842a4764`. Its required `commercehub-quality` check **passed (SUCCESS)** in [GitHub Actions run 39302690766](https://github.com/ZeyaadAly/CommerceHub/actions/runs/39302690766/job/118231691610), verified again during this correction. That result applies to the original head; this metadata correction requires a fresh successful check on its new PR head.
+
+PR #12 remains **open, pending human approval**. Governance status is **REVIEW**; neither this document nor the PR is approved or merged. CH-P0-006 implementation **has not started**; readiness remains limited to separately authorized documentation/configuration preparation. Actual PostgreSQL/Redis bootstrap and integration execution await explicitly approved isolated resources and compatible Redis selection. All 15 criteria remain unchanged and NOT IMPLEMENTED / NOT RUN. All specialist gates remain **OPEN**. No hosted service is selected or provisioned, and CH-P0-007 is not started.
+
+This correction uses the existing checkout at `C:\Zeyad\CommerceHub`; the earlier `D:\E-commerce` observations above are retained as historical preparation evidence. The owner authorizes only this documentation correction, existing pinned-toolchain validation, a Husky-enabled commit, push to the existing branch and verification of the new required GitHub Actions result. No implementation, merge, infrastructure or deployment operation follows from this delivery record.
