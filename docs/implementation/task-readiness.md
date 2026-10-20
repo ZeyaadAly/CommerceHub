@@ -1,5 +1,11 @@
 # CommerceHub task readiness
 
+## CH-P0-006 infrastructure approval checkpoint - 2026-10-20
+
+**Limited phase: MERGED in PR #13. Full story: BLOCKED, not DONE. Infrastructure proposal: REVIEW/PROPOSED.** [PR #13](https://github.com/ZeyaadAly/CommerceHub/pull/13), `d45cc09b87bf1d1b1b2c4d68266562776af15afd`, reviewed head `5ab16ff0fbbd97bb9a5f9febf7f4e8d4ed3a825f` is verified on fetched protected main. [Proposal](CH-P0-006-infrastructure-proposal.md) and [read-only evidence](../verification/CH-P0-006-infrastructure-checkpoint.md) separate retained PASS criteria from resource/module blockers. Two active projects are visible in the Free Supabase organization; no spare slot or safe existing target is assumed. Paid Redis Cloud is recommended conditionally; neither paid nor Free alternative is authorized.
+
+Next action is owner decision on target eligibility, exact Redis quote/budget, named security/lifecycle ownership and a separate implementation boundary. No resource/probe/CI-service execution is readied by this proposal. OPS-01 and all specialist gates remain OPEN; CH-P0-007 remains BLOCKED/not started. Earlier REVIEW and no-merge records below describe their dated phases.
+
 ## CH-P0-006 limited preparation review - 2026-10-20
 
 **Limited phase: REVIEW. Full story: BLOCKED on deferred isolated-resource/runtime evidence, not DONE.** The owner separately authorized this phase after verified governance PR #12 merge (`bce93821870ad7d966a2e33d7945d226e4f3261f`). [Limited evidence](../verification/CH-P0-006-limited.md) records actual consumers, scoped templates, API port validation, tests and Node startup verification; [runbook](../development/docker-free-setup.md) describes the current contract. Earlier no-implementation/not-started/open-governance-PR statements below are dated history.

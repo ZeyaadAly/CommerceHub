@@ -1,5 +1,7 @@
 # CH-P0-006 limited Docker-free preparation evidence
 
+**2026-10-20 integration update:** Limited preparation is verified MERGED through [PR #13](https://github.com/ZeyaadAly/CommerceHub/pull/13), `d45cc09b87bf1d1b1b2c4d68266562776af15afd`, reviewed head `5ab16ff0fbbd97bb9a5f9febf7f4e8d4ed3a825f`. Required commercehub-quality [run 39415340066](https://github.com/ZeyaadAly/CommerceHub/actions/runs/39415340066) succeeded. The earlier REVIEW/pending-delivery statements and AC-006-10 NOT RUN row below are preserved commit-time history; that remote check is now PASS. Full CH-P0-006 remains BLOCKED, not DONE. [Infrastructure checkpoint](CH-P0-006-infrastructure-checkpoint.md) and [PROPOSED resource decision](../implementation/CH-P0-006-infrastructure-proposal.md) record the next approval boundary without granting setup or integration authority.
+
 Date: 2026-10-20 (Africa/Cairo). **Limited phase: REVIEW. Full story: BLOCKED,
 not DONE.** Human review and protected integration remain pending. This report is
 commit-time evidence; the actual PR head, URL and required-check outcome belong
