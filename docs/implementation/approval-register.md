@@ -1,5 +1,9 @@
 # CommerceHub approval register
 
+## CH-P0-006 controlled verifier authorization - 2026-10-20
+
+PR #16 is verified merged at `0b88e1596e5dd2f0547a804b0eff0cbb43ac6581`. The owner explicitly authorizes a narrow authentication-only verifier, offline tests, minimum existing dev credential use under secure custody, at most one bounded live authentication attempt and an open review PR. No SQL, schema/role/settings/resource changes, migrations, reset/seed, spending, deployment, merge or CH-P0-007. [Controlled verification](../verification/CH-P0-006-controlled-connectivity.md) records implementation REVIEW and live BLOCKED before network because ignored custody inputs are absent. All specialist gates OPEN; full 006 BLOCKED; managed Redis/spending DEFERRED. This supersedes prior planning-only authority for this slice only.
+
 ## CH-P0-006 connectivity planning authorization - 2026-10-20
 
 PR #15 is verified merged at `3d23052205af7dfe5927cc7fc431c42a8085dbe3`; protected main was fetched and safely fast-forwarded. The owner authorizes only a [secure connectivity-readiness plan](../verification/CH-P0-006-postgres-connectivity-readiness.md), documentation checks and a Husky commit/push/open review PR. No credentials, PostgreSQL connection, SQL, resources, migrations, spending, merge or CH-P0-007 are authorized. The existing environment choice remains approved; technical readiness is unverified. Full CH-P0-006 remains BLOCKED, all specialist gates OPEN and managed Redis/spending DEFERRED. Earlier delivery snapshots are historical.

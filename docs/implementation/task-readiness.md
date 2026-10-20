@@ -1,5 +1,9 @@
 # CommerceHub task readiness
 
+## CH-P0-006 controlled verifier checkpoint - 2026-10-20
+
+**Verifier: REVIEW. Live connectivity: BLOCKED before network; full 006: BLOCKED.** [Evidence](../verification/CH-P0-006-controlled-connectivity.md) records offline protocol/TLS tests and missing ignored target/credential/CA inputs; no PostgreSQL attempt or SQL. Direct endpoint identity is management-confirmed; Session Pooler routing support and direct IPv6 reachability remain unverified. Existing seven PASS/eight BLOCKED criteria retained; all specialist gates OPEN, Redis/spending DEFERRED, 001-005 DONE and 007 NOT STARTED/readiness BLOCKED. No full acceptance or next-story authority. Earlier readiness snapshots remain history.
+
 ## CH-P0-006 connectivity readiness planning - 2026-10-20
 
 **Planning: REVIEW; connectivity verification: NOT RUN; full story: BLOCKED.** PR #15 designation is merged at `3d23052205af7dfe5927cc7fc431c42a8085dbe3`. The [readiness report](../verification/CH-P0-006-postgres-connectivity-readiness.md) recommends a conditional Windows Session Pooler path and specifies verified TLS, backend secret custody, target isolation and a separately authorized query-free procedure. No technical PASS is inferred; AC-006-01-15 retain their prior statuses. CH-P0-001-005 remain DONE; CH-P0-007 NOT STARTED/readiness BLOCKED. All specialist gates OPEN; managed Redis/spending DEFERRED. No database access, SQL or implementation is authorized. Earlier dated snapshots remain history.
