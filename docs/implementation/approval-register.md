@@ -1,5 +1,18 @@
 # CommerceHub approval register
 
+## CH-P0-006 pooler target evidence authorization - 2026-10-21
+
+The owner authorizes noncredential designated-project metadata, official TLS/target
+research, offline verification, sanitized approval preparation and Husky
+commit/push/open review PR. PR #18 is verified merged at
+`89e54c0af51f0a76834686da40ac59752b44f226`. This does not approve a pooler endpoint,
+credential use, live probes, SQL, resource changes, spending, merge or next story.
+[Target evidence](../verification/CH-P0-006-pooler-target-verification.md) keeps
+owner-reported hostname/routing identity separate from BLOCKED independent
+verification and PENDING endpoint approval. Supplied values are not approval.
+Use only the authorized GitHub integration or existing authenticated gh CLI;
+no stored token extraction/manual reuse. Full 006 BLOCKED; all gates OPEN.
+
 ## CH-P0-006 Windows compatibility offline authorization - 2026-10-21
 
 The owner authorizes Session Pooler compatibility implementation, offline tests,

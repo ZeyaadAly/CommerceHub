@@ -1,5 +1,17 @@
 # CommerceHub task readiness
 
+## CH-P0-006 pooler target verification checkpoint - 2026-10-21
+
+**Evidence REVIEW; exact identity BLOCKED; endpoint owner approval PENDING.**
+PR #18 merged at `89e54c0af51f0a76834686da40ac59752b44f226`.
+[Project-specific metadata review](../verification/CH-P0-006-pooler-target-verification.md)
+reconfirms designated project/org but exposes no pooler host/routing identity.
+Owner supplied nonsecret host/port/database/user; explicit Session mode/selected-role
+confirmation, independently reviewable provider evidence and target approval remain
+pending. Production allowlist remains
+pending. Full 006 BLOCKED, 001–005 DONE, 007 NOT STARTED/readiness BLOCKED,
+all specialist gates OPEN and managed Redis/spending DEFERRED.
+
 ## CH-P0-006 Windows Session Pooler offline checkpoint - 2026-10-21
 
 **Implementation REVIEW; live connectivity/full 006 BLOCKED.** PR #17 merged at

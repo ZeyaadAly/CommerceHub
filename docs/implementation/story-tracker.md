@@ -1,5 +1,11 @@
 # CommerceHub story tracker
 
+CH-P0-006 target-evidence checkpoint (2026-10-21): [record REVIEW](../verification/CH-P0-006-pooler-target-verification.md),
+exact pooler identity BLOCKED and owner endpoint approval PENDING. PR #18 merged;
+production allowlist unchanged. Existing seven PASS/eight BLOCKED criteria,
+001–005 DONE, full 006 BLOCKED, 007 NOT STARTED/readiness BLOCKED, all story
+dependencies, specialist gates OPEN and managed Redis/spending DEFERRED retained.
+
 CH-P0-006 offline Windows compatibility follow-up (2026-10-21): implementation
 REVIEW; [evidence](../verification/CH-P0-006-session-pooler-compatibility.md).
 Exact Session Pooler approval and live verification remain BLOCKED. No original
