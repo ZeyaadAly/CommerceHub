@@ -127,6 +127,62 @@ test('positive: actual repository lock and all production roots are assessable',
   assert.equal(validateExposure(source.lock, source.manifests), true);
 });
 
+function nestedWorkspaces() {
+  const { evidence } = fixture();
+  for (const [importer, name, dependency, target] of [
+    ['apps/web', '@fixture/web', '@fixture/a', '../../packages/a'],
+    ['packages/a', '@fixture/a', '@fixture/b', '../b'],
+    ['packages/b', '@fixture/b', undefined, undefined],
+  ]) {
+    evidence.manifests[importer] = {
+      name,
+      dependencies: dependency ? { [dependency]: 'workspace:*' } : {},
+    };
+    evidence.lock.importers[importer] = {
+      dependencies: dependency
+        ? { [dependency]: { specifier: 'workspace:*', version: `link:${target}` } }
+        : {},
+    };
+  }
+  return evidence;
+}
+
+test('nested workspace links resolve from their declaring importer', () => {
+  const evidence = nestedWorkspaces();
+  assert.equal(validateExposure(evidence.lock, evidence.manifests), true);
+});
+
+test('nested workspace links cannot hide production braces exposure', () => {
+  const evidence = nestedWorkspaces();
+  evidence.manifests['packages/b'].dependencies.braces = '3.0.3';
+  evidence.lock.importers['packages/b'].dependencies.braces = {
+    specifier: '3.0.3',
+    version: '3.0.3',
+  };
+  assert.throws(
+    () => validateExposure(evidence.lock, evidence.manifests),
+    /Production dependency exposure/,
+  );
+});
+
+test('unknown nested workspace links fail closed', () => {
+  const evidence = nestedWorkspaces();
+  evidence.lock.importers['packages/a'].dependencies['@fixture/b'].version = 'link:../unknown';
+  assert.throws(
+    () => validateExposure(evidence.lock, evidence.manifests),
+    /Unknown workspace link/,
+  );
+});
+
+test('workspace link identity must match the referenced manifest', () => {
+  const evidence = nestedWorkspaces();
+  evidence.manifests['packages/b'].name = '@fixture/other';
+  assert.throws(
+    () => validateExposure(evidence.lock, evidence.manifests),
+    /Workspace link identity mismatch/,
+  );
+});
+
 const negatives = {
   'expired approval': (s) => {
     s.now = new Date('2026-11-03T00:00:00Z');

@@ -130,7 +130,7 @@ test('workspace graph and source imports respect app/package boundaries', () => 
   for (const name of graph.keys()) visit(name);
 });
 
-test('shared package builds expose resolvable inert modules', () => {
+test('shared package builds expose resolvable modules without import-time network effects', () => {
   for (const workspace of workspaces.filter((item) => item.startsWith('packages/'))) {
     const manifest = json(`${workspace}/package.json`);
     const result = spawnSync(
@@ -138,11 +138,31 @@ test('shared package builds expose resolvable inert modules', () => {
       [
         '--input-type=module',
         '-e',
-        `const value = await import('${manifest.name}'); if (Object.keys(value).length) process.exit(1);`,
+        `globalThis.fetch = () => { throw new Error('import-time network access'); };
+         const value = await import('${manifest.name}');
+         const expected = ${JSON.stringify({
+           '@commercehub/ui': [],
+           '@commercehub/types': [],
+           '@commercehub/api-client': ['ApiClientError', 'createApiClient', 'serializeQuery'],
+           '@commercehub/validation': [
+             'apiErrorSchema',
+             'apiMetaSchema',
+             'createCollectionSchema',
+             'createPaginationSchemas',
+             'createQueryTextSchema',
+             'createResponseSchema',
+             'createSortSchema',
+             'isoInstantSchema',
+             'noContentSchema',
+             'uuidSchema',
+             'validate',
+           ],
+         })};
+         if (JSON.stringify(Object.keys(value).sort()) !== JSON.stringify(expected['${manifest.name}'].sort())) process.exit(1);`,
       ],
       { cwd: path.join(root, workspace), encoding: 'utf8' },
     );
     assert.equal(result.status, 0, `${workspace}: run pnpm build first\n${result.stderr}`);
-    assert.ok(read(`${workspace}/dist/index.d.ts`).includes('export {}'));
+    assert.ok(read(`${workspace}/dist/index.d.ts`).includes('export'));
   }
 });

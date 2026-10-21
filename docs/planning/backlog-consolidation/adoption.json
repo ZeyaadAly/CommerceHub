@@ -56,7 +56,7 @@
     {
       "id": "CH-01",
       "status": "IN PROGRESS",
-      "detail": "PARTIALLY IMPLEMENTED: historical 001–005 DONE; 006 partial merged/BLOCKED; C/D unstarted."
+      "detail": "PARTIALLY IMPLEMENTED: historical 001–005 DONE; 006 partial merged/BLOCKED; C implementation REVIEW, D NOT STARTED."
     },
     {
       "id": "CH-02",
@@ -172,11 +172,12 @@
     {
       "id": "C",
       "parent": "CH-01",
-      "status": "NOT STARTED",
-      "readiness": "READY FOR AUTHORIZATION",
-      "authorization": "NOT AUTHORIZED",
+      "status": "REVIEW",
+      "readiness": "SATISFIED",
+      "authorization": "AUTHORIZED: OWNER CH-01/C REQUEST 2026-10-21",
       "unmetPrerequisites": [],
-      "note": "Bounded safe contract/type/client scaffold only; F/003 accepted. Do not settle gated money, enum, session or permission policy; refine allowed files/AC in the implementation plan."
+      "note": "Bounded shared contracts/validation/client implementation submitted for human review and merge; not DONE. No auth-cookie/domain policies. Evidence: docs/verification/CH-01-C.md.",
+      "evidence": "docs/verification/CH-01-C.md"
     },
     {
       "id": "D",
@@ -603,9 +604,10 @@
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     }
   ],
-  "firstRecommendedMilestone": "C",
+  "firstRecommendedMilestone": "D",
   "evidence": {
     "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
     "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
-  }
+  },
+  "implementationAuthorizationScope": "Top-level false records no standing authority from adoption. Separate owner request 2026-10-21 authorizes CH-01/C only; no later milestones or hosted operations."
 }

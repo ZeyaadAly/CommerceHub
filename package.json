@@ -12,11 +12,11 @@
     "dev:admin": "pnpm --filter @commercehub/admin dev",
     "dev:api": "pnpm --filter @commercehub/api dev",
     "build": "pnpm -r --workspace-concurrency=1 build",
-    "typecheck": "pnpm -r typecheck",
-    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs scripts/code-quality.test.mjs scripts/ci.test.mjs scripts/dependency-audit.test.mjs scripts/environment.test.mjs scripts/connectivity.test.mjs",
+    "typecheck": "pnpm build:packages && pnpm -r typecheck",
+    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs scripts/code-quality.test.mjs scripts/ci.test.mjs scripts/dependency-audit.test.mjs scripts/environment.test.mjs scripts/connectivity.test.mjs scripts/contracts.test.mjs",
     "test:smoke": "node scripts/smoke.mjs",
     "check:architecture": "node --test scripts/workspace.test.mjs",
-    "lint": "eslint . --max-warnings=0",
+    "lint": "pnpm build:packages && eslint . --max-warnings=0",
     "lint:fix": "eslint . --fix --max-warnings=0",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
@@ -24,7 +24,9 @@
     "test:quality": "node --test scripts/code-quality.test.mjs",
     "test:ci": "node --test scripts/ci.test.mjs scripts/dependency-audit.test.mjs",
     "scan:secrets": "node scripts/secret-scan.mjs",
-    "audit:ci": "node scripts/check-dependency-audit.mjs"
+    "audit:ci": "node scripts/check-dependency-audit.mjs",
+    "test:contracts": "node --test scripts/contracts.test.mjs",
+    "build:packages": "pnpm --filter \"./packages/**\" -r --workspace-concurrency=1 build"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",

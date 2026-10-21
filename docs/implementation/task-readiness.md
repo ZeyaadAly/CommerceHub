@@ -3,8 +3,8 @@
 2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
 Owner explicitly approved adoption, five ownership moves, feature coverage and the
 48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
-merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
-no implementation or specialist gate closure is authorized.
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. The adoption decision alone authorized governance synchronization;
+separate scoped implementation authority is recorded below. No specialist gate closes.
 
 Default to the [adopted backlog](../planning/backlog-consolidation/README.md), [definitions](../planning/backlog-consolidation/stories.json),
 [full acceptance](../planning/backlog-consolidation/backlog.md), [milestone graph](../planning/backlog-consolidation/milestones.json) and
@@ -28,17 +28,14 @@ Only the next selected slice's actual prerequisites and scoped gates are evaluat
 | Milestone              | Execution                             | Readiness                                           | Evidence / limit                                                                                           |
 | ---------------------- | ------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | F / CH-01              | DONE (historical accepted scope only) | SATISFIED                                           | Exact 001–005 rows/merges in retained inventory; parent incomplete                                         |
-| C / CH-01 (legacy 007) | NOT STARTED                           | READY FOR AUTHORIZATION, bounded technical scaffold | Accepted F/003; one focused implementation plan must exclude unresolved money/state/auth/permission policy |
+| C / CH-01 (legacy 007) | REVIEW | SATISFIED for bounded review | Owner-authorized implementation; human review/merge pending, no DONE claim |
 | D / CH-01 (legacy 008) | NOT STARTED                           | READY FOR AUTHORIZATION, scoped option preparation  | Accepted 001; prepare ADR/gate options, never approve decisions                                            |
 | E_DB / CH-01           | BLOCKED                               | BLOCKED                                             | D/custody/disposable isolation/roles/service evidence pending; partial dev validation is not this proof    |
 | E_QUEUE / CH-01        | BLOCKED                               | BLOCKED                                             | D/OPS and separate resource authority pending; managed Redis/spending DEFERRED                             |
 | T / CH-10; API / CH-03 | NOT STARTED                           | BLOCKED on C and applicable scoped UX/contracts     | Do not wait for all of CH-01; no implementation authorized now                                             |
 | All other milestones   | NOT STARTED                           | Actual predecessor milestones incomplete            | Use exact dependencies/gate notes in milestones.json, not blanket parent gate status                       |
 
-Recommended first implementation milestone: **C**, after a separate explicit
-authorization for safe shared contracts/validation/types/client scaffolds. D can
-be prepared independently if separately authorized. Neither is started by this task.
-No assumption that all gated business schemas can be finalized in C.
+C has bounded implementation in REVIEW; it is not accepted/merged and does not yet satisfy dependent implementation readiness. Recommended next independent milestone: **D**, scoped ADR/gate options preparation, only after separate authorization. No signed decisions or gate closure are inferred. T/API remain blocked on accepted C and scoped reviews.
 
 The [complete 48-row state record](../planning/backlog-consolidation/adoption.json)
 records every actual prerequisite. Parent CH-01 is partial IN PROGRESS; other parents
@@ -51,6 +48,16 @@ inventory, payment/refund and infrastructure slices keep all applicable approval
 configuration, not live TLS/authentication, credential custody, least privilege or
 DB/Redis readiness. Seven PASS/eight BLOCKED refined criteria retained. Legacy
 checkpoints below are dated snapshots, not new live access or completion evidence.
+
+## CH-01/C implementation checkpoint — 2026-10-21
+
+The owner separately authorized Milestone C only after PR #22 merged at
+`09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7`. Bounded shared transport/schema/client
+implementation is **REVIEW**, not DONE; human acceptance and merge are pending.
+[Milestone C evidence](../verification/CH-01-C.md) maps all five inherited CH-P0-007 clauses, public exports,
+negative tests and unresolved API policies. Canonical schemas own inferred types;
+no domain policy or specialist gate closes. CH-01 stays partial, 006 BLOCKED,
+D/008 and every later milestone unstarted; Redis/spending DEFERRED.
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub task readiness

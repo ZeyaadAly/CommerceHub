@@ -3,8 +3,8 @@
 2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
 Owner explicitly approved adoption, five ownership moves, feature coverage and the
 48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
-merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
-no implementation or specialist gate closure is authorized.
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. The adoption decision alone authorized governance synchronization;
+separate scoped implementation authority is recorded below. No specialist gate closes.
 
 Default to the [adopted backlog](planning/backlog-consolidation/README.md), [definitions](planning/backlog-consolidation/stories.json),
 [full acceptance](planning/backlog-consolidation/backlog.md), [milestone graph](planning/backlog-consolidation/milestones.json) and
@@ -61,6 +61,16 @@ Run relevant tests continuously; exact-head CI and human/specialist review prece
 authorized merge. Record acceptance/evidence and continue only to another explicitly
 authorized milestone. Otherwise recommend next work and stop. Separate credential,
 DB/migration, resource, spending, deployment and financial approvals still apply.
+
+## CH-01/C implementation checkpoint — 2026-10-21
+
+The owner separately authorized Milestone C only after PR #22 merged at
+`09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7`. Bounded shared transport/schema/client
+implementation is **REVIEW**, not DONE; human acceptance and merge are pending.
+[Milestone C evidence](verification/CH-01-C.md) maps all five inherited CH-P0-007 clauses, public exports,
+negative tests and unresolved API policies. Canonical schemas own inferred types;
+no domain policy or specialist gate closes. CH-01 stays partial, 006 BLOCKED,
+D/008 and every later milestone unstarted; Redis/spending DEFERRED.
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub — BMAD Implementation Plan
