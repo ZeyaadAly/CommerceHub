@@ -1,2 +1,2 @@
-// Package boundary only. Contracts and behavior belong to later stories.
-export {};
+export { ApiClientError, createApiClient, serializeQuery } from './client.js';
+export type { ClientErrorKind, ClientOptions, RequestOptions } from './client.js';

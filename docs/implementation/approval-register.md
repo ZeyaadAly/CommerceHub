@@ -3,8 +3,8 @@
 2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
 Owner explicitly approved adoption, five ownership moves, feature coverage and the
 48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
-merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
-no implementation or specialist gate closure is authorized.
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. The adoption decision alone authorized governance synchronization;
+separate scoped implementation authority is recorded below. No specialist gate closes.
 
 Default to the [adopted backlog](../planning/backlog-consolidation/README.md), [definitions](../planning/backlog-consolidation/stories.json),
 [full acceptance](../planning/backlog-consolidation/backlog.md), [milestone graph](../planning/backlog-consolidation/milestones.json) and
@@ -28,10 +28,10 @@ PR #21 reviewed/merged at the exact commit above. This is an explicit owner deci
 not approval inferred solely from a merge.
 
 CH-01 partial IN PROGRESS; CH-02–CH-21 NOT STARTED; no parent newly DONE. 001–005
-remain historical DONE; full 006 BLOCKED; 007/008 not started. The adopted workflow
+remain historical DONE; full 006 BLOCKED; C/007 REVIEW; D/008 not started. The adopted workflow
 allows continuing only to the next explicitly authorized milestone and creates
-no standing infrastructure or financial authority. Current adoption synchronization
-is REVIEW pending its own PR review/merge; the owner decision is already APPROVED.
+no standing infrastructure or financial authority. Adoption synchronization merged through PR #22 at
+`09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7`; the owner decision remains APPROVED.
 
 FIN-01, FIN-02, INV-01, SEC-01, PAY-01, OPS-01, LEG-01 and PAY-LIVE remain OPEN;
 FIN-01 revision, DB-0/DB-01, API-01, UX/quality and all conditional reviews unchanged.
@@ -40,6 +40,16 @@ No tax/rounding/TTL/session/permission/state/replay/provider/retention/recovery
 policy, budget or security exception is newly approved. Exact existing exception
 expiration dates and restrictions remain unchanged. No feature, credential, DB/SQL,
 migration, hosted-resource, spending or deployment action is authorized here.
+
+## CH-01/C implementation checkpoint — 2026-10-21
+
+The owner separately authorized Milestone C only after PR #22 merged at
+`09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7`. Bounded shared transport/schema/client
+implementation is **REVIEW**, not DONE; human acceptance and merge are pending.
+[Milestone C evidence](../verification/CH-01-C.md) maps all five inherited CH-P0-007 clauses, public exports,
+negative tests and unresolved API policies. Canonical schemas own inferred types;
+no domain policy or specialist gate closes. CH-01 stays partial, 006 BLOCKED,
+D/008 and every later milestone unstarted; Redis/spending DEFERRED.
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub approval register

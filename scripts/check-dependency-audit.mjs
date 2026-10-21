@@ -129,17 +129,20 @@ export function validateExposure(lock, manifests) {
   }
   const assessed = new Set();
   let visits = 0;
-  function walk(name, version, route, production, seen) {
+  function walk(name, version, route, production, seen, importerContext) {
     requireThat(++visits < 100000, 'Dependency graph exceeds assessment bound');
     if (version.startsWith('link:')) {
-      const importer = path.posix.normalize(path.posix.join(route[0], version.slice(5)));
+      // Relative links belong to the declaring workspace, not the original app.
+      // Preserve route separately so exposure/approved ancestry checks stay strict.
+      const importer = path.posix.normalize(path.posix.join(importerContext, version.slice(5)));
       requireThat(lock.importers[importer], 'Unknown workspace link');
+      requireThat(manifests[importer]?.name === name, 'Workspace link identity mismatch');
       const marker = `workspace:${importer}`;
       if (seen.has(marker)) return;
       const next = new Set([...seen, marker]);
       for (const group of ['dependencies', 'optionalDependencies'])
         for (const [child, edge] of Object.entries(lock.importers[importer][group] ?? {}))
-          walk(child, edge.version, route, production, next);
+          walk(child, edge.version, route, production, next, importer);
       return;
     }
     requireThat(
@@ -166,7 +169,8 @@ export function validateExposure(lock, manifests) {
     for (const group of ['dependencies', 'optionalDependencies']) {
       const edges = lock.snapshots[key][group] ?? {};
       requireThat(object(edges), 'Invalid snapshot edges');
-      for (const [child, ref] of Object.entries(edges)) walk(child, ref, current, production, next);
+      for (const [child, ref] of Object.entries(edges))
+        walk(child, ref, current, production, next, importerContext);
     }
   }
   for (const [importer, manifest] of Object.entries(manifests)) {
@@ -183,7 +187,14 @@ export function validateExposure(lock, manifests) {
           locked[name].specifier === specifier && typeof locked[name].version === 'string',
           'Inconsistent lockfile specifier',
         );
-        walk(name, locked[name].version, [importer], group !== 'devDependencies', new Set());
+        walk(
+          name,
+          locked[name].version,
+          [importer],
+          group !== 'devDependencies',
+          new Set(),
+          importer,
+        );
       }
     }
   }

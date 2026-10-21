@@ -46,22 +46,41 @@ export function validateStatus(record, definitions, nodes) {
   );
   for (const [index, state] of record.milestoneStates.entries()) {
     const done = state.id === 'F';
+    const review = state.id === 'C';
     const ready = ['C', 'D'].includes(state.id);
     assert.equal(
       state.status,
-      done ? 'DONE' : ['E_DB', 'E_QUEUE'].includes(state.id) ? 'BLOCKED' : 'NOT STARTED',
+      done
+        ? 'DONE'
+        : review
+          ? 'REVIEW'
+          : ['E_DB', 'E_QUEUE'].includes(state.id)
+            ? 'BLOCKED'
+            : 'NOT STARTED',
     );
     assert.equal(
       state.readiness,
-      done ? 'SATISFIED' : ready ? 'READY FOR AUTHORIZATION' : 'BLOCKED',
+      done || review ? 'SATISFIED' : ready ? 'READY FOR AUTHORIZATION' : 'BLOCKED',
     );
-    assert.equal(state.authorization, done ? 'HISTORICAL ACCEPTED SCOPE' : 'NOT AUTHORIZED');
+    assert.equal(
+      state.authorization,
+      done
+        ? 'HISTORICAL ACCEPTED SCOPE'
+        : review
+          ? 'AUTHORIZED: OWNER CH-01/C REQUEST 2026-10-21'
+          : 'NOT AUTHORIZED',
+    );
+    if (review) {
+      assert.equal(state.evidence, 'docs/verification/CH-01-C.md');
+      assert.match(read(state.evidence), /Status: REVIEW/);
+      assert.match(read(state.evidence), /09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7/);
+    }
     assert.deepEqual(
       state.unmetPrerequisites,
       nodes[index].depends.filter((id) => id !== 'F'),
     );
   }
-  assert.equal(record.firstRecommendedMilestone, 'C');
+  assert.equal(record.firstRecommendedMilestone, 'D');
   assert.deepEqual(record.unchangedSpecialistGates, [
     'FIN-01',
     'FIN-02',
@@ -204,6 +223,12 @@ for (const mutate of [
   (record) => {
     record.ownershipMoves['CH-P0-044'] = 'CH-13';
   },
+  (record) => {
+    record.milestoneStates[1].status = 'DONE';
+  },
+  (record) => {
+    record.milestoneStates[2].authorization = 'AUTHORIZED';
+  },
 ]) {
   const invalid = structuredClone(adoption);
   mutate(invalid);
@@ -218,7 +243,7 @@ console.log(
       unchangedHistoricalDocuments: prefixes.size,
       protectedSources: protectedFiles.size,
       repositoryLocalLinks: links,
-      rejectedMutations: 5,
+      rejectedMutations: 7,
       implementationAuthorized: false,
     },
     null,
