@@ -36,3 +36,7 @@ Numbers without prefixes in this register resolve through [story-tracker.md](sto
 008 should turn these entries into reviewable ADR options. Record named owner, decision date, signed artifact/PR, exact approved scope, alternatives, constraints, updated baseline/API/data/test references and verification links. If decisions and proofs must occur at different times, explicitly split decision approval from implementation verification, preserving both obligations. Do not create a circular requirement to execute dependent code before policy authorization. This register records no sign-offs or proof results.
 
 When a reviewer accepts CH-P0-001, only documentation acceptance changes. Gate closure requires its designated owner and evidence. Indirect blockers remain until both predecessors and applicable gates pass. Proposed TTL, rate limits, monetary examples, hosting suggestions and retention windows cannot be used as implicit approval. Live integration/activation, migrations and deployment retain their separate authorization boundaries.
+
+<!-- CH-01-D PREPARATION -->
+
+Preparation checkpoint 2026-10-21: [single decision matrix](../architecture/decisions/decision-matrix.md) and nine PROPOSED ADR packets are REVIEW deliverables. Every original gate row, accountable role and closure obligation above is unchanged. No named specialist sign-off, policy approval or service verification is recorded; all gates remain OPEN.
