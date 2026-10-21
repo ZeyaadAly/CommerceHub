@@ -66,7 +66,7 @@
     {
       "id": "CH-03",
       "status": "IN PROGRESS",
-      "detail": "API transport foundation REVIEW only; AUTH/STAFF milestones NOT STARTED and blocked. Parent incomplete."
+      "detail": "API bounded transport DONE after verified PR #25 implementation/tests/exact-head CI/owner merge; AUTH/STAFF NOT STARTED, database and specialist prerequisites remain. Parent incomplete."
     },
     {
       "id": "CH-04",
@@ -100,8 +100,8 @@
     },
     {
       "id": "CH-10",
-      "status": "NOT STARTED",
-      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+      "status": "BLOCKED",
+      "detail": "T readiness preparation REVIEW; component implementation NOT STARTED and BLOCKED on scoped UX/quality approval and separate implementation authorization."
     },
     {
       "id": "CH-11",
@@ -236,21 +236,32 @@
     {
       "id": "API",
       "parent": "CH-03",
-      "status": "REVIEW",
+      "status": "DONE",
       "readiness": "SATISFIED",
       "authorization": "AUTHORIZED: OWNER CH-03/API REQUEST 2026-10-21",
       "unmetPrerequisites": [],
-      "note": "Bounded technical transport/validation/errors/local OpenAPI only. API-01 handoff recorded; no gate closure or auth/business/DB authority. Human acceptance and merge pending.",
-      "evidence": "docs/verification/CH-03-API.md"
+      "note": "Bounded transport acceptance reconciled in owner-authorized T readiness review: implementation, inherited AC, 173 tests, exact-head CI and owner PR #25 merge verified. API-01 OPEN; no AUTH/STAFF/DB acceptance.",
+      "evidence": "docs/verification/CH-03-API.md",
+      "acceptance": {
+        "pr": 25,
+        "merge": "b6b19a66fc28729b12cf0a03539ac83723eeb24d",
+        "head": "55a0874ab08c46c280244e9c0e96fca0ca4e811b",
+        "ciRun": 39598354103,
+        "ciJob": 119216220179,
+        "acceptedBy": "ZeyaadAly",
+        "basis": "Owner merge plus explicitly authorized evidence-based bounded acceptance reconciliation; no specialist gate closure."
+      }
     },
     {
       "id": "T",
       "parent": "CH-10",
-      "status": "NOT STARTED",
+      "status": "BLOCKED",
       "readiness": "BLOCKED",
-      "authorization": "NOT AUTHORIZED",
+      "authorization": "AUTHORIZED: OWNER CH-10/T READINESS ONLY 2026-10-21",
       "unmetPrerequisites": [],
-      "note": "C prerequisite accepted; implementation still BLOCKED on scoped UX/quality token/primitives design/contrast/focus evidence. Design preparation can be separately authorized without DB/payment gates."
+      "note": "Readiness handoff REVIEW only; implementation BLOCKED pending D1–D4 UX/Product + QA approval and separate implementation authorization. No components started.",
+      "evidence": "docs/design/CH-10-T-handoff.md",
+      "preparationStatus": "REVIEW"
     },
     {
       "id": "A",
@@ -258,7 +269,7 @@
       "status": "NOT STARTED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["DB", "API"],
+      "unmetPrerequisites": ["DB"],
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     },
     {
@@ -267,7 +278,7 @@
       "status": "NOT STARTED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["DB", "API"],
+      "unmetPrerequisites": ["DB"],
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     },
     {
@@ -303,7 +314,7 @@
       "status": "NOT STARTED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["DB", "API", "STAFF_API", "A"],
+      "unmetPrerequisites": ["DB", "STAFF_API", "A"],
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     },
     {
@@ -493,7 +504,7 @@
       "status": "NOT STARTED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["E_DB", "E_QUEUE", "API"],
+      "unmetPrerequisites": ["E_DB", "E_QUEUE"],
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     },
     {
@@ -619,6 +630,6 @@
     "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
     "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
   },
-  "implementationAuthorizationScope": "Adoption grants no standing implementation authority. C separately authorized and accepted for bounded scope. D preparation remains REVIEW with unsigned PROPOSED ADRs. Current owner request authorizes CH-03/API transport only; no AUTH/STAFF/DB/T implementation, hosted operations or gate closure.",
-  "nextRecommendedTask": "Independent T design/UX preparation only, after separate owner authorization; T implementation remains blocked on UX/quality. API acceptance/merge still pending. No successor implementation starts."
+  "implementationAuthorizationScope": "Adoption grants no standing implementation authority. F/C accepted; API bounded acceptance reconciled using PR #25 evidence under current owner request. D preparation remains REVIEW with unsigned PROPOSED ADRs. Current authorization: CH-10/T readiness documentation and bounded API status reconciliation only. No components, AUTH/STAFF/DB/T implementation or hosted operations. Owner separately permits existing automatic previews for this documentation PR only.",
+  "nextRecommendedTask": "T proposal review and scoped UX/quality approval only; component implementation remains BLOCKED and needs separate authorization. No next milestone implementation starts."
 }

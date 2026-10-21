@@ -1,3 +1,16 @@
+# CH-03 / API bounded acceptance reconciliation
+
+Status: DONE for the bounded transport milestone only, reconciled 2026-10-21 under the owner's explicit CH-10/T request to assess actual evidence. CH-03 remains IN PROGRESS; AUTH/STAFF/DB are not accepted. API-01 and all specialist gates remain OPEN.
+
+- Implementation and all five inherited CH-P0-011 clauses reviewed below: versioned transport, exact health, typed shared validation, safe errors, locally generated OpenAPI and test-only fixture isolation. No business/persistence scope is inferred.
+- [PR #25](https://github.com/ZeyaadAly/CommerceHub/pull/25) head `55a0874ab08c46c280244e9c0e96fca0ca4e811b`; [commercehub-quality SUCCESS](https://github.com/ZeyaadAly/CommerceHub/actions/runs/39598354103/job/119216220179) verified on that exact head. Logs confirm 173 tests, three quality tests, frozen install, format/lint/type/build and the unchanged scoped security audit passed. These are prior implementation/CI results, not newly executed hosted verification.
+- GitHub confirms owner `ZeyaadAly` merged at `2026-10-21T12:19:46Z`, merge `b6b19a66fc28729b12cf0a03539ac83723eeb24d`; no agent merge, independent reviewer sign-off or specialist approval is invented. Bounded acceptance follows this evidence assessment, not merge alone.
+- Unreviewed domain exception mappings, CORS/cookie/CSRF, per-operation limits and public documentation policy stay deferred. Other CH-03 acceptance still needs DB/SEC/audit and AUTH/STAFF milestones.
+- Delivery clarification: the original report was written before push. Existing Vercel GitHub automation subsequently created frontend previews (reported in PR #25); no manual deployment command/settings change was performed. Its original no-deployment wording is local pre-push evidence, not an assertion that external automation did nothing.
+
+The complete original REVIEW report is preserved verbatim below; it is historical evidence, not the current bounded milestone status.
+<!-- CH-03-API IMPLEMENTATION REPORT: b6b19a66fc28729b12cf0a03539ac83723eeb24d -->
+
 ﻿# CH-03 / API technical handoff and implementation evidence
 
 Status: REVIEW. Scope: transport only; API-01 and every specialist gate remain OPEN. Starting main `ffa113804b4c38237576e6fafaf637cb50779f01` is verified PR #24 merge; C is accepted bounded DONE. D's records remain unsigned PROPOSED; its preparation report remains historical REVIEW evidence. No ADR recommendation is approved by this work.
