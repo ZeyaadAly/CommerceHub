@@ -127,3 +127,18 @@ No live database access, credentials retrieval, SQL, migrations, schema/role/set
 changes, resource creation, Redis spending, deployment or CH-P0-007 implementation.
 Stop at REVIEW; leave PR OPEN, require commercehub-quality SUCCESS and human review.
 Rollback is a reviewed source/test/documentation revert; no database effects to undo.
+
+## Delivery blocker
+
+Implementation committed with Husky successfully enabled at
+`df595ba369c96b3a4dc978c647aeb4f59a8f1bd0` and pushed to the requested branch.
+The GitHub connector rejected PR creation with HTTP 403, Resource not accessible
+by integration. No PR was created. Automatic approval review rejected a proposed
+fallback using an existing stored GitHub credential for REST access because that
+credential extraction/reuse was outside its authorization assessment. The fallback
+was not executed and was not bypassed. This is unrelated to database credentials.
+Required commercehub-quality for this branch is NOT RUN / pending PR creation;
+no CI SUCCESS or complete delivery is claimed. The prepared PR body is retained
+locally in ignored `.verification/pr-body.md`. Delivery remains BLOCKED at REVIEW
+until PR creation is available through an authorized connection or explicitly
+approved fallback; then observe required CI and leave the PR OPEN for review.
