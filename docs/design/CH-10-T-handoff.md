@@ -1,3 +1,10 @@
+# CH-10/T — scoped owner design approval
+
+**D1–D4 APPROVED by the project owner on 2026-10-21** in the explicit shared design system implementation request. Approval covers the exact light-theme tokens/geometry, shared presentation primitives, representative responsive test compositions and accessibility/testing handoff below. This is scoped readiness and implementation authority for T only; no feature-page wireframes, business policy, specialist gate closure or full QA/assistive-technology conformance is approved. No independent named specialist sign-off is invented.
+
+Implementation status: REVIEW; [actual evidence](../verification/CH-10-T.md). CH-10 remains IN PROGRESS, not DONE. Native browser zoom, human screen-reader/device review and final human acceptance remain separate evidence obligations. The original pending readiness report below is preserved verbatim as history and superseded only for D1–D4 approval/authority.
+<!-- CH-10-T READINESS REPORT: e96b7c410b6183edb6bf9bde1c002df4a9c4a9b8 -->
+
 # CH-10 / T — shared design system handoff
 
 Status: **PROPOSED / REVIEW; implementation BLOCKED** on scoped UX/Product + QA approval (BA-23). Owner request authorizes readiness documentation only. Baseline: main `b6b19a66fc28729b12cf0a03539ac83723eeb24d`, verified 2026-10-21. C is accepted; T depends on C, not all of CH-01 or API/DB. No component implementation or gate closure is claimed.

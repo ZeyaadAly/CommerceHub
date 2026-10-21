@@ -6,7 +6,8 @@
     "declaration": true,
     "rootDir": "src",
     "outDir": "dist",
-    "types": []
+    "types": [],
+    "jsx": "react-jsx"
   },
-  "include": ["src/**/*.ts"]
+  "include": ["src/**/*.ts", "src/**/*.tsx"]
 }

@@ -16,7 +16,8 @@
     "react-dom": "19.3.1",
     "@commercehub/types": "workspace:*",
     "@commercehub/validation": "workspace:*",
-    "@commercehub/api-client": "workspace:*"
+    "@commercehub/api-client": "workspace:*",
+    "@commercehub/ui": "workspace:*"
   },
   "devDependencies": {
     "@types/react": "19.3.0",

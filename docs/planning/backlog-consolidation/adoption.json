@@ -100,8 +100,8 @@
     },
     {
       "id": "CH-10",
-      "status": "BLOCKED",
-      "detail": "T readiness preparation REVIEW; component implementation NOT STARTED and BLOCKED on scoped UX/quality approval and separate implementation authorization."
+      "status": "IN PROGRESS",
+      "detail": "Owner D1–D4 approved 2026-10-21 for bounded tokens/primitives/test compositions/accessibility. T implementation REVIEW, human acceptance/manual assistive-tech and merge evidence outstanding; parent not DONE."
     },
     {
       "id": "CH-11",
@@ -255,13 +255,19 @@
     {
       "id": "T",
       "parent": "CH-10",
-      "status": "BLOCKED",
-      "readiness": "BLOCKED",
-      "authorization": "AUTHORIZED: OWNER CH-10/T READINESS ONLY 2026-10-21",
+      "status": "REVIEW",
+      "readiness": "SATISFIED",
+      "authorization": "AUTHORIZED: OWNER CH-10/T IMPLEMENTATION 2026-10-21",
       "unmetPrerequisites": [],
-      "note": "Readiness handoff REVIEW only; implementation BLOCKED pending D1–D4 UX/Product + QA approval and separate implementation authorization. No components started.",
-      "evidence": "docs/design/CH-10-T-handoff.md",
-      "preparationStatus": "REVIEW"
+      "note": "Bounded implementation REVIEW; component/token/browser/app-style tests recorded. Human acceptance and manual assistive-tech/native zoom/device evidence remain outstanding. No downstream implementation authorization.",
+      "evidence": "docs/verification/CH-10-T.md",
+      "preparationStatus": "APPROVED FOR BOUNDED IMPLEMENTATION",
+      "approval": {
+        "decisions": ["D1", "D2", "D3", "D4"],
+        "by": "ZeyaadAly",
+        "date": "2026-10-21",
+        "scope": "Shared tokens, presentation primitives, representative responsive test compositions, accessibility/testing only; no feature-page UX or specialist gate closure."
+      }
     },
     {
       "id": "A",
@@ -625,11 +631,11 @@
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     }
   ],
-  "firstRecommendedMilestone": "T",
+  "firstRecommendedMilestone": "D",
   "evidence": {
     "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
     "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
   },
-  "implementationAuthorizationScope": "Adoption grants no standing implementation authority. F/C accepted; API bounded acceptance reconciled using PR #25 evidence under current owner request. D preparation remains REVIEW with unsigned PROPOSED ADRs. Current authorization: CH-10/T readiness documentation and bounded API status reconciliation only. No components, AUTH/STAFF/DB/T implementation or hosted operations. Owner separately permits existing automatic previews for this documentation PR only.",
-  "nextRecommendedTask": "T proposal review and scoped UX/quality approval only; component implementation remains BLOCKED and needs separate authorization. No next milestone implementation starts."
+  "implementationAuthorizationScope": "Current owner task explicitly approves D1–D4 dated 2026-10-21 and authorizes CH-10/T shared tokens/primitives/test compositions/accessibility/testing only. T is REVIEW, not DONE. F/C/API acceptance remains; CH-01 partial, CH-03 incomplete. No feature UX, backend/DB/domain work, specialist gate closure, resources/spending/manual deployment or next milestone. Existing automatic Git previews are acknowledged by this task.",
+  "nextRecommendedTask": "Review existing D proposed decisions and gate evidence independently; no independently implementation-ready successor or standing authority inferred."
 }

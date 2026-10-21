@@ -22,7 +22,7 @@ execution instructions there are superseded by this adopted header.
 
 C/007 is **DONE for bounded scope**, after all five acceptance clauses, package/consumer/security tests, exact-head CI and owner PR #23 merge at `5c31a735251eeb179ae3a8b174b49f8ac13004d6` were checked. CH-01 remains partial, full 006 BLOCKED. D/008 is **REVIEW** for decision preparation only.
 
-The [single decision matrix](../architecture/decisions/decision-matrix.md) provides nine PROPOSED ADR packets, all owner/evidence/blocking requests, acceptance/protection visibility limits and deferred decisions. No specialist gate closes. The owner separately authorized CH-03/API transport only; its bounded implementation is now DONE after the separately authorized PR #25 evidence reconciliation, with the API-01 handoff recorded and API-01 still OPEN. CH-03 is IN PROGRESS, never DONE. AUTH/STAFF/DB are unstarted; T has C satisfied but implementation remains UX/quality BLOCKED. No successor starts. Redis spending remains DEFERRED; Docker/WSL not required.
+The [single decision matrix](../architecture/decisions/decision-matrix.md) provides nine PROPOSED ADR packets, all owner/evidence/blocking requests, acceptance/protection visibility limits and deferred decisions. No specialist gate closes. The owner separately authorized CH-03/API transport only; its bounded implementation is now DONE after the separately authorized PR #25 evidence reconciliation, with the API-01 handoff recorded and API-01 still OPEN. CH-03 is IN PROGRESS, never DONE. AUTH/STAFF/DB are unstarted; T has C satisfied and scoped owner D1–D4 approval; bounded implementation is REVIEW, human acceptance remains outstanding. No successor starts. Redis spending remains DEFERRED; Docker/WSL not required.
 
 ## Owner adoption APPROVED — October 21, 2026
 
@@ -63,9 +63,13 @@ D/008 and every later milestone unstarted; Redis/spending DEFERRED.
 
 [Technical handoff, inherited acceptance and actual verification](../verification/CH-03-API.md) record transport-only REVIEW. PR #24 merge `ffa113804b4c38237576e6fafaf637cb50779f01` was verified before work; its ADR recommendations remain unsigned PROPOSED. Existing F/C acceptance is unchanged. No authentication, staff governance, persistence or business implementation is accepted. API-01 and all specialist gates remain OPEN; full 006 BLOCKED, Redis spending DEFERRED, Docker/WSL not required. Independent CH-10/T design preparation is a possible next separately authorized task; T implementation awaits UX/quality evidence, and no next milestone starts here.
 
-## Current CH-10/T readiness and API reconciliation — 2026-10-21
+## Historical CH-10/T readiness and API reconciliation — 2026-10-21
 
 [Single concise handoff](../design/CH-10-T-handoff.md): D1–D4 PROPOSED, readiness REVIEW; T implementation BLOCKED on named UX/Product + QA approval and separate implementation authority. C is sufficient predecessor; no full CH-01/API/DB dependency added. API bounded transport is DONE after PR #25's implementation, all inherited AC, exact-head CI and owner merge were assessed; CH-03 stays IN PROGRESS, AUTH/STAFF/DB unaccepted, API-01 OPEN. This task implements no components. All gates/ADRs, historical 001–005 DONE, full 006 BLOCKED, Redis DEFERRED and security-exception dates remain unchanged.
+
+## Current CH-10/T implementation — 2026-10-21
+
+Owner explicitly approved D1–D4 for shared tokens/primitives, representative test compositions and accessibility/testing only. [Implementation evidence](../verification/CH-10-T.md) records T REVIEW, CH-10 IN PROGRESS, no feature-page UX or specialist gate closure. The original readiness report is preserved below its own history boundary. C/F/API acceptance, approved 21-story/48-milestone definitions, 59 legacy stories, CH-01 partial, CH-03 incomplete, full 006 BLOCKED, unsigned ADRs, OPEN specialist gates, Redis DEFERRED and security-exception dates remain unchanged. Human assistive-tech/native zoom/device and final acceptance evidence remain outstanding; no next milestone starts.
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub approval register
