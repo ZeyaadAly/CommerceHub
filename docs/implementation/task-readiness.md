@@ -1,5 +1,15 @@
 # CommerceHub task readiness
 
+## CH-P0-006 approved pooler activation checkpoint - 2026-10-21
+
+**Exact owner-observed target APPROVED; code activation REVIEW.**
+[Evidence](../verification/CH-P0-006-approved-pooler-target.md) records verified
+PR #19 merge, pinned exact validation and offline tests. Independent pooler
+observation is not claimed; actual TLS/auth and runtime/migration role separation
+NOT VERIFIED, custody NOT ESTABLISHED. Live/full 006 BLOCKED; 001–005 DONE;
+007 NOT STARTED/readiness BLOCKED; all gates OPEN, Redis/spending DEFERRED.
+Code approval is not live-access authority; earlier target-pending records are dated history.
+
 ## CH-P0-006 pooler target verification checkpoint - 2026-10-21
 
 **Evidence REVIEW; exact identity BLOCKED; endpoint owner approval PENDING.**

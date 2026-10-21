@@ -1,5 +1,11 @@
 # CH-P0-006 Session Pooler target verification
 
+2026-10-21 follow-up: the owner explicitly confirmed Session dialog/role and
+approved the exact tuple. [Activation record](CH-P0-006-approved-pooler-target.md)
+supersedes this report's pending owner approval only. Code activation remains
+REVIEW; no independent observation, actual TLS/auth or credential custody claimed.
+The remainder preserves the earlier target-review evidence as history.
+
 2026-10-21 (Africa/Cairo). **Record: REVIEW. Independent pooler verification: BLOCKED.
 Owner endpoint approval: PENDING. Live connectivity/full CH-P0-006: BLOCKED.**
 

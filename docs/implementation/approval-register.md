@@ -1,5 +1,22 @@
 # CommerceHub approval register
 
+## CH-P0-006 exact Session Pooler target APPROVED - 2026-10-21
+
+The owner explicitly confirms Dashboard → Connect → Session pooler observation
+and approves only organization `cjtfuyrqxgkqnyjdpirx`, project `uktducdwfzakyoolysvt`,
+persistent development, session mode, `aws-1-eu-central-1.pooler.supabase.com:5432`,
+database/role postgres, routing username `postgres.uktducdwfzakyoolysvt`.
+Classification: owner-observed/owner-approved, not independently observed or
+connectivity-verified. The owner authorizes exact pinned validation, offline
+tests/docs and Husky commit/push/open PR after verified PR #19 merge
+`6e96f9554e973edd73cf85a0064047f9a5608ed3`.
+[Activation evidence](../verification/CH-P0-006-approved-pooler-target.md) remains
+REVIEW pending code review/merge; actual TLS/auth NOT VERIFIED, custody NOT
+ESTABLISHED, runtime/migration separation NOT VERIFIED. No live access, local
+secret/CA reads, SQL, resource changes, spending, deployment, merge or next story.
+Existing postgres is not approved as a future application runtime role. Full 006
+BLOCKED; all specialist gates OPEN. Earlier pending-approval records are history.
+
 ## CH-P0-006 pooler target evidence authorization - 2026-10-21
 
 The owner authorizes noncredential designated-project metadata, official TLS/target

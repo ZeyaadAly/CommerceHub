@@ -1,5 +1,12 @@
 # CommerceHub story tracker
 
+CH-P0-006 exact owner-observed pooler tuple APPROVED (2026-10-21);
+[code activation REVIEW](../verification/CH-P0-006-approved-pooler-target.md),
+subject to review/merge. Live verification/custody/role separation remain blocked
+or unverified. All story rows/dependencies and prior acceptance unchanged:
+001–005 DONE, full 006 BLOCKED, 007 NOT STARTED/readiness BLOCKED,
+specialist gates OPEN and managed Redis/spending DEFERRED.
+
 CH-P0-006 target-evidence checkpoint (2026-10-21): [record REVIEW](../verification/CH-P0-006-pooler-target-verification.md),
 exact pooler identity BLOCKED and owner endpoint approval PENDING. PR #18 merged;
 production allowlist unchanged. Existing seven PASS/eight BLOCKED criteria,
