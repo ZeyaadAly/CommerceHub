@@ -24,9 +24,13 @@ export interface SessionPoolerApproval {
   host: string;
   user: string;
 }
-// Pending independent endpoint verification AND owner approval. Never populated
-// from the manifest, environment, region patterns or a connection-string override.
-const approvedSessionPooler: SessionPoolerApproval | null = null;
+// Owner-observed Dashboard Session pooler tuple, explicitly approved 2026-10-21.
+// Not independently observed or connectivity-verified; no live access authority.
+// Never populated from manifest, environment, region patterns or URL overrides.
+const approvedSessionPooler: Readonly<SessionPoolerApproval> = Object.freeze({
+  host: 'aws-1-eu-central-1.pooler.supabase.com',
+  user: 'postgres.uktducdwfzakyoolysvt',
+});
 const blocked = (code: string): VerificationResult => ({ status: 'BLOCKED', code });
 
 export function validateTarget(value: unknown): value is TargetManifest {

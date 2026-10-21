@@ -64,7 +64,9 @@ async function fixture(t, mode = 'scram', user = 'synthetic_user') {
   const frames = [];
   const sockets = new Set();
   let terminated = false;
+  let connections = 0;
   const server = createServer((raw) => {
+    connections++;
     sockets.add(raw);
     raw.on('error', () => {});
     if (mode === 'stall') return;
@@ -201,6 +203,7 @@ async function fixture(t, mode = 'scram', user = 'synthetic_user') {
     },
     frames,
     terminated: () => terminated,
+    connections: () => connections,
   };
 }
 
@@ -214,6 +217,15 @@ test('TLS protected password authentication also immediately terminates without 
   const f = await fixture(t, 'cleartext');
   assert.equal((await authenticateOnly(f.input, 2000)).status, 'PASS');
   assert.deepEqual(f.frames, ['SSLRequest', 'Startup', 'p', 'X']);
+});
+
+test('failed synthetic authentication makes one connection without retry or target fallback', async (t) => {
+  const f = await fixture(t, 'reject');
+  const result = await authenticateOnly(f.input, 350);
+  assert.deepEqual(result, { status: 'BLOCKED', code: 'CONNECTION' });
+  await new Promise((resolve) => setTimeout(resolve, 400));
+  assert.equal(f.connections(), 1);
+  assert.deepEqual(f.frames, ['SSLRequest', 'Startup']);
 });
 
 for (const mode of ['scram', 'cleartext', 'reject', 'bad-proof']) {
@@ -286,21 +298,56 @@ test('Session Pooler exact approval and project routing are required offline', (
   );
 });
 
-test('production CLI authority keeps actual designated Session Pooler pending', () => {
+test('production target authority accepts only the exact owner-approved pooler tuple offline', () => {
+  const base = {
+    organizationId: 'cjtfuyrqxgkqnyjdpirx',
+    projectRef: 'uktducdwfzakyoolysvt',
+    projectName: 'commercehub',
+    environment: 'persistent-development',
+    mode: 'session',
+    host: 'aws-1-eu-central-1.pooler.supabase.com',
+    port: 5432,
+    database: 'postgres',
+    user: 'postgres.uktducdwfzakyoolysvt',
+    custodyReviewed: true,
+  };
+  assert.equal(validateTarget(base), true);
+  for (const patch of [
+    { host: 'aws-0-eu-central-1.pooler.supabase.com' },
+    { host: 'aws-2-eu-central-1.pooler.supabase.com' },
+    { host: 'aws-1-us-east-1.pooler.supabase.com' },
+    { host: '*.pooler.supabase.com' },
+    { host: 'arbitrary.invalid' },
+    { host: base.host + '.attacker.invalid' },
+    { host: base.host.toUpperCase() },
+    { user: 'postgres' },
+    { user: 'other.uktducdwfzakyoolysvt' },
+    { user: 'postgres.other-project' },
+    { user: base.user + '.other' },
+    { organizationId: 'other-org' },
+    { projectRef: 'other-project' },
+    { projectName: 'Expense Tracker' },
+    { environment: 'production' },
+    { environment: 'staging' },
+    { environment: 'disposable-test' },
+    { mode: 'transaction' },
+    { mode: 'direct' },
+    { port: 6543 },
+    { port: '5432' },
+    { database: 'other' },
+    { custodyReviewed: false },
+    { connectionString: 'synthetic' },
+    { ssl: { rejectUnauthorized: false } },
+  ])
+    assert.equal(validateTarget({ ...base, ...patch }), false);
   assert.equal(
     validateTarget({
-      organizationId: 'cjtfuyrqxgkqnyjdpirx',
-      projectRef: 'uktducdwfzakyoolysvt',
-      projectName: 'commercehub',
-      environment: 'persistent-development',
-      mode: 'session',
-      host: 'unapproved.pooler.supabase.com',
-      port: 5432,
-      database: 'postgres',
-      user: 'synthetic_user.uktducdwfzakyoolysvt',
-      custodyReviewed: true,
+      ...base,
+      mode: 'direct',
+      host: 'db.uktducdwfzakyoolysvt.supabase.co',
+      user: 'synthetic_user',
     }),
-    false,
+    true,
   );
 });
 for (const mode of [
