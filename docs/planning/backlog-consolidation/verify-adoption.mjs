@@ -38,10 +38,7 @@ export function validateStatus(record, definitions, nodes) {
     definitions.map(({ id }) => id),
   );
   for (const [index, parent] of record.parentStates.entries()) {
-    assert.equal(
-      parent.status,
-      [0, 2].includes(index) ? 'IN PROGRESS' : index === 9 ? 'BLOCKED' : 'NOT STARTED',
-    );
+    assert.equal(parent.status, [0, 2, 9].includes(index) ? 'IN PROGRESS' : 'NOT STARTED');
   }
   assert.deepEqual(
     record.milestoneStates.map(({ id, parent }) => ({ id, parent })),
@@ -49,14 +46,14 @@ export function validateStatus(record, definitions, nodes) {
   );
   for (const [index, state] of record.milestoneStates.entries()) {
     const done = ['F', 'C', 'API'].includes(state.id);
-    const review = state.id === 'D';
+    const review = ['D', 'T'].includes(state.id);
     assert.equal(
       state.status,
       done
         ? 'DONE'
         : review
           ? 'REVIEW'
-          : ['E_DB', 'E_QUEUE', 'T'].includes(state.id)
+          : ['E_DB', 'E_QUEUE'].includes(state.id)
             ? 'BLOCKED'
             : 'NOT STARTED',
     );
@@ -72,7 +69,7 @@ export function validateStatus(record, definitions, nodes) {
             : state.id === 'API'
               ? 'AUTHORIZED: OWNER CH-03/API REQUEST 2026-10-21'
               : state.id === 'T'
-                ? 'AUTHORIZED: OWNER CH-10/T READINESS ONLY 2026-10-21'
+                ? 'AUTHORIZED: OWNER CH-10/T IMPLEMENTATION 2026-10-21'
                 : 'NOT AUTHORIZED',
     );
     if (state.id === 'C') {
@@ -99,13 +96,24 @@ export function validateStatus(record, definitions, nodes) {
       });
     }
     if (state.id === 'T') {
-      assert.equal(state.evidence, 'docs/design/CH-10-T-handoff.md');
-      assert.equal(state.preparationStatus, 'REVIEW');
-      assert.match(read(state.evidence), /implementation BLOCKED/);
-      assert.match(read(state.evidence), /D1–D4 PENDING/);
+      assert.equal(state.evidence, 'docs/verification/CH-10-T.md');
+      assert.equal(state.preparationStatus, 'APPROVED FOR BOUNDED IMPLEMENTATION');
+      assert.deepEqual(state.approval, {
+        decisions: ['D1', 'D2', 'D3', 'D4'],
+        by: 'ZeyaadAly',
+        date: '2026-10-21',
+        scope:
+          'Shared tokens, presentation primitives, representative responsive test compositions, accessibility/testing only; no feature-page UX or specialist gate closure.',
+      });
+      assert.match(read(state.evidence), /Status: REVIEW/);
     }
     if (review) {
-      assert.equal(state.evidence, 'docs/architecture/decisions/decision-matrix.md');
+      assert.equal(
+        state.evidence,
+        state.id === 'D'
+          ? 'docs/architecture/decisions/decision-matrix.md'
+          : 'docs/verification/CH-10-T.md',
+      );
       assert.match(read(state.evidence), /Status: REVIEW/);
     }
     assert.deepEqual(
@@ -113,8 +121,8 @@ export function validateStatus(record, definitions, nodes) {
       nodes[index].depends.filter((id) => !['F', 'C', 'API'].includes(id)),
     );
   }
-  assert.equal(record.firstRecommendedMilestone, 'T');
-  assert.match(record.nextRecommendedTask, /approval only/);
+  assert.equal(record.firstRecommendedMilestone, 'D');
+  assert.match(record.nextRecommendedTask, /no independently implementation-ready/);
   assert.deepEqual(record.unchangedSpecialistGates, [
     'FIN-01',
     'FIN-02',
@@ -214,6 +222,15 @@ for (const file of protectedFiles) {
         appendix,
         '\nPreparation checkpoint 2026-10-21: [single decision matrix](../architecture/decisions/decision-matrix.md) and nine PROPOSED ADR packets are REVIEW deliverables. Every original gate row, accountable role and closure obligation above is unchanged. No named specialist sign-off, policy approval or service verification is recorded; all gates remain OPEN.\n',
       );
+    } else if (file === '.github/workflows/ci.yml') {
+      const insertion = '      - name: Existing and tooling tests\n        run: pnpm test\n';
+      const extra =
+        '      - name: Install Chromium for presentation tests\n        run: pnpm --filter @commercehub/ui exec playwright install --with-deps chromium\n      - name: Browser interaction, accessibility and responsive checks\n        run: pnpm test:ui:browser\n      - name: Both application styles consume the shared theme\n        run: pnpm test:ui:apps\n';
+      assert.equal(
+        read(file),
+        historical(file).replace(insertion, insertion + extra),
+        'Original required CI weakened or unrelated change',
+      );
     } else if (file === 'docs/architecture/decisions/README.md') {
       const [original, appendix, extra] = read(file).split('\n<!-- CH-01-D INDEX -->\n');
       assert.equal(original, historical(file), 'Original ADR convention changed');
@@ -228,7 +245,7 @@ for (const file of protectedFiles) {
   }
 }
 
-// Readiness-only scope: freeze all implementation/dependencies at verified main.
+// T implementation scope is explicit; backend, feature routes and infrastructure stay frozen.
 const acceptedMerge = '5c31a735251eeb179ae3a8b174b49f8ac13004d6';
 const apiStart = 'ffa113804b4c38237576e6fafaf637cb50779f01';
 const readinessStart = 'b6b19a66fc28729b12cf0a03539ac83723eeb24d';
@@ -244,15 +261,62 @@ const scope = [
   'pnpm-workspace.yaml',
   'tsconfig.base.json',
 ];
+const implementationStart = 'e96b7c410b6183edb6bf9bde1c002df4a9c4a9b8';
+const allowed = new Set([
+  'package.json',
+  'pnpm-lock.yaml',
+  '.github/workflows/ci.yml',
+  'scripts/ci.test.mjs',
+  'scripts/scaffold.test.mjs',
+  'apps/admin/package.json',
+  'apps/storefront/package.json',
+  'apps/admin/app/globals.css',
+  'apps/storefront/app/globals.css',
+  'apps/admin/app/page.tsx',
+  'apps/storefront/app/page.tsx',
+  'packages/ui/package.json',
+  'packages/ui/tsconfig.json',
+  'packages/ui/README.md',
+  'packages/ui/src/index.ts',
+]);
 for (const args of [
-  ['diff', '--name-only', readinessStart, '--', ...scope],
+  ['diff', '--name-only', implementationStart, '--', ...scope],
   ['ls-files', '--others', '--exclude-standard', '--', ...scope],
-])
-  assert.equal(
-    execFileSync('git', args, { cwd: root, encoding: 'utf8' }).trim(),
-    '',
-    'Readiness changed implementation/dependencies',
-  );
+]) {
+  const files = execFileSync('git', args, { cwd: root, encoding: 'utf8' })
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+  for (const file of files)
+    assert.ok(
+      allowed.has(file) || /^packages\/ui\/(?:src\/(?:components|styles|lib)|test)\//.test(file),
+      'Outside T scope: ' + file,
+    );
+}
+const handoffParts = read('docs/design/CH-10-T-handoff.md').split(
+  '<!-- CH-10-T READINESS REPORT: e96b7c410b6183edb6bf9bde1c002df4a9c4a9b8 -->\n\n',
+);
+assert.equal(handoffParts.length, 2);
+assert.equal(
+  handoffParts[1],
+  normalize(
+    execFileSync('git', ['show', implementationStart + ':docs/design/CH-10-T-handoff.md'], {
+      cwd: root,
+      encoding: 'utf8',
+    }),
+  ),
+);
+assert.match(handoffParts[0], /D1–D4 APPROVED/);
+assert.equal(
+  read('docs/verification/CH-03-API.md'),
+  normalize(
+    execFileSync('git', ['show', implementationStart + ':docs/verification/CH-03-API.md'], {
+      cwd: root,
+      encoding: 'utf8',
+    }),
+  ),
+  'Accepted API evidence changed',
+);
 const apiReport = read('docs/verification/CH-03-API.md').split(
   '<!-- CH-03-API IMPLEMENTATION REPORT: b6b19a66fc28729b12cf0a03539ac83723eeb24d -->\n\n',
 );
@@ -380,10 +444,16 @@ for (const file of new Set(markdown)) {
 // Mutation checks ensure authority/status/dependency regressions fail closed.
 for (const mutate of [
   (record) => {
+    record.milestoneStates.find((state) => state.id === 'T').approval.decisions.pop();
+  },
+  (record) => {
+    record.milestoneStates.find((state) => state.id === 'T').authorization = 'AUTHORIZED';
+  },
+  (record) => {
     record.milestoneStates.find((state) => state.id === 'T').status = 'DONE';
   },
   (record) => {
-    record.milestoneStates.find((state) => state.id === 'T').readiness = 'SATISFIED';
+    record.milestoneStates.find((state) => state.id === 'T').readiness = 'BLOCKED';
   },
   (record) => {
     record.milestoneStates.find((state) => state.id === 'API').acceptance.head = base;
@@ -435,7 +505,7 @@ console.log(
       unchangedHistoricalDocuments: prefixes.size,
       protectedSources: protectedFiles.size,
       repositoryLocalLinks: links,
-      rejectedMutations: 14,
+      rejectedMutations: 16,
       proposedADRs: adrFiles.length,
       implementationAuthorized: false,
     },

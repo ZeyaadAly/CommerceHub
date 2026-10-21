@@ -54,6 +54,9 @@ test('workflow parses and retains the unprivileged, unconditional required-check
     'pnpm typecheck',
     'pnpm build',
     'pnpm test',
+    'pnpm --filter @commercehub/ui exec playwright install --with-deps chromium',
+    'pnpm test:ui:browser',
+    'pnpm test:ui:apps',
     'pnpm test:quality',
     'pnpm audit:ci',
   ])

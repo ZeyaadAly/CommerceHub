@@ -62,6 +62,12 @@ jobs:
         run: pnpm build
       - name: Existing and tooling tests
         run: pnpm test
+      - name: Install Chromium for presentation tests
+        run: pnpm --filter @commercehub/ui exec playwright install --with-deps chromium
+      - name: Browser interaction, accessibility and responsive checks
+        run: pnpm test:ui:browser
+      - name: Both application styles consume the shared theme
+        run: pnpm test:ui:apps
       - name: Explicit tooling verification
         run: pnpm test:quality
       - name: Dependency security audit and scoped exception validation

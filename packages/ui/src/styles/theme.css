@@ -1,0 +1,54 @@
+@import './tokens.css';
+@import './components.css';
+
+/* Both apps import Tailwind once, then this mapping. No duplicate palette. */
+@theme inline {
+  --color-*: initial;
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-muted: var(--surface-muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary-hover: var(--primary-hover);
+  --color-primary-pressed: var(--primary-pressed);
+  --color-border: var(--border);
+  --color-control-border: var(--control-border);
+  --color-success: var(--success);
+  --color-warning: var(--warning);
+  --color-danger: var(--danger);
+  --color-destructive: var(--danger);
+  --color-focus-ring: var(--focus-ring);
+  --color-focus-offset: var(--focus-offset);
+  --font-sans: var(--font-family);
+  --font-weight-normal: var(--weight-normal);
+  --font-weight-medium: var(--weight-medium);
+  --font-weight-semibold: var(--weight-semibold);
+  --font-weight-bold: var(--weight-bold);
+  --spacing: var(--space-unit);
+  --radius-ui-control: var(--radius-control);
+  --radius-ui-card: var(--radius-card);
+  --radius-ui-dialog: var(--radius-dialog);
+  --shadow-ui-overlay: var(--shadow-overlay);
+  --shadow-ui-card: var(--shadow-card);
+  --text-body: var(--type-body);
+  --text-body--line-height: var(--leading-body);
+  --text-compact: var(--type-compact);
+  --text-compact--line-height: var(--leading-compact);
+  --text-meta: var(--type-meta);
+  --text-meta--line-height: var(--leading-meta);
+  --container-storefront: var(--width-storefront);
+  --container-admin: var(--width-admin);
+}
+
+@layer base {
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    font-family: var(--font-family);
+    font-size: var(--type-body);
+    line-height: var(--leading-body);
+  }
+}

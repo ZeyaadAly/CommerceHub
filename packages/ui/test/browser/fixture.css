@@ -1,0 +1,92 @@
+@import 'tailwindcss';
+@import '../../src/styles/theme.css';
+@source '../../src';
+@source './';
+
+/* Isolated test layout; no production demonstration route. */
+.fixture {
+  max-width: var(--width-storefront);
+  margin: auto;
+  padding: calc(var(--space-unit) * 4);
+}
+.fixture h1 {
+  font-size: var(--type-title);
+  line-height: var(--leading-title);
+  font-weight: 600;
+}
+.fixture h2 {
+  font-size: var(--type-section);
+  line-height: var(--leading-section);
+  font-weight: 600;
+}
+.fixture h3 {
+  font-size: var(--type-admin);
+  line-height: var(--leading-admin);
+}
+.fixture-stack {
+  display: grid;
+  gap: calc(var(--space-unit) * 4);
+  min-width: 0;
+}
+.fixture-retail {
+  display: grid;
+  gap: calc(var(--space-unit) * 6);
+}
+.fixture-image {
+  display: grid;
+  place-items: center;
+  aspect-ratio: 4 / 3;
+  border-radius: var(--radius-card);
+  background: var(--surface-muted);
+  color: var(--muted-foreground);
+}
+.fixture-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: calc(var(--space-unit) * 3);
+}
+.fixture-actions {
+  display: flex;
+  gap: calc(var(--space-unit) * 3);
+  flex-wrap: wrap;
+  align-items: center;
+}
+.fixture-admin {
+  max-width: var(--width-admin);
+}
+.fixture-check {
+  display: flex;
+  align-items: center;
+  gap: calc(var(--space-unit) * 2);
+}
+.fixture-retail,
+.fixture-admin,
+.fixture-retail > *,
+.fixture-admin > * {
+  min-width: 0;
+}
+.fixture-admin h2 {
+  font-size: var(--type-admin);
+  line-height: var(--leading-admin);
+}
+.fixture-admin .ch-table {
+  min-width: 28rem;
+}
+.fixture [role='tabpanel'] > * + * {
+  margin-top: calc(var(--space-unit) * 3);
+}
+@media (min-width: 48rem) {
+  .fixture {
+    padding: calc(var(--space-unit) * 6);
+  }
+  .fixture-retail {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+@media (min-width: 80rem) {
+  .fixture {
+    padding: calc(var(--space-unit) * 8);
+  }
+}
