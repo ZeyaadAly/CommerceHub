@@ -50,3 +50,7 @@ Validation results will be recorded after final execution. No PostgreSQL/Supabas
 Audit traversal correction: nested link paths resolve relative to the declaring workspace while retaining original root ancestry and production classification. Referenced manifest identity must match the link name. Added tests prove safe nested graphs pass and missing targets, wrong identities and transitive production braces fail. Every existing exception constraint and negative suite remains enforced.
 
 Repository check counts and exact-head CI delivery evidence are included in the PR; CI is not presumed successful by this document. UI/manual responsive checks NOT RUN: no UI change. Hosted service/integration checks NOT RUN: no authority and no domain implementation. C remains REVIEW, not DONE.
+
+## Clean-checkout CI correction
+
+Initial PR head `4ff9b67b18eb6c9f03d0923ae0ae4b46ad6f8b9f`, run 39573956017, passed frozen install, policy tests, secret scanning and formatting, then failed typed ESLint because CI lint precedes typecheck and shared declarations did not yet exist. No lint rule was disabled. Both root lint and typecheck now call `build:packages` before analysis. Clean-lint verification moves all prior contract outputs aside, regenerates them and runs the unchanged typed ESLint rules. Final required CI must pass on the corrected exact head; its conclusion is recorded in the PR.
