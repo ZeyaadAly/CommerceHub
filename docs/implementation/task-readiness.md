@@ -1,3 +1,58 @@
+# CommerceHub milestone readiness
+
+2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
+Owner explicitly approved adoption, five ownership moves, feature coverage and the
+48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
+no implementation or specialist gate closure is authorized.
+
+Default to the [adopted backlog](../planning/backlog-consolidation/README.md), [definitions](../planning/backlog-consolidation/stories.json),
+[full acceptance](../planning/backlog-consolidation/backlog.md), [milestone graph](../planning/backlog-consolidation/milestones.json) and
+[current adoption/status record](../planning/backlog-consolidation/adoption.json). Legacy CH-P0-001–CH-P2-059 IDs remain
+immutable traceability/history, not a competing top-level work queue.
+Every inherited requirement/AC/test and gate remains binding; the original
+100 edges are historical while the approved scoped milestone repairs now govern
+readiness. [Mapping](../planning/backlog-consolidation/mapping.md) and [coverage](../planning/backlog-consolidation/coverage.md) retain all assignments.
+
+The material below the LEGACY BASELINE marker is preserved verbatim history and
+is not the operative status/dependency model. Stale proposed/pending and 59-story
+execution instructions there are superseded by this adopted header.
+
+## Status model and next-work evaluation
+
+Execution states are NOT STARTED, BLOCKED, IN PROGRESS, REVIEW and DONE. Readiness
+is separately READY FOR AUTHORIZATION, BLOCKED or SATISFIED. These are presentation
+axes for the requested distinctions, not replacement historical values or permission.
+Only the next selected slice's actual prerequisites and scoped gates are evaluated.
+
+| Milestone              | Execution                             | Readiness                                           | Evidence / limit                                                                                           |
+| ---------------------- | ------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
+| F / CH-01              | DONE (historical accepted scope only) | SATISFIED                                           | Exact 001–005 rows/merges in retained inventory; parent incomplete                                         |
+| C / CH-01 (legacy 007) | NOT STARTED                           | READY FOR AUTHORIZATION, bounded technical scaffold | Accepted F/003; one focused implementation plan must exclude unresolved money/state/auth/permission policy |
+| D / CH-01 (legacy 008) | NOT STARTED                           | READY FOR AUTHORIZATION, scoped option preparation  | Accepted 001; prepare ADR/gate options, never approve decisions                                            |
+| E_DB / CH-01           | BLOCKED                               | BLOCKED                                             | D/custody/disposable isolation/roles/service evidence pending; partial dev validation is not this proof    |
+| E_QUEUE / CH-01        | BLOCKED                               | BLOCKED                                             | D/OPS and separate resource authority pending; managed Redis/spending DEFERRED                             |
+| T / CH-10; API / CH-03 | NOT STARTED                           | BLOCKED on C and applicable scoped UX/contracts     | Do not wait for all of CH-01; no implementation authorized now                                             |
+| All other milestones   | NOT STARTED                           | Actual predecessor milestones incomplete            | Use exact dependencies/gate notes in milestones.json, not blanket parent gate status                       |
+
+Recommended first implementation milestone: **C**, after a separate explicit
+authorization for safe shared contracts/validation/types/client scaffolds. D can
+be prepared independently if separately authorized. Neither is started by this task.
+No assumption that all gated business schemas can be finalized in C.
+
+The [complete 48-row state record](../planning/backlog-consolidation/adoption.json)
+records every actual prerequisite. Parent CH-01 is partial IN PROGRESS; other parents
+NOT STARTED. Any ready milestone still requires authorization. DB, security, pricing,
+inventory, payment/refund and infrastructure slices keep all applicable approvals.
+
+## Current 006 evidence boundary
+
+001–005 DONE; full 006 BLOCKED. PR #20 integrated exact owner-approved Session Pooler
+configuration, not live TLS/authentication, credential custody, least privilege or
+DB/Redis readiness. Seven PASS/eight BLOCKED refined criteria retained. Legacy
+checkpoints below are dated snapshots, not new live access or completion evidence.
+<!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
+
 # CommerceHub task readiness
 
 ## CH-P0-006 approved pooler activation checkpoint - 2026-10-21

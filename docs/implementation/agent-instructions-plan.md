@@ -1,3 +1,37 @@
+# CommerceHub agent instruction responsibility synchronization
+
+2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
+Owner explicitly approved adoption, five ownership moves, feature coverage and the
+48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
+no implementation or specialist gate closure is authorized.
+
+Default to the [adopted backlog](../planning/backlog-consolidation/README.md), [definitions](../planning/backlog-consolidation/stories.json),
+[full acceptance](../planning/backlog-consolidation/backlog.md), [milestone graph](../planning/backlog-consolidation/milestones.json) and
+[current adoption/status record](../planning/backlog-consolidation/adoption.json). Legacy CH-P0-001–CH-P2-059 IDs remain
+immutable traceability/history, not a competing top-level work queue.
+Every inherited requirement/AC/test and gate remains binding; the original
+100 edges are historical while the approved scoped milestone repairs now govern
+readiness. [Mapping](../planning/backlog-consolidation/mapping.md) and [coverage](../planning/backlog-consolidation/coverage.md) retain all assignments.
+
+The material below the LEGACY BASELINE marker is preserved verbatim history and
+is not the operative status/dependency model. Stale proposed/pending and 59-story
+execution instructions there are superseded by this adopted header.
+
+## Operative instruction ownership
+
+Root AGENTS now selects adopted CH-01–CH-21 plus one authorized milestone; nested
+app/package instructions inherit it and continue enforcing their domain boundaries.
+All seven nested files were reviewed: they link root and applicable contracts and
+contain no competing top-level backlog. No nested policy edit is required. Their
+historical references/BA blockers remain traceability; unresolved contract policy
+is still gated, even where ownership and scheduling are now approved.
+
+The former one-story stop rule now means one authorized milestone at a time, with
+continuation only where explicitly authorized. No automatic implementation,
+standing resource/financial permission or unrelated gate prerequisite is added.
+<!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
+
 # CommerceHub AGENTS.md responsibility plan
 
 Current governance status (2026-10-18): all eight instruction files and metadata were human-approved as CH-P0-002. Canonical ADR location is `docs/architecture/decisions/`, approved separately and aligned in 04/07/root guidance. The plan/review snapshots below describe earlier states and old path alternatives; they are preserved history, not current blockers. See [approval register](approval-register.md) and [governance finalization](governance-finalization.md).

@@ -1,3 +1,63 @@
+# CommerceHub — operative 21-story backlog
+
+2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
+Owner explicitly approved adoption, five ownership moves, feature coverage and the
+48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
+no implementation or specialist gate closure is authorized.
+
+Default to the [adopted backlog](planning/backlog-consolidation/README.md), [definitions](planning/backlog-consolidation/stories.json),
+[full acceptance](planning/backlog-consolidation/backlog.md), [milestone graph](planning/backlog-consolidation/milestones.json) and
+[current adoption/status record](planning/backlog-consolidation/adoption.json). Legacy CH-P0-001–CH-P2-059 IDs remain
+immutable traceability/history, not a competing top-level work queue.
+Every inherited requirement/AC/test and gate remains binding; the original
+100 edges are historical while the approved scoped milestone repairs now govern
+readiness. [Mapping](planning/backlog-consolidation/mapping.md) and [coverage](planning/backlog-consolidation/coverage.md) retain all assignments.
+
+The material below the LEGACY BASELINE marker is preserved verbatim history and
+is not the operative status/dependency model. Stale proposed/pending and 59-story
+execution instructions there are superseded by this adopted header.
+
+## Operative story index
+
+| Operative story | Phase | Status      | Delivery                                                |
+| --------------- | ----- | ----------- | ------------------------------------------------------- |
+| CH-01           | P0    | IN PROGRESS | Foundation, environments, tooling, CI and decision work |
+| CH-02           | P0    | NOT STARTED | Reviewed PostgreSQL schema and migration foundations    |
+| CH-03           | P0    | NOT STARTED | Identity, secure sessions and staff governance          |
+| CH-04           | P0    | NOT STARTED | Catalog administration, variants, media and public APIs |
+| CH-05           | P0    | NOT STARTED | Inventory balances, movements and staff stock tools     |
+| CH-06           | P0    | NOT STARTED | Authenticated cart, exact pricing and quotes            |
+| CH-07           | P0    | NOT STARTED | Reservation-backed atomic order initiation              |
+| CH-08           | P0    | NOT STARTED | Sandbox payments, event authentication and settlement   |
+| CH-09           | P0    | NOT STARTED | Durable jobs, audit persistence and observability       |
+| CH-10           | P0    | NOT STARTED | Shared accessible design system                         |
+| CH-11           | P0    | NOT STARTED | Storefront discovery and customer account delivery      |
+| CH-12           | P0    | NOT STARTED | Shopper checkout, payment outcome and order history     |
+| CH-13           | P0    | NOT STARTED | Admin overview, fulfillment and operational controls    |
+| CH-14           | P0    | NOT STARTED | Performance, accessibility and adversarial MVP proof    |
+| CH-15           | P0    | NOT STARTED | Staging and MVP release acceptance                      |
+| CH-16           | P1    | NOT STARTED | V1 cancellation, returns and guarded refunds            |
+| CH-17           | P1    | NOT STARTED | V1 merchandising, promotions, reviews and wishlists     |
+| CH-18           | P1    | NOT STARTED | V1 customer operations, reporting and notifications     |
+| CH-19           | P1    | NOT STARTED | Egyptian live payment adapter and reconciliation        |
+| CH-20           | P1    | NOT STARTED | V1 UX, regression and release                           |
+| CH-21           | P2    | NOT STARTED | Future feasibility and separately scoped research       |
+
+Each story's objective, scope, original membership, requirement IDs, dependencies,
+references, gates, acceptance, tests, deliverables and DoD are incorporated from
+[the approved full backlog](planning/backlog-consolidation/backlog.md) and
+[stories.json](planning/backlog-consolidation/stories.json), without redefinition.
+The historical proposal metadata is superseded only by adoption/current status;
+all definitions and inherited acceptance remain unchanged.
+
+## Legacy story history
+
+The following original 59 specifications, their 295 AC clauses, tests, gates and
+dependencies are preserved, searchable and recoverable at the recorded Git commit.
+They remain acceptance/traceability evidence, not new top-level assignments.
+<!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
+
 # CommerceHub — Complete BMAD Epic & Story Backlog
 
 **Document ID:** CH-BMAD-08  

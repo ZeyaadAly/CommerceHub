@@ -1,3 +1,68 @@
+# CommerceHub operative story tracker
+
+2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
+Owner explicitly approved adoption, five ownership moves, feature coverage and the
+48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
+no implementation or specialist gate closure is authorized.
+
+Default to the [adopted backlog](../planning/backlog-consolidation/README.md), [definitions](../planning/backlog-consolidation/stories.json),
+[full acceptance](../planning/backlog-consolidation/backlog.md), [milestone graph](../planning/backlog-consolidation/milestones.json) and
+[current adoption/status record](../planning/backlog-consolidation/adoption.json). Legacy CH-P0-001–CH-P2-059 IDs remain
+immutable traceability/history, not a competing top-level work queue.
+Every inherited requirement/AC/test and gate remains binding; the original
+100 edges are historical while the approved scoped milestone repairs now govern
+readiness. [Mapping](../planning/backlog-consolidation/mapping.md) and [coverage](../planning/backlog-consolidation/coverage.md) retain all assignments.
+
+The material below the LEGACY BASELINE marker is preserved verbatim history and
+is not the operative status/dependency model. Stale proposed/pending and 59-story
+execution instructions there are superseded by this adopted header.
+
+## Current parent execution status
+
+| Operative story | Phase | Status      | Delivery                                                |
+| --------------- | ----- | ----------- | ------------------------------------------------------- |
+| CH-01           | P0    | IN PROGRESS | Foundation, environments, tooling, CI and decision work |
+| CH-02           | P0    | NOT STARTED | Reviewed PostgreSQL schema and migration foundations    |
+| CH-03           | P0    | NOT STARTED | Identity, secure sessions and staff governance          |
+| CH-04           | P0    | NOT STARTED | Catalog administration, variants, media and public APIs |
+| CH-05           | P0    | NOT STARTED | Inventory balances, movements and staff stock tools     |
+| CH-06           | P0    | NOT STARTED | Authenticated cart, exact pricing and quotes            |
+| CH-07           | P0    | NOT STARTED | Reservation-backed atomic order initiation              |
+| CH-08           | P0    | NOT STARTED | Sandbox payments, event authentication and settlement   |
+| CH-09           | P0    | NOT STARTED | Durable jobs, audit persistence and observability       |
+| CH-10           | P0    | NOT STARTED | Shared accessible design system                         |
+| CH-11           | P0    | NOT STARTED | Storefront discovery and customer account delivery      |
+| CH-12           | P0    | NOT STARTED | Shopper checkout, payment outcome and order history     |
+| CH-13           | P0    | NOT STARTED | Admin overview, fulfillment and operational controls    |
+| CH-14           | P0    | NOT STARTED | Performance, accessibility and adversarial MVP proof    |
+| CH-15           | P0    | NOT STARTED | Staging and MVP release acceptance                      |
+| CH-16           | P1    | NOT STARTED | V1 cancellation, returns and guarded refunds            |
+| CH-17           | P1    | NOT STARTED | V1 merchandising, promotions, reviews and wishlists     |
+| CH-18           | P1    | NOT STARTED | V1 customer operations, reporting and notifications     |
+| CH-19           | P1    | NOT STARTED | Egyptian live payment adapter and reconciliation        |
+| CH-20           | P1    | NOT STARTED | V1 UX, regression and release                           |
+| CH-21           | P2    | NOT STARTED | Future feasibility and separately scoped research       |
+
+CH-01 is IN PROGRESS / PARTIALLY IMPLEMENTED, not DONE. Its F milestone reuses
+historical 001–005 DONE evidence. Legacy 006 remains BLOCKED overall with merged
+partial work. C/007 and D/008 are NOT STARTED; scoped readiness is separate.
+CH-02–CH-21 are NOT STARTED: there is no verified feature implementation evidence.
+Open unrelated specialist gates do not change every parent's execution status to BLOCKED.
+
+The [48 milestone states](../planning/backlog-consolidation/adoption.json) separately
+record execution, readiness, unmet prerequisites and authorization. All unstarted
+implementation remains NOT AUTHORIZED. [Task readiness](task-readiness.md) explains
+C/D readiness boundaries; changing status requires actual evidence.
+
+## Historical evidence
+
+All original rows below, including 001–005 DONE and 006–059 historical BLOCKED
+values, remain unchanged. Historical BLOCKED rows do not override current scoped
+readiness; they are not erased or retrospectively relabeled READY. Legacy 007/008
+have no completed implementation. No child completion automatically completes a parent.
+<!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
+
 # CommerceHub story tracker
 
 CH-P0-006 exact owner-observed pooler tuple APPROVED (2026-10-21);

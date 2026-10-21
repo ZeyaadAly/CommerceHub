@@ -1,3 +1,113 @@
+# CommerceHub adopted requirement traceability
+
+2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
+Owner explicitly approved adoption, five ownership moves, feature coverage and the
+48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
+no implementation or specialist gate closure is authorized.
+
+Default to the [adopted backlog](../planning/backlog-consolidation/README.md), [definitions](../planning/backlog-consolidation/stories.json),
+[full acceptance](../planning/backlog-consolidation/backlog.md), [milestone graph](../planning/backlog-consolidation/milestones.json) and
+[current adoption/status record](../planning/backlog-consolidation/adoption.json). Legacy CH-P0-001–CH-P2-059 IDs remain
+immutable traceability/history, not a competing top-level work queue.
+Every inherited requirement/AC/test and gate remains binding; the original
+100 edges are historical while the approved scoped milestone repairs now govern
+readiness. [Mapping](../planning/backlog-consolidation/mapping.md) and [coverage](../planning/backlog-consolidation/coverage.md) retain all assignments.
+
+The material below the LEGACY BASELINE marker is preserved verbatim history and
+is not the operative status/dependency model. Stale proposed/pending and 59-story
+execution instructions there are superseded by this adopted header.
+
+## Operative requirement ownership
+
+| Requirement    | Phase | Adopted delivery/contributor parent(s)                 | Acceptance evidence                                                                                     |
+| -------------- | ----- | ------------------------------------------------------ | ------------------------------------------------------------------------------------------------------- |
+| CH-AUTH-001    | P0    | CH-03, CH-11, CH-02                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-AUTH-002    | P0    | CH-03, CH-11, CH-02                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-AUTH-003    | P0    | CH-03, CH-11, CH-02                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-AUTH-004    | P0    | CH-11, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-AUTH-005    | P0    | CH-11, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-AUTH-006    | P1    | CH-18                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CAT-001     | P0    | CH-04, CH-11, CH-02                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CAT-002     | P0    | CH-04, CH-11, CH-02                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CAT-003     | P0    | CH-04, CH-11, CH-02                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CAT-004     | P0    | CH-04, CH-11, CH-02                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CAT-005     | P0    | CH-11, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CAT-006     | P1    | CH-17                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CAT-007     | P1    | CH-17, CH-20                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CAT-008     | P1    | CH-17, CH-20                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CART-001    | P0    | CH-06, CH-11, CH-12                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CART-002    | P0    | CH-06, CH-12                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CHECK-001   | P0    | CH-06, CH-07, CH-12                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CHECK-002   | P0    | CH-07                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CHECK-003   | P0    | CH-06, CH-07, CH-08                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CHECK-004   | P0    | CH-08, CH-12                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CHECK-005   | P1    | CH-17, CH-20                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ORD-001     | P0    | CH-12                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ORD-002     | P0    | CH-08, CH-13, CH-12                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ORD-003     | P0    | CH-13                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ORD-004     | P0    | CH-07, CH-08, CH-09, CH-13                             | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ORD-005     | P1    | CH-16                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ORD-006     | P1    | CH-16, CH-20                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-PAY-001     | P0    | CH-08, CH-12                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-PAY-002     | P0    | CH-08, CH-09                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-PAY-003     | P0    | CH-08, CH-13, CH-09                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-PAY-004     | P1    | CH-19, CH-20                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-PAY-005     | P1    | CH-18, CH-19, CH-20                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-PAY-006     | P1    | CH-16, CH-19, CH-20                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ADM-CAT-001 | P0    | CH-04, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ADM-CAT-002 | P0    | CH-04, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ADM-CAT-003 | P0    | CH-04, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-ADM-CAT-004 | P0    | CH-04, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-INV-001     | P0    | CH-05, CH-07                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-INV-002     | P0    | CH-05                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-INV-003     | P0    | CH-07, CH-08, CH-09                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-INV-004     | P0    | CH-05, CH-13                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-INV-005     | P1    | CH-18                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-SEC-001     | P0    | CH-03, CH-13, CH-02                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-SEC-002     | P0    | CH-03, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-SEC-003     | P0    | CH-03, CH-02                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-SEC-004     | P0    | CH-03, CH-05, CH-13, CH-09, CH-02                      | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-SEC-005     | P0    | CH-03, CH-06, CH-12, CH-02                             | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-SEC-006     | P1    | CH-18                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-DASH-001    | P0    | CH-13, CH-14                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-CUST-001    | P1    | CH-18, CH-20                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-MKT-001     | P1    | CH-17, CH-20                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-AN-001      | P1    | CH-18, CH-20                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-NOTIF-001   | P1    | CH-18                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-FUT-001     | P2    | CH-21                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-FUT-002     | P2    | CH-21                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-FUT-003     | P2    | CH-21                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-FUT-004     | P2    | CH-21                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-FUT-005     | P2    | CH-21                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| CH-FUT-006     | P2    | CH-21                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-SEC-01     | P0    | CH-03, CH-11, CH-13, CH-14                             | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-SEC-02     | P0    | CH-03, CH-14                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-SEC-03     | P0    | CH-03, CH-12, CH-14                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-SEC-04     | P0    | CH-03, CH-04, CH-14                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-SEC-05     | P0    | CH-01, CH-09, CH-14                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-SEC-06     | P0    | CH-01, CH-14                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-DATA-01    | P0    | CH-07, CH-08, CH-14, CH-02                             | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-DATA-02    | P0    | CH-02, CH-05, CH-07, CH-08, CH-09, CH-14, CH-15        | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-PERF-01    | P0    | CH-04, CH-11, CH-14                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-PERF-02    | P0    | CH-13, CH-14                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-A11Y-01    | P0    | CH-10, CH-14                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-RESP-01    | P0    | CH-10, CH-11, CH-04, CH-05, CH-14                      | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-REL-01     | P0    | CH-03, CH-09, CH-14                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-REL-02     | P0    | CH-01, CH-09, CH-14, CH-15                             | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-TEST-01    | P0    | CH-01, CH-14                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-API-01     | P0    | CH-01, CH-03, CH-14                                    | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-OPS-01     | P0    | CH-01, CH-15                                           | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-OPS-02     | P1    | CH-18                                                  | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+| NFR-UX-01      | P0    | CH-10, CH-11, CH-12, CH-13, CH-04, CH-05, CH-03, CH-14 | Exact original requirement/AC and coverage flags retained in inventory; no implementation pass inferred |
+
+All 78 requirement IDs, original source text/AC and phase assignments remain
+unchanged. Multiple parents can contribute to one requirement; every legacy story
+still has exactly one parent. Existing missing-feature assignments and all 26 BA
+findings now use the approved owners in coverage.md, without settling their policy
+choices. The legacy row associations below are preserved as historical evidence.
+<!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
+
 # CommerceHub requirements traceability
 
 2026-10-20 limited CH-P0-006 evidence: [configuration preparation report](../verification/CH-P0-006-limited.md) and [environment ownership/runbook](../development/docker-free-setup.md) cover only current scaffold preparation toward NFR-SEC-05/06, NFR-OPS-01 and NFR-TEST-01. This supplements the planning snapshot below; it does not claim real PostgreSQL/Redis integration, recovery proof (NFR-REL-02), business acceptance or gate closure.
