@@ -13,7 +13,9 @@
   --border: #e2e8f0;
   --control-border: #64748b;
   --success: #15803d;
+  --success-foreground: var(--surface);
   --warning: #a16207;
+  --warning-foreground: var(--surface);
   --danger: #b91c1c;
   --danger-foreground: var(--surface);
   --focus-ring: #2563eb;

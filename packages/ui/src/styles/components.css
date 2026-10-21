@@ -388,15 +388,15 @@
   }
   .ch-badge[data-tone='success'] {
     background: var(--success);
-    color: var(--surface);
+    color: var(--success-foreground);
   }
   .ch-badge[data-tone='warning'] {
     background: var(--warning);
-    color: var(--surface);
+    color: var(--warning-foreground);
   }
   .ch-badge[data-tone='danger'] {
     background: var(--danger);
-    color: var(--surface);
+    color: var(--danger-foreground);
   }
   .ch-state {
     background: var(--surface);

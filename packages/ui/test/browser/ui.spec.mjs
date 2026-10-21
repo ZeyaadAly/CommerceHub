@@ -81,6 +81,20 @@ test('primary, hover and pressed tokens update both compositions without changin
   });
   await expect(page.locator('#semantic-probe')).toHaveCSS('background-color', 'rgb(21, 128, 61)');
   await expect(page.locator('#semantic-probe')).toHaveCSS('color', 'rgb(255, 255, 255)');
+  // Status foregrounds can be overridden independently of panel surfaces.
+  await page.evaluate(() => {
+    globalThis.document.documentElement.style.setProperty('--surface', '#0f172a');
+    globalThis.document.documentElement.style.setProperty('--success-foreground', '#ffffff');
+    globalThis.document.documentElement.style.setProperty('--warning-foreground', '#ffffff');
+  });
+  await expect(page.getByText('Presentation ready', { exact: true })).toHaveCSS(
+    'color',
+    'rgb(255, 255, 255)',
+  );
+  await expect(page.getByText('Review pending', { exact: true }).first()).toHaveCSS(
+    'color',
+    'rgb(255, 255, 255)',
+  );
 });
 
 test('keyboard traversal, skip link, dialog containment and focus restoration', async ({
