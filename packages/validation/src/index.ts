@@ -4,6 +4,8 @@ import { z } from 'zod';
 export const uuidSchema = z.uuid();
 export const isoInstantSchema = z.iso.datetime();
 export const apiMetaSchema = z.object({ requestId: z.string() });
+// Existing unversioned infrastructure endpoint; deliberately not an API envelope.
+export const healthResponseSchema = z.strictObject({ status: z.literal('ok') });
 export const apiErrorSchema = z.object({
   error: z.object({
     code: z.string(),
@@ -88,3 +90,4 @@ export type CollectionResponse<T> = z.infer<
   ReturnType<typeof createCollectionSchema<z.ZodType<T>>>
 >;
 export type QueryText = z.infer<ReturnType<typeof createQueryTextSchema>>;
+export type HealthResponse = z.infer<typeof healthResponseSchema>;

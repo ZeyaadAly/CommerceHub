@@ -9,6 +9,7 @@ export type {
   Uuid,
   IsoInstant,
   QueryText,
+  HealthResponse,
 } from '@commercehub/validation';
 
 export type SortValue<T extends string> = T;

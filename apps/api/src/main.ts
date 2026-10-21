@@ -1,11 +1,10 @@
 import 'reflect-metadata';
-import { NestFactory } from '@nestjs/core';
-import { AppModule } from './app.module';
+import { createApplication } from './application';
 import { ApiConfigurationError, readApiConfig } from './config';
 
 async function bootstrap(): Promise<void> {
   const config = readApiConfig(process.env);
-  const app = await NestFactory.create(AppModule);
+  const app = await createApplication(process.env);
   app.enableShutdownHooks();
   await app.listen(config.port, '127.0.0.1');
 }
