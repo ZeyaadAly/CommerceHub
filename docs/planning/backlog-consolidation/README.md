@@ -7,7 +7,7 @@ The 21-story mapping, five ownership moves, missing-feature assignments and exac
 48-milestone definitions/dependencies are approved. Current execution/readiness
 comes from [adoption.json](adoption.json) and
 [the operative tracker](../../implementation/story-tracker.md). CH-01 is partial
-IN PROGRESS; CH-02–CH-21 NOT STARTED. No feature or specialist policy is authorized.
+IN PROGRESS; CH-03 IN PROGRESS (bounded API DONE), CH-10 BLOCKED (T readiness REVIEW); all other parents remain NOT STARTED. No feature or specialist policy is authorized.
 
 [verify.mjs](verify.mjs) validates immutable legacy evidence from its recorded Git
 baseline, then [verify-adoption.mjs](verify-adoption.mjs) checks live synchronization.
@@ -19,6 +19,10 @@ now superseded by this explicit adoption. Its substantive scope, acceptance,
 phase, gate and milestone definitions remain binding without change. There are
 48 milestone tasks; the old phrase "not 46 new stories" is historical editorial
 wording and does not change that count. No original IDs/history are deleted.
+
+## Current CH-10/T readiness and API reconciliation — 2026-10-21
+
+[Single concise handoff](../../design/CH-10-T-handoff.md): D1–D4 PROPOSED, readiness REVIEW; T implementation BLOCKED on named UX/Product + QA approval and separate implementation authority. C is sufficient predecessor; no full CH-01/API/DB dependency added. API bounded transport is DONE after PR #25's implementation, all inherited AC, exact-head CI and owner merge were assessed; CH-03 stays IN PROGRESS, AUTH/STAFF/DB unaccepted, API-01 OPEN. This task implements no components. All gates/ADRs, historical 001–005 DONE, full 006 BLOCKED, Redis DEFERRED and security-exception dates remain unchanged.
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub backlog consolidation — proposed governance rebaseline
