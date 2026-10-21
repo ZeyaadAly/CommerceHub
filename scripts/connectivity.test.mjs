@@ -8,7 +8,7 @@ import { createServer } from 'node:net';
 import os from 'node:os';
 import path from 'node:path';
 import test from 'node:test';
-import { TLSSocket, createSecureContext } from 'node:tls';
+import { TLSSocket, createSecureContext, rootCertificates } from 'node:tls';
 
 const require = createRequire(import.meta.url);
 const {
@@ -60,7 +60,7 @@ const message = (type, body) => Buffer.concat([Buffer.from(type), int(body.lengt
 const auth = (n, body = Buffer.alloc(0)) => message('R', Buffer.concat([int(n), body]));
 const hmac = (key, value) => createHmac('sha256', key).update(value).digest();
 
-async function fixture(t, mode = 'scram') {
+async function fixture(t, mode = 'scram', user = 'synthetic_user') {
   const frames = [];
   const sockets = new Set();
   let terminated = false;
@@ -96,7 +96,7 @@ async function fixture(t, mode = 'scram') {
             assert.equal(frame.readInt32BE(4), 196608);
             assert.deepEqual(frame.subarray(8).toString().split('\0').filter(Boolean), [
               'user',
-              'synthetic_user',
+              user,
               'database',
               'synthetic_db',
               'client_encoding',
@@ -195,7 +195,7 @@ async function fixture(t, mode = 'scram') {
       host: 'localhost',
       port: server.address().port,
       database: 'synthetic_db',
-      user: 'synthetic_user',
+      user,
       password: 'synthetic-password',
       ca,
     },
@@ -214,6 +214,94 @@ test('TLS protected password authentication also immediately terminates without 
   const f = await fixture(t, 'cleartext');
   assert.equal((await authenticateOnly(f.input, 2000)).status, 'PASS');
   assert.deepEqual(f.frames, ['SSLRequest', 'Startup', 'p', 'X']);
+});
+
+for (const mode of ['scram', 'cleartext', 'reject', 'bad-proof']) {
+  test(`Session Pooler routing username: ${mode}, authentication frames only`, async (t) => {
+    const f = await fixture(t, mode, 'synthetic_user.synthetic-ref');
+    const result = await authenticateOnly(f.input, 2000);
+    assert.equal(result.status, ['scram', 'cleartext'].includes(mode) ? 'PASS' : 'BLOCKED');
+    assert.ok(!JSON.stringify(result).includes('synthetic'));
+    if (result.status === 'PASS') {
+      assert.deepEqual(
+        f.frames,
+        mode === 'scram'
+          ? ['SSLRequest', 'Startup', 'p', 'p', 'X']
+          : ['SSLRequest', 'Startup', 'p', 'X'],
+      );
+      assert.ok(f.terminated());
+    }
+  });
+}
+
+test('Session Pooler exact approval and project routing are required offline', () => {
+  const base = {
+    organizationId: 'synthetic-org',
+    projectRef: 'synthetic-ref',
+    projectName: 'commercehub',
+    environment: 'persistent-development',
+    mode: 'session',
+    host: 'synthetic.pooler.supabase.com',
+    port: 5432,
+    database: 'postgres',
+    user: 'synthetic_user.synthetic-ref',
+    custodyReviewed: true,
+  };
+  const digest = createHash('sha256').update('synthetic-org:synthetic-ref').digest('hex');
+  const approval = { host: base.host, user: base.user };
+  assert.equal(validateManifest(base, digest, approval), true);
+  assert.equal(validateManifest(base, digest), false);
+  assert.equal(validateTarget(base), false);
+  for (const patch of [
+    { organizationId: 'other-org' },
+    { projectRef: 'other-ref' },
+    { projectName: 'Expense Tracker' },
+    { environment: 'production' },
+    { environment: 'staging' },
+    { mode: 'transaction' },
+    { mode: 'direct' },
+    { port: 6543 },
+    { port: '5432' },
+    { host: '*.pooler.supabase.com' },
+    { host: 'other.pooler.supabase.com' },
+    { host: 'arbitrary.invalid' },
+    { user: 'synthetic_user' },
+    { user: 'other_user.synthetic-ref' },
+    { user: 'synthetic_user.other-ref' },
+    { custodyReviewed: false },
+    { ssl: { rejectUnauthorized: false } },
+    { connectionString: 'synthetic' },
+  ])
+    assert.equal(validateManifest({ ...base, ...patch }, digest, approval), false);
+  assert.equal(
+    validateManifest(base, digest, { ...approval, host: '*.pooler.supabase.com' }),
+    false,
+  );
+  assert.equal(
+    validateManifest({ ...base, user: 'synthetic_user.other-ref' }, digest, {
+      ...approval,
+      user: 'synthetic_user.other-ref',
+    }),
+    false,
+  );
+});
+
+test('production CLI authority keeps actual designated Session Pooler pending', () => {
+  assert.equal(
+    validateTarget({
+      organizationId: 'cjtfuyrqxgkqnyjdpirx',
+      projectRef: 'uktducdwfzakyoolysvt',
+      projectName: 'commercehub',
+      environment: 'persistent-development',
+      mode: 'session',
+      host: 'unapproved.pooler.supabase.com',
+      port: 5432,
+      database: 'postgres',
+      user: 'synthetic_user.uktducdwfzakyoolysvt',
+      custodyReviewed: true,
+    }),
+    false,
+  );
 });
 for (const mode of [
   'reject',
@@ -255,6 +343,14 @@ test('real TLS rejects untrusted CA before Startup', async (t) => {
     'BLOCKED',
   );
   assert.deepEqual(f.frames, ['SSLRequest']);
+});
+
+test('Session Pooler username cannot bypass hostname or valid unrelated CA rejection', async (t) => {
+  for (const override of [{ host: '127.0.0.1' }, { ca: rootCertificates[0] }]) {
+    const f = await fixture(t, 'scram', 'synthetic_user.synthetic-ref');
+    assert.equal((await authenticateOnly({ ...f.input, ...override }, 1000)).status, 'BLOCKED');
+    assert.deepEqual(f.frames, ['SSLRequest']);
+  }
 });
 test('target guard rejects every synthetic forbidden target without network access', () => {
   const base = {
@@ -299,6 +395,14 @@ test('ambiguous driver/TLS environment is rejected rather than inherited', () =>
     'PGPASSWORD',
     'DATABASE_URL',
     'DIRECT_URL',
+    'POSTGRES_URL',
+    'POSTGRESQL_URL',
+    'SESSION_POOLER_URL',
+    'TRANSACTION_POOLER_URL',
+    'POOLER_URL',
+    'SUPABASE_DB_URL',
+    'SSL_CERT_FILE',
+    'SSL_CERT_DIR',
     'NODE_OPTIONS',
     'NODE_TLS_REJECT_UNAUTHORIZED',
     'NODE_EXTRA_CA_CERTS',

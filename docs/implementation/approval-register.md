@@ -1,5 +1,15 @@
 # CommerceHub approval register
 
+## CH-P0-006 Windows compatibility offline authorization - 2026-10-21
+
+The owner authorizes Session Pooler compatibility implementation, offline tests,
+nonsecret management identity review, Husky commit/push and an OPEN review PR.
+PR #17 merge is verified at `4ec0835fc540976013a7f668ff4050030ccc4bf3`.
+This task authorizes no live PostgreSQL probe, credential retrieval, SQL, resource
+change, spending, deployment, merge or next story. Exact pooler approval is pending;
+[evidence](../verification/CH-P0-006-session-pooler-compatibility.md) retains live/full
+006 BLOCKED, specialist gates OPEN and previous acceptance unchanged.
+
 ## CH-P0-006 controlled verifier authorization - 2026-10-20
 
 PR #16 is verified merged at `0b88e1596e5dd2f0547a804b0eff0cbb43ac6581`. The owner explicitly authorizes a narrow authentication-only verifier, offline tests, minimum existing dev credential use under secure custody, at most one bounded live authentication attempt and an open review PR. No SQL, schema/role/settings/resource changes, migrations, reset/seed, spending, deployment, merge or CH-P0-007. [Controlled verification](../verification/CH-P0-006-controlled-connectivity.md) records implementation REVIEW and live BLOCKED before network because ignored custody inputs are absent. All specialist gates OPEN; full 006 BLOCKED; managed Redis/spending DEFERRED. This supersedes prior planning-only authority for this slice only.
