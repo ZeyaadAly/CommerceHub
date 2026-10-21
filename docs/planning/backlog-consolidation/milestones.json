@@ -1,0 +1,348 @@
+[
+  {
+    "id": "F",
+    "parent": "CH-01",
+    "depends": [],
+    "meaning": "Existing accepted 001–005 evidence only; historical DONE, not CH-01 completion",
+    "gates": "None for their accepted scope"
+  },
+  {
+    "id": "C",
+    "parent": "CH-01",
+    "depends": ["F"],
+    "meaning": "007 shared safe wire schemas/types/client scaffold; NOT STARTED",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "D",
+    "parent": "CH-01",
+    "depends": ["F"],
+    "meaning": "008 review-only ADR/gate option pack; signed decisions required at affected implementation boundaries",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "E_DB",
+    "parent": "CH-01",
+    "depends": ["F", "D"],
+    "meaning": "006 approved disposable PostgreSQL custody/role/isolation readiness, not all Redis/environment acceptance",
+    "gates": "OPS-01/SEC-01 and explicit resource/connection authority"
+  },
+  {
+    "id": "E_QUEUE",
+    "parent": "CH-01",
+    "depends": ["F", "D"],
+    "meaning": "006 separate approved isolated Redis/BullMQ capability; spending remains deferred",
+    "gates": "OPS-01; separate owner spending/resource authorization"
+  },
+  {
+    "id": "M",
+    "parent": "CH-02",
+    "depends": ["C", "D"],
+    "meaning": "009 identity plus catalog schema contract/design and explicit audit/order/payment/outbox migration ownership",
+    "gates": "SEC-01/FIN-01 and DB-0/DB-01 for affected decisions"
+  },
+  {
+    "id": "DB",
+    "parent": "CH-02",
+    "depends": ["M", "E_DB"],
+    "meaning": "010 reviewed identity/catalog baseline on eligible disposable PostgreSQL",
+    "gates": "DB-0/DB-01; SEC-01/FIN-01 where applicable"
+  },
+  {
+    "id": "API",
+    "parent": "CH-03",
+    "depends": ["C"],
+    "meaning": "011 independent NestJS transport/error/validation/OpenAPI skeleton",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "T",
+    "parent": "CH-10",
+    "depends": ["C"],
+    "meaning": "034 reviewed shared tokens/primitives",
+    "gates": "UX/quality readiness"
+  },
+  {
+    "id": "A",
+    "parent": "CH-09",
+    "depends": ["DB", "API"],
+    "meaning": "033 early atomic audit writer and minimal durable outbox persistence contract, before privileged consumers",
+    "gates": "DB-0/DB-01; SEC-01; OPS/LEG for affected retention/custody"
+  },
+  {
+    "id": "AUTH",
+    "parent": "CH-03",
+    "depends": ["DB", "API"],
+    "meaning": "012/013 credentials, verification, recovery, cookie audience/origin/CSRF lifecycle",
+    "gates": "SEC-01"
+  },
+  {
+    "id": "STAFF_API",
+    "parent": "CH-03",
+    "depends": ["AUTH", "A"],
+    "meaning": "014 protected staff bootstrap, permissions and last-Super-Admin invariants",
+    "gates": "SEC-01"
+  },
+  {
+    "id": "SHELL",
+    "parent": "CH-13",
+    "depends": ["STAFF_API", "T"],
+    "meaning": "040 shell/capability routing only; no fake KPI acceptance",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "STAFF_UI",
+    "parent": "CH-03",
+    "depends": ["STAFF_API", "SHELL", "T", "A"],
+    "meaning": "044 staff management UI portion; audit explorer portion waits separately",
+    "gates": "SEC-01/UX readiness"
+  },
+  {
+    "id": "CAT_API",
+    "parent": "CH-04",
+    "depends": ["DB", "API", "STAFF_API", "A"],
+    "meaning": "015/017 catalog domain/public contracts, SKU persistence and publication guards; not full media/editor acceptance",
+    "gates": "FIN-01/SEC-01/DB/API plus applicable publish/media-policy decisions"
+  },
+  {
+    "id": "CAT",
+    "parent": "CH-04",
+    "depends": ["CAT_API", "SHELL", "T"],
+    "meaning": "016/041 complete catalog/media staff editor and storage-backed lifecycle acceptance",
+    "gates": "OPS-01/SEC-01/UX and all inherited catalog reviews"
+  },
+  {
+    "id": "INV",
+    "parent": "CH-05",
+    "depends": ["DB", "CAT_API", "STAFF_API", "A", "SHELL", "T"],
+    "meaning": "018/019/042 balances, movement/threshold contract and staff inventory",
+    "gates": "INV-01/SEC-01/DB reviews"
+  },
+  {
+    "id": "CART",
+    "parent": "CH-06",
+    "depends": ["AUTH", "CAT_API", "T"],
+    "meaning": "020 authenticated cart plus explicit complete cart-page task",
+    "gates": "SEC-01; guest merge remains BA-02 blocked"
+  },
+  {
+    "id": "ACCOUNT",
+    "parent": "CH-11",
+    "depends": ["AUTH", "DB", "T"],
+    "meaning": "037 profile/address API and account UI; explicit added backend ownership",
+    "gates": "SEC-01/API-01/BA-08/14"
+  },
+  {
+    "id": "QUOTE",
+    "parent": "CH-06",
+    "depends": ["CART", "ACCOUNT", "D"],
+    "meaning": "021/022 approved exact pricing, shipping/address and quote expiry",
+    "gates": "FIN-01 and scoped LEG/SEC review"
+  },
+  {
+    "id": "PERSIST",
+    "parent": "CH-07",
+    "depends": ["DB", "QUOTE", "A"],
+    "meaning": "024 order/item/snapshot FK foundations plus 026 intent/idempotency and 030 outbox schema contributions; no orchestration yet",
+    "gates": "FIN-01/INV-01/PAY-01/DB-0/DB-01; contributing owners CH-08/09"
+  },
+  {
+    "id": "RESERVE",
+    "parent": "CH-07",
+    "depends": ["INV", "QUOTE", "PERSIST"],
+    "meaning": "023 deterministic locking and exclusive reservation terminal transitions",
+    "gates": "INV-01/PAY-01"
+  },
+  {
+    "id": "ORDER",
+    "parent": "CH-07",
+    "depends": ["AUTH", "QUOTE", "RESERVE", "PERSIST", "A"],
+    "meaning": "025 atomic accept quote → order/hold/intent/idempotency/audit/outbox",
+    "gates": "FIN-01/INV-01/PAY-01"
+  },
+  {
+    "id": "MOCK",
+    "parent": "CH-08",
+    "depends": ["PERSIST"],
+    "meaning": "027/028 mock adapter and authenticated synthetic event ingress",
+    "gates": "PAY-01/OPS-01 production-safe mock versus test injection"
+  },
+  {
+    "id": "SETTLE",
+    "parent": "CH-08",
+    "depends": ["ORDER", "MOCK", "RESERVE"],
+    "meaning": "029 settlement and order/payment/hold coordination",
+    "gates": "PAY-01/INV-01"
+  },
+  {
+    "id": "JOBS",
+    "parent": "CH-09",
+    "depends": ["PERSIST", "SETTLE", "E_QUEUE"],
+    "meaning": "030 durable dispatch, consumers, bounded retries/DLQ/outage recovery",
+    "gates": "OPS-01"
+  },
+  {
+    "id": "EXPLORER",
+    "parent": "CH-09",
+    "depends": ["STAFF_API", "A", "JOBS"],
+    "meaning": "033 later audit explorer/metrics/recovery visibility",
+    "gates": "SEC-01/OPS-01/LEG-01"
+  },
+  {
+    "id": "STAFF",
+    "parent": "CH-03",
+    "depends": ["STAFF_UI", "EXPLORER"],
+    "meaning": "044 remaining audit/permission UI integration after full minimal audit contract",
+    "gates": "SEC-01"
+  },
+  {
+    "id": "STORE",
+    "parent": "CH-11",
+    "depends": ["CAT_API", "CART", "T"],
+    "meaning": "035/036 browse/SEO/PDP/add-to-cart integration; full release additionally requires CAT media evidence",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "CHECKOUT",
+    "parent": "CH-12",
+    "depends": ["STORE", "ACCOUNT", "QUOTE", "ORDER", "SETTLE"],
+    "meaning": "038 authoritative checkout/payment outcome UI",
+    "gates": "FIN-01/INV-01/PAY-01/UX readiness"
+  },
+  {
+    "id": "HISTORY_API",
+    "parent": "CH-12",
+    "depends": ["ORDER", "SETTLE", "AUTH"],
+    "meaning": "031 owner-safe order/shipments API",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "CUSTOMER",
+    "parent": "CH-12",
+    "depends": ["HISTORY_API", "CHECKOUT", "T"],
+    "meaning": "039 owned order history/detail/timeline UI",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "ADMIN",
+    "parent": "CH-13",
+    "depends": ["STAFF_API", "SHELL", "SETTLE", "INV", "A", "T"],
+    "meaning": "032/040 aggregation/043 fulfillment with reviewed void/settings and metrics",
+    "gates": "SEC-01/PAY-01/INV-01/FIN-01 as scoped"
+  },
+  {
+    "id": "PERF",
+    "parent": "CH-14",
+    "depends": [
+      "STORE",
+      "ACCOUNT",
+      "CHECKOUT",
+      "CUSTOMER",
+      "ADMIN",
+      "CAT",
+      "INV",
+      "STAFF",
+      "EXPLORER"
+    ],
+    "meaning": "045 all active-route query/cache/index/performance evidence",
+    "gates": "UX/quality budgets reviewed, not invented"
+  },
+  {
+    "id": "STAGE_A",
+    "parent": "CH-15",
+    "depends": ["E_DB", "E_QUEUE", "API"],
+    "meaning": "048 test-environment preparation before full E2E/load/restore",
+    "gates": "Separate environment/deployment authority; OPS-01/SEC-01 and other scoped gates"
+  },
+  {
+    "id": "E2E",
+    "parent": "CH-14",
+    "depends": ["PERF", "STAGE_A"],
+    "meaning": "046 complete shopper/admin/a11y suite including catalog/inventory",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "HARDEN",
+    "parent": "CH-14",
+    "depends": ["E2E", "JOBS", "EXPLORER", "STAGE_A"],
+    "meaning": "047 security/concurrency/load/fault/restore proof",
+    "gates": "All scoped FIN/INV/SEC/PAY/OPS/LEG/quality gates"
+  },
+  {
+    "id": "STAGE_B",
+    "parent": "CH-15",
+    "depends": ["HARDEN", "F"],
+    "meaning": "048 final staging release/go-no-go, not production/live payment authority",
+    "gates": "OPS-01/LEG-01 and scoped security/product exit"
+  },
+  {
+    "id": "V1_REVIEW",
+    "parent": "CH-16",
+    "depends": ["STAGE_B"],
+    "meaning": "049 review-only options/refinement before approvals, not automatic V1 implementation",
+    "gates": "Applicable inherited gates; no closure inferred"
+  },
+  {
+    "id": "RETURNS",
+    "parent": "CH-16",
+    "depends": ["V1_REVIEW"],
+    "meaning": "050 cancellation/return eligibility/workflow",
+    "gates": "LEG-01/FIN-02/SEC-01"
+  },
+  {
+    "id": "MOCK_REFUND",
+    "parent": "CH-16",
+    "depends": ["RETURNS"],
+    "meaning": "051 exact refund persistence and invariant proof using mocks; no external refund execution",
+    "gates": "FIN-02, approved staged PAY-LIVE disposition required; no waiver"
+  },
+  {
+    "id": "MERCH",
+    "parent": "CH-17",
+    "depends": ["V1_REVIEW"],
+    "meaning": "052/053 promotions, enhanced discovery, wishlist/reviews",
+    "gates": "FIN-01 revision/SEC-01"
+  },
+  {
+    "id": "OPS_V1_BASE",
+    "parent": "CH-18",
+    "depends": ["V1_REVIEW"],
+    "meaning": "054 non-refund support/session/notification/tracking/audit tasks; accepted P0 identity/orders/jobs reused",
+    "gates": "SEC-01/OPS-01/LEG-01 and scoped settings finance review"
+  },
+  {
+    "id": "OPS_V1",
+    "parent": "CH-18",
+    "depends": ["OPS_V1_BASE", "MOCK_REFUND"],
+    "meaning": "054 final captured/refund/net reporting and integrated support/settings proof",
+    "gates": "SEC-01/OPS-01/LEG-01; scoped FIN-01/02"
+  },
+  {
+    "id": "PROVIDER_REVIEW",
+    "parent": "CH-19",
+    "depends": ["V1_REVIEW"],
+    "meaning": "055 commercial/API/provider decision work before certification, no selection inferred",
+    "gates": "PAY-LIVE decision stage; LEG/OPS/Security/Finance"
+  },
+  {
+    "id": "LIVE",
+    "parent": "CH-19",
+    "depends": ["PROVIDER_REVIEW", "MOCK_REFUND"],
+    "meaning": "055 adapter certification, reconciliation proof, then separately approved live activation",
+    "gates": "PAY-LIVE/OPS-01/LEG-01 and scoped FIN/SEC"
+  },
+  {
+    "id": "V1_RELEASE",
+    "parent": "CH-20",
+    "depends": ["MOCK_REFUND", "MERCH", "OPS_V1", "LIVE"],
+    "meaning": "056 integrated UX/regression/release acceptance",
+    "gates": "All scoped V1 gates"
+  },
+  {
+    "id": "FUTURE",
+    "parent": "CH-21",
+    "depends": ["STAGE_B"],
+    "meaning": "057–059 research covers all six FUT IDs, independent of V1 delivery",
+    "gates": "New scoped P2 PRD/INV/financial/legal approvals"
+  }
+]
