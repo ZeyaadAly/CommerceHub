@@ -139,7 +139,9 @@ test('menu typeahead/selection skips disabled actions; select and tabs remain ke
   await select.focus();
   await page.keyboard.press('Space');
   await expect(page.getByRole('listbox')).toBeVisible();
+  await expect(page.getByRole('option', { name: 'First option', exact: true })).toBeFocused();
   await page.keyboard.press('End');
+  await expect(page.getByRole('option', { name: 'Second option', exact: true })).toBeFocused();
   await page.keyboard.press('Enter');
   await expect(select).toContainText('Second option');
   await page.getByRole('tab', { name: 'States', exact: true }).focus();
