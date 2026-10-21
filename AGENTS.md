@@ -4,6 +4,16 @@ Created in CH-P0-002; documentation approved by the CommerceHub project owner on
 
 ## Project and authority
 
+Owner-approved adoption (2026-10-21): [CH-01–CH-21](docs/planning/backlog-consolidation/README.md)
+is the operative implementation-planning backlog. Use its unchanged approved
+[definitions](docs/planning/backlog-consolidation/stories.json),
+[48 milestone dependencies](docs/planning/backlog-consolidation/milestones.json)
+and [current execution/readiness record](docs/planning/backlog-consolidation/adoption.json).
+Legacy CH-P0-001–CH-P2-059 IDs/specifications remain immutable history/acceptance
+and traceability, not a competing work queue. Full inherited requirements, tests,
+security/commerce invariants and specialist gates remain binding. Adoption is not
+implementation, resource, financial or gate-closure authority.
+
 CommerceHub is a single-merchant, Egypt-first, EGP physical-goods store with configurable categories and SKU variants. The planned modular monolith has separate Next.js storefront/admin applications and one shared NestJS REST API. P0 is sandbox MVP; P1 is V1 business depth; P2 is separately scoped research/future work. Do not promote deferred features by treating them as prerequisites.
 
 Read these planning sources before development, then revisit the exact sections for the task:
@@ -15,16 +25,16 @@ Read these planning sources before development, then revisit the exact sections 
 
 These documents provide project authority within the applicable system, developer and user instructions. The formal-review user instruction accepts all eight as approved planning documents; stale draft/proposed labels in the sources do not override that instruction. Planning approval does not approve story completion, specialist policies or audit recommendations. Root rules apply throughout the repository; nested AGENTS.md files add rules for their directories and must not weaken project invariants. Surface conflicts with exact file/section and BA/gate IDs; stop only the affected implementation and continue authorized independent work. The 26 audit recommendations are not approved changes. See the [formal review](docs/implementation/formal-review-001-002.md) for scoped blockers and acceptance dispositions.
 
-## One story at a time
+## One authorized milestone at a time
 
-1. Identify the authorized story, relevant PRD/UX/API/DB sections, current acceptance criteria and permitted files. Read applicable nested instructions.
-2. Check predecessor review/merge evidence, tracker status and applicable gates, including inherited blockers. Do not infer predecessor acceptance from a new task request. A review-only exception permits documentation preparation, not downstream implementation.
+1. Identify the authorized CH-01–CH-21 parent and exact internal milestone, relevant PRD/UX/API/DB sections, inherited/current acceptance and permitted files. Read nested instructions; keep legacy IDs for traceability. Put one focused plan within the story/milestone rather than creating routine documentation/configuration/verification stories.
+2. Check the milestone's actual predecessor review/merge evidence, current execution/readiness and scoped gates, including inherited blockers. Do not require all of CH-01 when accepted F or C is sufficient. Independently ready does not mean authorized; a new task request does not accept predecessors or close gates. Review-only preparation never authorizes dependent implementation.
 3. Inspect existing files, Git status/configuration and available tooling; preserve unrelated user changes. Reuse the existing repository.
 4. State a small implementation plan and unresolved assumptions. Refine generic acceptance into observable normal/error/security cases without inventing business policy.
 5. Implement only authorized scope and maintain module ownership. Keep changes focused; avoid unrelated refactors.
 6. Run relevant existing checks and meaningful tests. Inspect diffs, including untracked files, for behavior, secrets and scope.
 7. Update affected contracts, traceability, gate references and story evidence as warranted. Record proposed corrections separately; never silently rewrite approved baselines or dependencies.
-8. Report story/status, changed files, exact commands/results, NOT RUN checks and reasons, remaining blockers and next recommendation. Stop before the next story. DONE normally requires actual acceptance, tests where applicable, human review and merge evidence under the project definition. For documentation stories 001/002 only, the owner explicitly authorized DONE on human acceptance with GitHub integration tracked separately; 003 still requires their verified merged evidence.
+8. Report parent/milestone status, changed files, exact results, NOT RUN checks/reasons, blockers, evidence and remaining parent acceptance. Continue only to another explicitly authorized milestone; otherwise stop with a recommendation. Readiness grants no standing implementation, infrastructure or financial permission. Parent DONE requires all inherited acceptance, relevant tests, human/specialist review and merge evidence; a completed child is insufficient. Historical 001/002 acceptance exceptions and 001–005 DONE evidence remain unchanged; full legacy 006 is BLOCKED and CH-01 remains partially implemented.
 
 ## Stack and ownership
 
@@ -63,6 +73,6 @@ Use unit tests for policies, real disposable PostgreSQL integration/concurrency 
 
 ## Git and delivery
 
-Use one task per short-lived branch and focused changes with task IDs in authorized commits, PRs and reports. Preserve user edits and inspect staged/unstaged/untracked content. Human review precedes merge; no force pushes or history rewriting. Commit, push, merge, migration execution, external provisioning and deployment require authorization in the session and applicable gate evidence; do not repeatedly ask when it already exists. No next story starts automatically.
+Use one authorized milestone/task per short-lived branch and focused, coherent vertical slices with parent/milestone IDs in commits, PRs and reports. A large parent may need several bounded PRs. Preserve user edits and inspect staged/unstaged/untracked content. Review exact-head CI and human/specialist feedback before merge; no force pushes/history rewriting. Commit, push, merge, migrations, credentials, external provisioning, spending and deployment require session authorization and applicable gate evidence; do not repeatedly ask when it exists. Continue only to the next authorized milestone; never infer batch or high-risk-operation authority from backlog adoption.
 
 Use the repository PR template and linked workflow. Record checks honestly and keep unresolved findings visible. If Git rejects repository ownership, report it; a narrowly scoped read exception may be used without altering global Git configuration. Do not claim branch protection or remote CI is enabled without verification.

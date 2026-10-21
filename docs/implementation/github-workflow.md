@@ -1,3 +1,43 @@
+# CommerceHub adopted milestone delivery workflow
+
+2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
+Owner explicitly approved adoption, five ownership moves, feature coverage and the
+48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
+no implementation or specialist gate closure is authorized.
+
+Default to the [adopted backlog](../planning/backlog-consolidation/README.md), [definitions](../planning/backlog-consolidation/stories.json),
+[full acceptance](../planning/backlog-consolidation/backlog.md), [milestone graph](../planning/backlog-consolidation/milestones.json) and
+[current adoption/status record](../planning/backlog-consolidation/adoption.json). Legacy CH-P0-001–CH-P2-059 IDs remain
+immutable traceability/history, not a competing top-level work queue.
+Every inherited requirement/AC/test and gate remains binding; the original
+100 edges are historical while the approved scoped milestone repairs now govern
+readiness. [Mapping](../planning/backlog-consolidation/mapping.md) and [coverage](../planning/backlog-consolidation/coverage.md) retain all assignments.
+
+The material below the LEGACY BASELINE marker is preserved verbatim history and
+is not the operative status/dependency model. Stale proposed/pending and 59-story
+execution instructions there are superseded by this adopted header.
+
+## Operative delivery rules
+
+Select CH-01–CH-21 and its exact milestone ID for task/commit/PR reporting, keeping
+legacy IDs where needed for traceability. One focused plan belongs within the
+selected milestone/story, not a separate administrative story. Use coherent
+vertical slices and multiple bounded PRs as appropriate. One parent need not be
+complete before an independently accepted prerequisite milestone is reusable.
+
+Check actual gates/predecessors, implement only authorized scope, run applicable
+automated/security checks, inspect exact-head CI/code, obtain human/specialist
+review, then merge only with authorization and protected-branch compliance. Record
+evidence/remaining acceptance, continue only to another authorized milestone,
+otherwise stop with the next recommendation. Current task stops at REVIEW.
+
+Use the existing PR template; require commercehub-quality on the exact final head.
+Use Husky, no force push/history rewriting or stored-token extraction. Credentials,
+SQL/migrations, resources, spending, deployment and financial operations retain
+separate scope/gate approvals. No workflow/branch protection setting is modified.
+<!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
+
 # CommerceHub GitHub workflow — proposed
 
 Governance integration update (2026-10-18): task deliverables 001/002 and ADR directory convention were explicitly human-approved; canonical ADR location is `docs/architecture/decisions/`. The owner authorizes the named governance branch, commit, PR and merge only when actual repository checks/review policies permit. GitHub resolves the existing E-commerce remote URL to ZeyaadAly/CommerceHub; matching main SHA verifies repository continuity. Initial main protection/ruleset reads reported protected=false and no rulesets; the detailed protection endpoint returned connector 403. No protection setting was changed. See [governance finalization](governance-finalization.md) for observed integration state; earlier no-write/unknown-remote statements below are the CH-P0-001 snapshot, not claims about this later authorized operation.

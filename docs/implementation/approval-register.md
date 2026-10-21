@@ -1,3 +1,47 @@
+# CommerceHub approval register — operative adoption
+
+2026-10-21 (Africa/Cairo). **CH-01–CH-21 ADOPTED as operative planning baseline.**
+Owner explicitly approved adoption, five ownership moves, feature coverage and the
+48-milestone schedule after [PR #21](https://github.com/ZeyaadAly/CommerceHub/pull/21)
+merged at `8543df03c23423ff58d383dde0de2a5192725dbb`. This task synchronizes governance only;
+no implementation or specialist gate closure is authorized.
+
+Default to the [adopted backlog](../planning/backlog-consolidation/README.md), [definitions](../planning/backlog-consolidation/stories.json),
+[full acceptance](../planning/backlog-consolidation/backlog.md), [milestone graph](../planning/backlog-consolidation/milestones.json) and
+[current adoption/status record](../planning/backlog-consolidation/adoption.json). Legacy CH-P0-001–CH-P2-059 IDs remain
+immutable traceability/history, not a competing top-level work queue.
+Every inherited requirement/AC/test and gate remains binding; the original
+100 edges are historical while the approved scoped milestone repairs now govern
+readiness. [Mapping](../planning/backlog-consolidation/mapping.md) and [coverage](../planning/backlog-consolidation/coverage.md) retain all assignments.
+
+The material below the LEGACY BASELINE marker is preserved verbatim history and
+is not the operative status/dependency model. Stale proposed/pending and 59-story
+execution instructions there are superseded by this adopted header.
+
+## Owner adoption APPROVED — October 21, 2026
+
+The owner explicitly approves CH-01–CH-21 as the operative planning baseline,
+all approved feature/requirement coverage and missing-feature ownership, the
+48-milestone dependency schedule, historical preservation and streamlined workflow.
+Five approved moves: 031 → CH-12, 032 → CH-13, 041 → CH-04, 042 → CH-05, 044 → CH-03.
+PR #21 reviewed/merged at the exact commit above. This is an explicit owner decision,
+not approval inferred solely from a merge.
+
+CH-01 partial IN PROGRESS; CH-02–CH-21 NOT STARTED; no parent newly DONE. 001–005
+remain historical DONE; full 006 BLOCKED; 007/008 not started. The adopted workflow
+allows continuing only to the next explicitly authorized milestone and creates
+no standing infrastructure or financial authority. Current adoption synchronization
+is REVIEW pending its own PR review/merge; the owner decision is already APPROVED.
+
+FIN-01, FIN-02, INV-01, SEC-01, PAY-01, OPS-01, LEG-01 and PAY-LIVE remain OPEN;
+FIN-01 revision, DB-0/DB-01, API-01, UX/quality and all conditional reviews unchanged.
+Redis/BullMQ retained; managed Redis/spending DEFERRED; Docker/WSL not required.
+No tax/rounding/TTL/session/permission/state/replay/provider/retention/recovery
+policy, budget or security exception is newly approved. Exact existing exception
+expiration dates and restrictions remain unchanged. No feature, credential, DB/SQL,
+migration, hosted-resource, spending or deployment action is authorized here.
+<!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
+
 # CommerceHub approval register
 
 ## CH-P0-006 exact Session Pooler target APPROVED - 2026-10-21

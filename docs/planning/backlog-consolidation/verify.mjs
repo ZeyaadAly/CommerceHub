@@ -1,12 +1,29 @@
 // Offline planning-retention checks only. No app/service/credential/network access.
 import assert from 'node:assert/strict';
+import { execFileSync } from 'node:child_process';
 import { createHash } from 'node:crypto';
 import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const folder = import.meta.dirname;
 const root = path.resolve(folder, '../../..');
-const read = (p) => readFileSync(path.resolve(root, p), 'utf8').replace(/\r\n/g, '\n');
+// Adoption changes live governance, not the immutable source evidence. Read the
+// exact recorded Git objects; fail closed if history is unavailable. The separate
+// adoption verifier below checks current sources and unchanged gates/policies.
+const historical = new Map();
+const read = (p) => {
+  if (!historical.has(p)) {
+    historical.set(
+      p,
+      execFileSync('git', ['show', `${inventory.baseline}:${p}`], {
+        cwd: root,
+        encoding: 'utf8',
+        maxBuffer: 16 * 1024 * 1024,
+      }).replace(/\r\n/g, '\n'),
+    );
+  }
+  return historical.get(p);
+};
 const json = (name) => JSON.parse(readFileSync(path.join(folder, name), 'utf8'));
 const sha = (s) => createHash('sha256').update(s).digest('hex');
 const inventory = json('inventory.json');
@@ -246,16 +263,18 @@ console.log(
       refined006Criteria: 15,
       originalEdges: edges.length,
       BA: 26,
-      unchangedSources: inventory.sources.length,
+      immutableHistoricalSources: inventory.sources.length,
       sourceUnits: units,
       verbatimTableRows: expectedFacts.length,
-      proposedMilestones: milestones.length,
+      approvedMilestones: milestones.length,
       acyclic: true,
       localLinks: links,
       limits:
-        'Structural text/phase/edge/gate/history retention and proposed DAG checks; not semantic policy approval, implementation tests or specialist acceptance.',
+        'Immutable baseline text/phase/edge/history and approved DAG checks; live synchronization checked separately. No implementation or specialist acceptance implied.',
     },
     null,
     2,
   ),
 );
+
+await import('./verify-adoption.mjs');

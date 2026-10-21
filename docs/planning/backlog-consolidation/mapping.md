@@ -1,3 +1,26 @@
+# Adopted backlog definition — mapping.md
+
+**ADOPTED by explicit owner approval on 2026-10-21 after PR #21 merge
+`8543df03c23423ff58d383dde0de2a5192725dbb`.**
+
+The 21-story mapping, five ownership moves, missing-feature assignments and exact
+48-milestone definitions/dependencies are approved. Current execution/readiness
+comes from [adoption.json](adoption.json) and
+[the operative tracker](../../implementation/story-tracker.md). CH-01 is partial
+IN PROGRESS; CH-02–CH-21 NOT STARTED. No feature or specialist policy is authorized.
+
+[verify.mjs](verify.mjs) validates immutable legacy evidence from its recorded Git
+baseline, then [verify-adoption.mjs](verify-adoption.mjs) checks live synchronization.
+[Adoption review evidence](adoption-verification.md) records actual checks.
+
+The approved proposal text below is preserved verbatim. Its PROPOSED/pending
+adoption/status fields and instruction to await adoption are historical metadata,
+now superseded by this explicit adoption. Its substantive scope, acceptance,
+phase, gate and milestone definitions remain binding without change. There are
+48 milestone tasks; the old phrase "not 46 new stories" is historical editorial
+wording and does not change that count. No original IDs/history are deleted.
+<!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
+
 # Original-to-proposed mapping
 
 PROPOSED. Every original ID has one owner; relationships to other deliveries are dependencies/contributions, not duplicate ownership. Source status is retained exactly. Full source AC/specifications, gate strings, predecessor edges and evidence rows are preserved verbatim in [inventory.json](inventory.json). No partial original is completed by a new parent.

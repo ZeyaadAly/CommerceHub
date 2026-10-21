@@ -1,0 +1,611 @@
+{
+  "state": "ADOPTED",
+  "ownerApprovalDate": "2026-10-21",
+  "proposalPR": 21,
+  "proposalMerge": "8543df03c23423ff58d383dde0de2a5192725dbb",
+  "sourceInventoryBaseline": "107da8c70adc71cbbd861a430d7758a13f00e1df",
+  "implementationAuthorized": false,
+  "definitions": "stories.json",
+  "schedule": "milestones.json",
+  "historicalInventory": "inventory.json",
+  "metadataRule": "Approved story definitions and milestone graph are unchanged. PROPOSED fields in the immutable proposal are historical metadata; this adoption and current tracker override them for operative identity/status only.",
+  "statusModel": {
+    "execution": ["NOT STARTED", "BLOCKED", "IN PROGRESS", "REVIEW", "DONE"],
+    "readiness": ["READY FOR AUTHORIZATION", "BLOCKED", "SATISFIED"],
+    "rule": "Readiness is separate from execution status and authority. A ready milestone still needs explicit authorization; no parent DONE from a completed child."
+  },
+  "ownershipMoves": {
+    "CH-P0-031": "CH-12",
+    "CH-P0-032": "CH-13",
+    "CH-P0-041": "CH-04",
+    "CH-P0-042": "CH-05",
+    "CH-P0-044": "CH-03"
+  },
+  "unchangedSpecialistGates": [
+    "FIN-01",
+    "FIN-02",
+    "INV-01",
+    "SEC-01",
+    "PAY-01",
+    "OPS-01",
+    "LEG-01",
+    "PAY-LIVE"
+  ],
+  "otherReviews": "FIN-01 revision, DB-0/DB-01, API-01, UX/quality and conditional reviews remain as registered; no closure.",
+  "managedRedisSpending": "DEFERRED",
+  "dockerWslRequired": false,
+  "legacy006Status": "BLOCKED",
+  "acceptance006Status": {
+    "AC-006-01": "PASS",
+    "AC-006-02": "PASS",
+    "AC-006-03": "PASS",
+    "AC-006-04": "BLOCKED",
+    "AC-006-05": "BLOCKED",
+    "AC-006-06": "BLOCKED",
+    "AC-006-07": "BLOCKED",
+    "AC-006-08": "BLOCKED",
+    "AC-006-09": "BLOCKED",
+    "AC-006-10": "PASS",
+    "AC-006-11": "PASS",
+    "AC-006-12": "BLOCKED",
+    "AC-006-13": "PASS",
+    "AC-006-14": "BLOCKED",
+    "AC-006-15": "PASS"
+  },
+  "parentStates": [
+    {
+      "id": "CH-01",
+      "status": "IN PROGRESS",
+      "detail": "PARTIALLY IMPLEMENTED: historical 001–005 DONE; 006 partial merged/BLOCKED; C/D unstarted."
+    },
+    {
+      "id": "CH-02",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-03",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-04",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-05",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-06",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-07",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-08",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-09",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-10",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-11",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-12",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-13",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-14",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-15",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-16",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-17",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-18",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-19",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-20",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    },
+    {
+      "id": "CH-21",
+      "status": "NOT STARTED",
+      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+    }
+  ],
+  "milestoneStates": [
+    {
+      "id": "F",
+      "parent": "CH-01",
+      "status": "DONE",
+      "readiness": "SATISFIED",
+      "authorization": "HISTORICAL ACCEPTED SCOPE",
+      "unmetPrerequisites": [],
+      "note": "Only historical accepted 001–005 work; does not complete CH-01."
+    },
+    {
+      "id": "C",
+      "parent": "CH-01",
+      "status": "NOT STARTED",
+      "readiness": "READY FOR AUTHORIZATION",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": [],
+      "note": "Bounded safe contract/type/client scaffold only; F/003 accepted. Do not settle gated money, enum, session or permission policy; refine allowed files/AC in the implementation plan."
+    },
+    {
+      "id": "D",
+      "parent": "CH-01",
+      "status": "NOT STARTED",
+      "readiness": "READY FOR AUTHORIZATION",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": [],
+      "note": "Scoped ADR/gate option preparation only after accepted 001. Preparing a decision is not closing a gate."
+    },
+    {
+      "id": "E_DB",
+      "parent": "CH-01",
+      "status": "BLOCKED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["D"],
+      "note": "Legacy 006 dev target/config partial evidence retained; disposable isolation, custody, roles and live service proof not established. No DB access authorized."
+    },
+    {
+      "id": "E_QUEUE",
+      "parent": "CH-01",
+      "status": "BLOCKED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["D"],
+      "note": "Managed Redis/spending DEFERRED; no isolated capability or resource authority established."
+    },
+    {
+      "id": "M",
+      "parent": "CH-02",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["C", "D"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "DB",
+      "parent": "CH-02",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["M", "E_DB"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "API",
+      "parent": "CH-03",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["C"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "T",
+      "parent": "CH-10",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["C"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "A",
+      "parent": "CH-09",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["DB", "API"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "AUTH",
+      "parent": "CH-03",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["DB", "API"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "STAFF_API",
+      "parent": "CH-03",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["AUTH", "A"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "SHELL",
+      "parent": "CH-13",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["STAFF_API", "T"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "STAFF_UI",
+      "parent": "CH-03",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["STAFF_API", "SHELL", "T", "A"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "CAT_API",
+      "parent": "CH-04",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["DB", "API", "STAFF_API", "A"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "CAT",
+      "parent": "CH-04",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["CAT_API", "SHELL", "T"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "INV",
+      "parent": "CH-05",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["DB", "CAT_API", "STAFF_API", "A", "SHELL", "T"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "CART",
+      "parent": "CH-06",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["AUTH", "CAT_API", "T"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "ACCOUNT",
+      "parent": "CH-11",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["AUTH", "DB", "T"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "QUOTE",
+      "parent": "CH-06",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["CART", "ACCOUNT", "D"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "PERSIST",
+      "parent": "CH-07",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["DB", "QUOTE", "A"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "RESERVE",
+      "parent": "CH-07",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["INV", "QUOTE", "PERSIST"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "ORDER",
+      "parent": "CH-07",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["AUTH", "QUOTE", "RESERVE", "PERSIST", "A"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "MOCK",
+      "parent": "CH-08",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["PERSIST"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "SETTLE",
+      "parent": "CH-08",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["ORDER", "MOCK", "RESERVE"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "JOBS",
+      "parent": "CH-09",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["PERSIST", "SETTLE", "E_QUEUE"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "EXPLORER",
+      "parent": "CH-09",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["STAFF_API", "A", "JOBS"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "STAFF",
+      "parent": "CH-03",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["STAFF_UI", "EXPLORER"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "STORE",
+      "parent": "CH-11",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["CAT_API", "CART", "T"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "CHECKOUT",
+      "parent": "CH-12",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["STORE", "ACCOUNT", "QUOTE", "ORDER", "SETTLE"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "HISTORY_API",
+      "parent": "CH-12",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["ORDER", "SETTLE", "AUTH"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "CUSTOMER",
+      "parent": "CH-12",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["HISTORY_API", "CHECKOUT", "T"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "ADMIN",
+      "parent": "CH-13",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["STAFF_API", "SHELL", "SETTLE", "INV", "A", "T"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "PERF",
+      "parent": "CH-14",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": [
+        "STORE",
+        "ACCOUNT",
+        "CHECKOUT",
+        "CUSTOMER",
+        "ADMIN",
+        "CAT",
+        "INV",
+        "STAFF",
+        "EXPLORER"
+      ],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "STAGE_A",
+      "parent": "CH-15",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["E_DB", "E_QUEUE", "API"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "E2E",
+      "parent": "CH-14",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["PERF", "STAGE_A"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "HARDEN",
+      "parent": "CH-14",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["E2E", "JOBS", "EXPLORER", "STAGE_A"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "STAGE_B",
+      "parent": "CH-15",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["HARDEN"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "V1_REVIEW",
+      "parent": "CH-16",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["STAGE_B"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "RETURNS",
+      "parent": "CH-16",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["V1_REVIEW"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "MOCK_REFUND",
+      "parent": "CH-16",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["RETURNS"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "MERCH",
+      "parent": "CH-17",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["V1_REVIEW"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "OPS_V1_BASE",
+      "parent": "CH-18",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["V1_REVIEW"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "OPS_V1",
+      "parent": "CH-18",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["OPS_V1_BASE", "MOCK_REFUND"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "PROVIDER_REVIEW",
+      "parent": "CH-19",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["V1_REVIEW"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "LIVE",
+      "parent": "CH-19",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["PROVIDER_REVIEW", "MOCK_REFUND"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "V1_RELEASE",
+      "parent": "CH-20",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["MOCK_REFUND", "MERCH", "OPS_V1", "LIVE"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    },
+    {
+      "id": "FUTURE",
+      "parent": "CH-21",
+      "status": "NOT STARTED",
+      "readiness": "BLOCKED",
+      "authorization": "NOT AUTHORIZED",
+      "unmetPrerequisites": ["STAGE_B"],
+      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+    }
+  ],
+  "firstRecommendedMilestone": "C",
+  "evidence": {
+    "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
+    "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
+  }
+}
