@@ -1,0 +1,19 @@
+{
+  "instructions": "Fake shape only. Never populate this tracked file. See the controlled-verification report for ignored local files, ACLs, CA trust and authorization limits.",
+  "targetFile": {
+    "organizationId": "OWNER_CONFIRMED_ORGANIZATION_REFERENCE",
+    "projectRef": "OWNER_CONFIRMED_PROJECT_REFERENCE",
+    "projectName": "commercehub",
+    "environment": "persistent-development",
+    "mode": "direct",
+    "host": "EXACT_OWNER_CONFIRMED_DIRECT_HOSTNAME",
+    "port": 5432,
+    "database": "postgres",
+    "user": "EXISTING_REVIEWED_AUTHENTICATION_IDENTITY",
+    "custodyReviewed": false
+  },
+  "secretFile": {
+    "user": "SAME_EXISTING_REVIEWED_IDENTITY",
+    "password": "FAKE_PLACEHOLDER_NEVER_USE"
+  }
+}
