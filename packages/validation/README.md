@@ -8,7 +8,8 @@ Canonical runtime owner: `@commercehub/validation`, pinned Zod 4.6.7 (already re
 - `createPaginationSchemas({maxPageSize,maxCursorLength})`: strict request fields `pageSize?`, `cursor?`; result `{nextCursor,hasMore,pageSize}`. Positive integer numbers or canonical decimal query strings; no empty/null/boolean/exponent coercion. No default limit, opaque cursor interpretation or signing. Endpoint bounds remain caller-provided until approved.
 - `createQueryTextSchema(maxLength)`: NFC/trim, length and control-character checks. This is transport validation, not HTML sanitization or SQL escaping.
 - `createSortSchema(values)`: explicit endpoint-supplied allowed sort values; no global sort convention.
+- `healthResponseSchema`: strict existing `{status: 'ok'}` infrastructure response; canonical health/OpenAPI contract, no readiness/service claims.
 - `noContentSchema`: validates an explicit 204/undefined result.
 - `validate(schema,input)`: discriminated success/data or fixed `INVALID_INPUT`, without raw inputs/custom diagnostic messages. Direct schema.parse errors are Zod diagnostics; never log them on untrusted/sensitive inputs.
 
-Named inferred types are exported and re-exported from `@commercehub/types`. Validation has no dependency on types/client/apps. Backend validation/ownership/authorization remains mandatory. No money, session, role, permission, inventory, payment or product policy is implemented. OpenAPI endpoint generation and drift proof await actual endpoint contracts/API milestone.
+Named inferred types are exported and re-exported from `@commercehub/types`. Validation has no dependency on types/client/apps. Backend validation/ownership/authorization remains mandatory. No money, session, role, permission, inventory, payment or product policy is implemented. CH-03/API uses canonical health/error schemas for local OpenAPI generation and drift tests. Business endpoint contracts remain deferred.

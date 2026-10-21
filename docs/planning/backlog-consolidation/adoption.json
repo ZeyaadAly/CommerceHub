@@ -65,8 +65,8 @@
     },
     {
       "id": "CH-03",
-      "status": "NOT STARTED",
-      "detail": "No verified implementation evidence; evaluate readiness only at milestone scope."
+      "status": "IN PROGRESS",
+      "detail": "API transport foundation REVIEW only; AUTH/STAFF milestones NOT STARTED and blocked. Parent incomplete."
     },
     {
       "id": "CH-04",
@@ -236,11 +236,12 @@
     {
       "id": "API",
       "parent": "CH-03",
-      "status": "NOT STARTED",
-      "readiness": "READY FOR AUTHORIZATION",
-      "authorization": "NOT AUTHORIZED",
+      "status": "REVIEW",
+      "readiness": "SATISFIED",
+      "authorization": "AUTHORIZED: OWNER CH-03/API REQUEST 2026-10-21",
       "unmetPrerequisites": [],
-      "note": "C accepted; bounded technical transport/validation/error/OpenAPI skeleton can be separately authorized with API-01 technical handoff before affected handlers. No auth/business/DB/session-forwarding scope."
+      "note": "Bounded technical transport/validation/errors/local OpenAPI only. API-01 handoff recorded; no gate closure or auth/business/DB authority. Human acceptance and merge pending.",
+      "evidence": "docs/verification/CH-03-API.md"
     },
     {
       "id": "T",
@@ -613,10 +614,11 @@
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     }
   ],
-  "firstRecommendedMilestone": "API",
+  "firstRecommendedMilestone": "T",
   "evidence": {
     "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
     "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
   },
-  "implementationAuthorizationScope": "Adoption grants no standing implementation authority. C separately authorized and accepted for bounded scope. Current owner task authorizes D decision preparation only; API/T and later implementation or hosted operations NOT AUTHORIZED."
+  "implementationAuthorizationScope": "Adoption grants no standing implementation authority. C separately authorized and accepted for bounded scope. D preparation remains REVIEW with unsigned PROPOSED ADRs. Current owner request authorizes CH-03/API transport only; no AUTH/STAFF/DB/T implementation, hosted operations or gate closure.",
+  "nextRecommendedTask": "Independent T design/UX preparation only, after separate owner authorization; T implementation remains blocked on UX/quality. API acceptance/merge still pending. No successor implementation starts."
 }

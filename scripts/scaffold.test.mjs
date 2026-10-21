@@ -152,6 +152,7 @@ test('shared package builds expose resolvable modules without import-time networ
              'createQueryTextSchema',
              'createResponseSchema',
              'createSortSchema',
+             'healthResponseSchema',
              'isoInstantSchema',
              'noContentSchema',
              'uuidSchema',

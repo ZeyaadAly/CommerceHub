@@ -79,6 +79,7 @@ test('public exports are intentional; types are erased; imports are inert', asyn
       'createQueryTextSchema',
       'createResponseSchema',
       'createSortSchema',
+      'healthResponseSchema',
       'isoInstantSchema',
       'noContentSchema',
       'uuidSchema',

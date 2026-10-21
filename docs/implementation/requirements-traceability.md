@@ -22,7 +22,7 @@ execution instructions there are superseded by this adopted header.
 
 C/007 is **DONE for bounded scope**, after all five acceptance clauses, package/consumer/security tests, exact-head CI and owner PR #23 merge at `5c31a735251eeb179ae3a8b174b49f8ac13004d6` were checked. CH-01 remains partial, full 006 BLOCKED. D/008 is **REVIEW** for decision preparation only.
 
-The [single decision matrix](../architecture/decisions/decision-matrix.md) provides nine PROPOSED ADR packets, all owner/evidence/blocking requests, acceptance/protection visibility limits and deferred decisions. No specialist gate closes. CH-03/API is READY FOR AUTHORIZATION for a bounded technical skeleton with API-01 handoff before affected handlers; T has C satisfied but implementation remains UX/quality BLOCKED. Neither starts now. Redis spending remains DEFERRED; Docker/WSL not required.
+The [single decision matrix](../architecture/decisions/decision-matrix.md) provides nine PROPOSED ADR packets, all owner/evidence/blocking requests, acceptance/protection visibility limits and deferred decisions. No specialist gate closes. The owner separately authorized CH-03/API transport only; its implementation is now REVIEW with the bounded API-01 handoff recorded and API-01 still OPEN. CH-03 is IN PROGRESS, never DONE. AUTH/STAFF/DB are unstarted; T has C satisfied but implementation remains UX/quality BLOCKED. No successor starts. Redis spending remains DEFERRED; Docker/WSL not required.
 
 ## Operative requirement ownership
 
@@ -124,6 +124,10 @@ implementation is **REVIEW**, not DONE; human acceptance and merge are pending.
 negative tests and unresolved API policies. Canonical schemas own inferred types;
 no domain policy or specialist gate closes. CH-01 stays partial, 006 BLOCKED,
 D/008 and every later milestone unstarted; Redis/spending DEFERRED.
+
+## CH-03/API transport checkpoint — 2026-10-21
+
+[Technical handoff, inherited acceptance and actual verification](../verification/CH-03-API.md) record transport-only REVIEW. PR #24 merge `ffa113804b4c38237576e6fafaf637cb50779f01` was verified before work; its ADR recommendations remain unsigned PROPOSED. Existing F/C acceptance is unchanged. No authentication, staff governance, persistence or business implementation is accepted. API-01 and all specialist gates remain OPEN; full 006 BLOCKED, Redis spending DEFERRED, Docker/WSL not required. Independent CH-10/T design preparation is a possible next separately authorized task; T implementation awaits UX/quality evidence, and no next milestone starts here.
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub requirements traceability

@@ -13,7 +13,7 @@
     "dev:api": "pnpm --filter @commercehub/api dev",
     "build": "pnpm -r --workspace-concurrency=1 build",
     "typecheck": "pnpm build:packages && pnpm -r typecheck",
-    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs scripts/code-quality.test.mjs scripts/ci.test.mjs scripts/dependency-audit.test.mjs scripts/environment.test.mjs scripts/connectivity.test.mjs scripts/contracts.test.mjs",
+    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs scripts/code-quality.test.mjs scripts/ci.test.mjs scripts/dependency-audit.test.mjs scripts/environment.test.mjs scripts/connectivity.test.mjs scripts/contracts.test.mjs apps/api/test/transport.test.mjs",
     "test:smoke": "node scripts/smoke.mjs",
     "check:architecture": "node --test scripts/workspace.test.mjs",
     "lint": "pnpm build:packages && eslint . --max-warnings=0",
@@ -26,7 +26,8 @@
     "scan:secrets": "node scripts/secret-scan.mjs",
     "audit:ci": "node scripts/check-dependency-audit.mjs",
     "test:contracts": "node --test scripts/contracts.test.mjs",
-    "build:packages": "pnpm --filter \"./packages/**\" -r --workspace-concurrency=1 build"
+    "build:packages": "pnpm --filter \"./packages/**\" -r --workspace-concurrency=1 build",
+    "test:api": "node --test apps/api/test/transport.test.mjs"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",

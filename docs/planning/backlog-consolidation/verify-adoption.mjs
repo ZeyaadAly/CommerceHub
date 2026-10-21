@@ -38,7 +38,7 @@ export function validateStatus(record, definitions, nodes) {
     definitions.map(({ id }) => id),
   );
   for (const [index, parent] of record.parentStates.entries()) {
-    assert.equal(parent.status, index === 0 ? 'IN PROGRESS' : 'NOT STARTED');
+    assert.equal(parent.status, [0, 2].includes(index) ? 'IN PROGRESS' : 'NOT STARTED');
   }
   assert.deepEqual(
     record.milestoneStates.map(({ id, parent }) => ({ id, parent })),
@@ -46,8 +46,7 @@ export function validateStatus(record, definitions, nodes) {
   );
   for (const [index, state] of record.milestoneStates.entries()) {
     const done = ['F', 'C'].includes(state.id);
-    const review = state.id === 'D';
-    const ready = state.id === 'API';
+    const review = ['D', 'API'].includes(state.id);
     assert.equal(
       state.status,
       done
@@ -58,19 +57,18 @@ export function validateStatus(record, definitions, nodes) {
             ? 'BLOCKED'
             : 'NOT STARTED',
     );
-    assert.equal(
-      state.readiness,
-      done || review ? 'SATISFIED' : ready ? 'READY FOR AUTHORIZATION' : 'BLOCKED',
-    );
+    assert.equal(state.readiness, done || review ? 'SATISFIED' : 'BLOCKED');
     assert.equal(
       state.authorization,
       state.id === 'F'
         ? 'HISTORICAL ACCEPTED SCOPE'
         : state.id === 'C'
           ? 'AUTHORIZED: OWNER CH-01/C REQUEST 2026-10-21'
-          : review
+          : state.id === 'D'
             ? 'AUTHORIZED: OWNER CH-01/D PREPARATION 2026-10-21'
-            : 'NOT AUTHORIZED',
+            : state.id === 'API'
+              ? 'AUTHORIZED: OWNER CH-03/API REQUEST 2026-10-21'
+              : 'NOT AUTHORIZED',
     );
     if (state.id === 'C') {
       assert.equal(state.evidence, 'docs/verification/CH-01-C.md');
@@ -82,7 +80,12 @@ export function validateStatus(record, definitions, nodes) {
       assert.equal(state.acceptance.acceptedBy, 'ZeyaadAly');
     }
     if (review) {
-      assert.equal(state.evidence, 'docs/architecture/decisions/decision-matrix.md');
+      assert.equal(
+        state.evidence,
+        state.id === 'D'
+          ? 'docs/architecture/decisions/decision-matrix.md'
+          : 'docs/verification/CH-03-API.md',
+      );
       assert.match(read(state.evidence), /Status: REVIEW/);
     }
     assert.deepEqual(
@@ -90,7 +93,8 @@ export function validateStatus(record, definitions, nodes) {
       nodes[index].depends.filter((id) => !['F', 'C'].includes(id)),
     );
   }
-  assert.equal(record.firstRecommendedMilestone, 'API');
+  assert.equal(record.firstRecommendedMilestone, 'T');
+  assert.match(record.nextRecommendedTask, /preparation only/);
   assert.deepEqual(record.unchangedSpecialistGates, [
     'FIN-01',
     'FIN-02',
@@ -204,7 +208,7 @@ for (const file of protectedFiles) {
   }
 }
 
-// Current D work may prepare options, never change application/dependency policy.
+// Current API authorization permits only the explicit transport/shared-contract surface.
 const acceptedMerge = '5c31a735251eeb179ae3a8b174b49f8ac13004d6';
 const scope = [
   'apps',
@@ -218,22 +222,42 @@ const scope = [
   'pnpm-workspace.yaml',
   'tsconfig.base.json',
 ];
-assert.equal(
-  execFileSync('git', ['diff', '--name-only', acceptedMerge, '--', ...scope], {
-    cwd: root,
-    encoding: 'utf8',
-  }).trim(),
-  '',
-  'D changed protected implementation/dependencies',
-);
-assert.equal(
-  execFileSync('git', ['ls-files', '--others', '--exclude-standard', '--', ...scope], {
-    cwd: root,
-    encoding: 'utf8',
-  }).trim(),
-  '',
-  'Untracked implementation outside D scope',
-);
+const apiStart = 'ffa113804b4c38237576e6fafaf637cb50779f01';
+const allowedImplementation = new Set([
+  'apps/api/.env.example',
+  'apps/api/package.json',
+  'apps/api/src/main.ts',
+  'apps/api/src/health.controller.ts',
+  'apps/api/src/application.ts',
+  'apps/api/src/generate-openapi.ts',
+  'apps/api/src/common/filters/http-error.filter.ts',
+  'apps/api/src/common/pipes/schema-validation.pipe.ts',
+  'apps/api/src/common/http/configure.ts',
+  'apps/api/src/common/http/context.ts',
+  'apps/api/src/common/http/response.ts',
+  'apps/api/src/common/openapi/document.ts',
+  'apps/api/test/transport.test.mjs',
+  'packages/types/src/index.ts',
+  'packages/validation/src/index.ts',
+  'packages/types/README.md',
+  'packages/validation/README.md',
+  'scripts/contracts.test.mjs',
+  'scripts/scaffold.test.mjs',
+  'package.json',
+  'pnpm-lock.yaml',
+  'pnpm-workspace.yaml',
+]);
+for (const args of [
+  ['diff', '--name-only', apiStart, '--', ...scope],
+  ['ls-files', '--others', '--exclude-standard', '--', ...scope],
+]) {
+  const files = execFileSync('git', args, { cwd: root, encoding: 'utf8' })
+    .trim()
+    .split('\n')
+    .filter(Boolean);
+  for (const file of files)
+    assert.ok(allowedImplementation.has(file), 'Outside API authorization: ' + file);
+}
 execFileSync(
   'git',
   ['merge-base', '--is-ancestor', 'bded5b2b00029d2f894fa998df54a61c533e330d', acceptedMerge],
@@ -267,6 +291,16 @@ assert.deepEqual(adrFiles.map((file) => file.slice(4, 7)).sort(), [
 ]);
 for (const file of adrFiles) {
   const text = read(`${adrFolder}/${file}`);
+  assert.equal(
+    text,
+    normalize(
+      execFileSync('git', ['show', `${apiStart}:${adrFolder}/${file}`], {
+        cwd: root,
+        encoding: 'utf8',
+      }),
+    ),
+    'API changed proposed ADR',
+  );
   assert.match(text, /^Status: PROPOSED/m);
   assert.match(text, /^Owner: .+NOT RECORDED/m);
   assert.match(text, /^Gate: .+OPEN/m);
@@ -283,6 +317,15 @@ for (const file of adrFiles) {
   }
 }
 const matrix = read(`${adrFolder}/decision-matrix.md`);
+assert.equal(
+  matrix,
+  normalize(
+    execFileSync('git', ['show', `${apiStart}:${adrFolder}/decision-matrix.md`], {
+      cwd: root,
+      encoding: 'utf8',
+    }),
+  ),
+);
 for (let id = 1; id <= 15; id++) assert.ok(matrix.includes(`ADR-${String(id).padStart(3, '0')}`));
 assert.match(matrix, /Status: REVIEW/);
 const instructions = read('AGENTS.md');
@@ -322,6 +365,9 @@ for (const file of new Set(markdown)) {
 
 // Mutation checks ensure authority/status/dependency regressions fail closed.
 for (const mutate of [
+  (record) => {
+    record.milestoneStates.find((state) => state.id === 'API').status = 'DONE';
+  },
   (record) => {
     record.implementationAuthorized = true;
   },
@@ -366,7 +412,7 @@ console.log(
       unchangedHistoricalDocuments: prefixes.size,
       protectedSources: protectedFiles.size,
       repositoryLocalLinks: links,
-      rejectedMutations: 10,
+      rejectedMutations: 11,
       proposedADRs: adrFiles.length,
       implementationAuthorized: false,
     },
