@@ -20,14 +20,25 @@ export interface TargetManifest {
 
 // Nonsecret identity digest from the owner-designated project's management metadata.
 const approvedIdentity = '76065843e783b98ffee98833b9b44986d89cd61c9d5f2eeb43012bd552c5d068';
+export interface SessionPoolerApproval {
+  host: string;
+  user: string;
+}
+// Pending independent endpoint verification AND owner approval. Never populated
+// from the manifest, environment, region patterns or a connection-string override.
+const approvedSessionPooler: SessionPoolerApproval | null = null;
 const blocked = (code: string): VerificationResult => ({ status: 'BLOCKED', code });
 
 export function validateTarget(value: unknown): value is TargetManifest {
-  return validateManifest(value, approvedIdentity);
+  return validateManifest(value, approvedIdentity, approvedSessionPooler);
 }
 
 // Pure validation seam: only validateTarget supplies production CLI authority.
-export function validateManifest(value: unknown, identityDigest: string): value is TargetManifest {
+export function validateManifest(
+  value: unknown,
+  identityDigest: string,
+  sessionPooler: SessionPoolerApproval | null = null,
+): value is TargetManifest {
   if (!value || typeof value !== 'object') return false;
   const t = value as Record<string, unknown>;
   if (
@@ -41,19 +52,28 @@ export function validateManifest(value: unknown, identityDigest: string): value 
     digest === identityDigest &&
     t.projectName === 'commercehub' &&
     t.environment === 'persistent-development' &&
-    t.mode === 'direct' &&
-    t.host === `db.${t.projectRef}.supabase.co` &&
+    ((t.mode === 'direct' &&
+      t.host === `db.${t.projectRef}.supabase.co` &&
+      typeof t.user === 'string' &&
+      /^[a-z_][a-z0-9_]{0,62}$/.test(t.user)) ||
+      (t.mode === 'session' &&
+        sessionPooler !== null &&
+        // Syntax is defense in depth; exact approval, never this suffix, is authority.
+        /^(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+pooler\.supabase\.com$/.test(sessionPooler.host) &&
+        t.host === sessionPooler.host &&
+        t.user === sessionPooler.user &&
+        typeof t.user === 'string' &&
+        t.user.endsWith(`.${t.projectRef}`) &&
+        /^[a-z_][a-z0-9_]{0,62}$/.test(t.user.slice(0, -(t.projectRef.length + 1))))) &&
     t.port === 5432 &&
     t.database === 'postgres' &&
-    typeof t.user === 'string' &&
-    /^[a-z_][a-z0-9_]{0,62}$/.test(t.user) &&
     t.custodyReviewed === true
   );
 }
 
 export function cleanProcessEnvironment(env: NodeJS.ProcessEnv): boolean {
   return !Object.keys(env).some((key) =>
-    /^(PG|DATABASE_URL$|DIRECT_URL$|SUPABASE_DB|NODE_OPTIONS$|NODE_DEBUG|NODE_EXTRA_CA_CERTS$|NODE_TLS_REJECT_UNAUTHORIZED$)/i.test(
+    /^(PG|POSTGRES|DATABASE_URL$|DIRECT_URL$|SESSION_POOLER|TRANSACTION_POOLER|POOLER_URL$|SUPABASE_DB|SSL_CERT_FILE$|SSL_CERT_DIR$|NODE_OPTIONS$|NODE_DEBUG|NODE_EXTRA_CA_CERTS$|NODE_TLS_REJECT_UNAUTHORIZED$)/i.test(
       key,
     ),
   );

@@ -1,5 +1,16 @@
 # CommerceHub task readiness
 
+## CH-P0-006 Windows Session Pooler offline checkpoint - 2026-10-21
+
+**Implementation REVIEW; live connectivity/full 006 BLOCKED.** PR #17 merged at
+`4ec0835fc540976013a7f668ff4050030ccc4bf3`. The owner authorizes offline
+compatibility implementation and review delivery only; no live probes or credentials.
+[New evidence](../verification/CH-P0-006-session-pooler-compatibility.md) records
+exact Session Pooler validation with production approval pending, synthetic protocol
+tests and preserved TLS protections. Exact pooler identity, local custody and real
+service verification remain blocked. Prior acceptance, 001–005 DONE, 007 NOT STARTED,
+all specialist gates OPEN and Redis/spending DEFERRED are retained.
+
 ## CH-P0-006 controlled verifier checkpoint - 2026-10-20
 
 **Verifier: REVIEW. Live connectivity: BLOCKED before network; full 006: BLOCKED.** [Evidence](../verification/CH-P0-006-controlled-connectivity.md) records offline protocol/TLS tests and missing ignored target/credential/CA inputs; no PostgreSQL attempt or SQL. Direct endpoint identity is management-confirmed; Session Pooler routing support and direct IPv6 reachability remain unverified. Existing seven PASS/eight BLOCKED criteria retained; all specialist gates OPEN, Redis/spending DEFERRED, 001-005 DONE and 007 NOT STARTED/readiness BLOCKED. No full acceptance or next-story authority. Earlier readiness snapshots remain history.

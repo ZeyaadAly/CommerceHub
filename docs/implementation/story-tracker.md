@@ -1,5 +1,11 @@
 # CommerceHub story tracker
 
+CH-P0-006 offline Windows compatibility follow-up (2026-10-21): implementation
+REVIEW; [evidence](../verification/CH-P0-006-session-pooler-compatibility.md).
+Exact Session Pooler approval and live verification remain BLOCKED. No original
+acceptance/status change: 001–005 DONE; full 006 BLOCKED; 007 NOT STARTED/readiness
+BLOCKED; specialist gates OPEN; managed Redis/spending DEFERRED.
+
 ## CH-P0-006 persistent dev choice - 2026-10-20
 
 **Limited 006: MERGED. Full 006: BLOCKED/not DONE.** The owner [designates existing Supabase `commercehub` as persistent non-production dev](CH-P0-006-supabase-dev-designation.md); new/empty is an owner attestation, not independently checked. PR #14 proposal is verified merged at `0ea8195d8d4daf9a4c4d198929cd4af640ebb2da`. This designation is no resource-operation or connectivity authorization. Redis/spending remain DEFERRED and all specialist gates OPEN. All 59 IDs/dependencies, five DONE predecessors and CH-P0-007 not-started status are preserved. Earlier option/proposal states are dated history.
