@@ -18,6 +18,12 @@ The material below the LEGACY BASELINE marker is preserved verbatim history and
 is not the operative status/dependency model. Stale proposed/pending and 59-story
 execution instructions there are superseded by this adopted header.
 
+## Current C acceptance and D preparation — 2026-10-21
+
+C/007 is **DONE for bounded scope**, after all five acceptance clauses, package/consumer/security tests, exact-head CI and owner PR #23 merge at `5c31a735251eeb179ae3a8b174b49f8ac13004d6` were checked. CH-01 remains partial, full 006 BLOCKED. D/008 is **REVIEW** for decision preparation only.
+
+The [single decision matrix](../architecture/decisions/decision-matrix.md) provides nine PROPOSED ADR packets, all owner/evidence/blocking requests, acceptance/protection visibility limits and deferred decisions. No specialist gate closes. CH-03/API is READY FOR AUTHORIZATION for a bounded technical skeleton with API-01 handoff before affected handlers; T has C satisfied but implementation remains UX/quality BLOCKED. Neither starts now. Redis spending remains DEFERRED; Docker/WSL not required.
+
 ## Status model and next-work evaluation
 
 Execution states are NOT STARTED, BLOCKED, IN PROGRESS, REVIEW and DONE. Readiness
@@ -25,17 +31,18 @@ is separately READY FOR AUTHORIZATION, BLOCKED or SATISFIED. These are presentat
 axes for the requested distinctions, not replacement historical values or permission.
 Only the next selected slice's actual prerequisites and scoped gates are evaluated.
 
-| Milestone              | Execution                             | Readiness                                           | Evidence / limit                                                                                           |
-| ---------------------- | ------------------------------------- | --------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| F / CH-01              | DONE (historical accepted scope only) | SATISFIED                                           | Exact 001–005 rows/merges in retained inventory; parent incomplete                                         |
-| C / CH-01 (legacy 007) | REVIEW | SATISFIED for bounded review | Owner-authorized implementation; human review/merge pending, no DONE claim |
-| D / CH-01 (legacy 008) | NOT STARTED                           | READY FOR AUTHORIZATION, scoped option preparation  | Accepted 001; prepare ADR/gate options, never approve decisions                                            |
-| E_DB / CH-01           | BLOCKED                               | BLOCKED                                             | D/custody/disposable isolation/roles/service evidence pending; partial dev validation is not this proof    |
-| E_QUEUE / CH-01        | BLOCKED                               | BLOCKED                                             | D/OPS and separate resource authority pending; managed Redis/spending DEFERRED                             |
-| T / CH-10; API / CH-03 | NOT STARTED                           | BLOCKED on C and applicable scoped UX/contracts     | Do not wait for all of CH-01; no implementation authorized now                                             |
-| All other milestones   | NOT STARTED                           | Actual predecessor milestones incomplete            | Use exact dependencies/gate notes in milestones.json, not blanket parent gate status                       |
+| Milestone              | Execution                             | Readiness                                           | Evidence / limit                                                                                        |
+| ---------------------- | ------------------------------------- | --------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| F / CH-01              | DONE (historical accepted scope only) | SATISFIED                                           | Exact 001–005 rows/merges in retained inventory; parent incomplete                                      |
+| C / CH-01 (legacy 007) | DONE for bounded scope                | SATISFIED                                           | Exact-head CI, all five AC, package/consumer proof and owner merge                                      |
+| D / CH-01 (legacy 008) | REVIEW                                | SATISFIED for preparation                           | Nine PROPOSED packets and matrix; no policy sign-off, own human review/merge pending                    |
+| E_DB / CH-01           | BLOCKED                               | BLOCKED                                             | D/custody/disposable isolation/roles/service evidence pending; partial dev validation is not this proof |
+| E_QUEUE / CH-01        | BLOCKED                               | BLOCKED                                             | D/OPS and separate resource authority pending; managed Redis/spending DEFERRED                          |
+| API / CH-03            | NOT STARTED                           | READY FOR AUTHORIZATION, bounded technical skeleton | C DONE; API-01 technical review before affected handlers, no auth/DB/domain scope                       |
+| T / CH-10              | NOT STARTED                           | BLOCKED on UX/quality design handoff                | C DONE; tokens/primitives preparation can proceed separately, implementation awaits design evidence     |
+| All other milestones   | NOT STARTED                           | Actual predecessor milestones incomplete            | Use exact dependencies/gate notes in milestones.json, not blanket parent gate status                    |
 
-C has bounded implementation in REVIEW; it is not accepted/merged and does not yet satisfy dependent implementation readiness. Recommended next independent milestone: **D**, scoped ADR/gate options preparation, only after separate authorization. No signed decisions or gate closure are inferred. T/API remain blocked on accepted C and scoped reviews.
+C bounded acceptance is DONE. D preparation is REVIEW, not signed policy. Recommended next task: separately authorize CH-03/API technical skeleton with scoped API-01 review. C is no longer an unmet dependency for API/T/M; T still needs UX/quality evidence, M still needs accepted D and affected specialist decisions. No signed policy or next implementation is inferred.
 
 The [complete 48-row state record](../planning/backlog-consolidation/adoption.json)
 records every actual prerequisite. Parent CH-01 is partial IN PROGRESS; other parents
@@ -49,7 +56,9 @@ configuration, not live TLS/authentication, credential custody, least privilege 
 DB/Redis readiness. Seven PASS/eight BLOCKED refined criteria retained. Legacy
 checkpoints below are dated snapshots, not new live access or completion evidence.
 
-## CH-01/C implementation checkpoint — 2026-10-21
+## Historical C implementation checkpoint — 2026-10-21
+
+This REVIEW checkpoint is superseded by the current acceptance above; its preparation evidence is retained.
 
 The owner separately authorized Milestone C only after PR #22 merged at
 `09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7`. Bounded shared transport/schema/client

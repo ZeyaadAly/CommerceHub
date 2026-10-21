@@ -56,7 +56,7 @@
     {
       "id": "CH-01",
       "status": "IN PROGRESS",
-      "detail": "PARTIALLY IMPLEMENTED: historical 001–005 DONE; 006 partial merged/BLOCKED; C implementation REVIEW, D NOT STARTED."
+      "detail": "PARTIALLY IMPLEMENTED: historical 001–005 DONE; C bounded acceptance DONE after verified PR #23 evidence/owner merge; D preparation REVIEW; full 006 BLOCKED."
     },
     {
       "id": "CH-02",
@@ -172,21 +172,30 @@
     {
       "id": "C",
       "parent": "CH-01",
-      "status": "REVIEW",
+      "status": "DONE",
       "readiness": "SATISFIED",
       "authorization": "AUTHORIZED: OWNER CH-01/C REQUEST 2026-10-21",
       "unmetPrerequisites": [],
-      "note": "Bounded shared contracts/validation/client implementation submitted for human review and merge; not DONE. No auth-cookie/domain policies. Evidence: docs/verification/CH-01-C.md.",
-      "evidence": "docs/verification/CH-01-C.md"
+      "note": "All five bounded 007 AC reviewed with tests/export/consumer/security evidence, exact-head CI and owner merge; no new domain policy acceptance.",
+      "evidence": "docs/verification/CH-01-C.md",
+      "acceptance": {
+        "pr": 23,
+        "merge": "5c31a735251eeb179ae3a8b174b49f8ac13004d6",
+        "head": "bded5b2b00029d2f894fa998df54a61c533e330d",
+        "ciRun": 39574385677,
+        "acceptedBy": "ZeyaadAly",
+        "basis": "Bounded AC verification plus exact-head CI and owner protected-branch merge; no formal review event claimed."
+      }
     },
     {
       "id": "D",
       "parent": "CH-01",
-      "status": "NOT STARTED",
-      "readiness": "READY FOR AUTHORIZATION",
-      "authorization": "NOT AUTHORIZED",
+      "status": "REVIEW",
+      "readiness": "SATISFIED",
+      "authorization": "AUTHORIZED: OWNER CH-01/D PREPARATION 2026-10-21",
       "unmetPrerequisites": [],
-      "note": "Scoped ADR/gate option preparation only after accepted 001. Preparing a decision is not closing a gate."
+      "note": "Nine existing-ID PROPOSED ADR packets and single owner/evidence/blocker matrix; no signed policy, service proof or gated implementation. Human acceptance/merge pending.",
+      "evidence": "docs/architecture/decisions/decision-matrix.md"
     },
     {
       "id": "E_DB",
@@ -212,8 +221,8 @@
       "status": "NOT STARTED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["C", "D"],
-      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+      "unmetPrerequisites": ["D"],
+      "note": "C accepted, D preparation REVIEW; M implementation still waits for accepted D and affected DB/SEC/FIN decisions. No schema execution authority."
     },
     {
       "id": "DB",
@@ -228,10 +237,10 @@
       "id": "API",
       "parent": "CH-03",
       "status": "NOT STARTED",
-      "readiness": "BLOCKED",
+      "readiness": "READY FOR AUTHORIZATION",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["C"],
-      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+      "unmetPrerequisites": [],
+      "note": "C accepted; bounded technical transport/validation/error/OpenAPI skeleton can be separately authorized with API-01 technical handoff before affected handlers. No auth/business/DB/session-forwarding scope."
     },
     {
       "id": "T",
@@ -239,8 +248,8 @@
       "status": "NOT STARTED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["C"],
-      "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
+      "unmetPrerequisites": [],
+      "note": "C prerequisite accepted; implementation still BLOCKED on scoped UX/quality token/primitives design/contrast/focus evidence. Design preparation can be separately authorized without DB/payment gates."
     },
     {
       "id": "A",
@@ -604,10 +613,10 @@
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     }
   ],
-  "firstRecommendedMilestone": "D",
+  "firstRecommendedMilestone": "API",
   "evidence": {
     "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
     "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
   },
-  "implementationAuthorizationScope": "Top-level false records no standing authority from adoption. Separate owner request 2026-10-21 authorizes CH-01/C only; no later milestones or hosted operations."
+  "implementationAuthorizationScope": "Adoption grants no standing implementation authority. C separately authorized and accepted for bounded scope. Current owner task authorizes D decision preparation only; API/T and later implementation or hosted operations NOT AUTHORIZED."
 }

@@ -1,3 +1,11 @@
+# CH-01/C current acceptance — 2026-10-21
+
+Status: DONE for the bounded shared-contracts/validation/client milestone.
+Owner merge of [PR #23](https://github.com/ZeyaadAly/CommerceHub/pull/23) at `5c31a735251eeb179ae3a8b174b49f8ac13004d6`, plus verified exact-head CI and all five inherited AC, supports this disposition. No bounded C acceptance gap identified. See [acceptance review and limits](../architecture/decisions/decision-matrix.md) for evidence, no formal review-event claim and protected-policy visibility limits. Deferred business/auth/OpenAPI endpoint policy remains later scope. CH-01 remains partial; 006 BLOCKED.
+
+The original REVIEW report below is immutable dated implementation evidence, superseded only for current C status.
+<!-- CH-01-C IMPLEMENTATION REPORT: 5c31a735251eeb179ae3a8b174b49f8ac13004d6 -->
+
 ﻿# CH-01 Milestone C implementation evidence
 
 Status: REVIEW. Human acceptance and merge required before DONE. Starting main `09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7` is verified PR #22 merge; F/001–005 accepted foundation remains the actual prerequisite. Branch `feat/CH-01-C-shared-contracts`. Owner separately authorized this bounded implementation on 2026-10-21; no later milestone or service access authority follows.

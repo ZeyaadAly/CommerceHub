@@ -18,6 +18,12 @@ The material below the LEGACY BASELINE marker is preserved verbatim history and
 is not the operative status/dependency model. Stale proposed/pending and 59-story
 execution instructions there are superseded by this adopted header.
 
+## Current C acceptance and D preparation — 2026-10-21
+
+C/007 is **DONE for bounded scope**, after all five acceptance clauses, package/consumer/security tests, exact-head CI and owner PR #23 merge at `5c31a735251eeb179ae3a8b174b49f8ac13004d6` were checked. CH-01 remains partial, full 006 BLOCKED. D/008 is **REVIEW** for decision preparation only.
+
+The [single decision matrix](../architecture/decisions/decision-matrix.md) provides nine PROPOSED ADR packets, all owner/evidence/blocking requests, acceptance/protection visibility limits and deferred decisions. No specialist gate closes. CH-03/API is READY FOR AUTHORIZATION for a bounded technical skeleton with API-01 handoff before affected handlers; T has C satisfied but implementation remains UX/quality BLOCKED. Neither starts now. Redis spending remains DEFERRED; Docker/WSL not required.
+
 ## Current parent execution status
 
 | Operative story | Phase | Status      | Delivery                                                |
@@ -46,7 +52,7 @@ execution instructions there are superseded by this adopted header.
 
 CH-01 is IN PROGRESS / PARTIALLY IMPLEMENTED, not DONE. Its F milestone reuses
 historical 001–005 DONE evidence. Legacy 006 remains BLOCKED overall with merged
-partial work. C/007 is REVIEW (not DONE); D/008 is NOT STARTED. Scoped readiness is separate.
+partial work. C/007 is bounded DONE; D/008 preparation is REVIEW. Scoped readiness is separate.
 CH-02–CH-21 are NOT STARTED: there is no verified feature implementation evidence.
 Open unrelated specialist gates do not change every parent's execution status to BLOCKED.
 
@@ -59,9 +65,11 @@ C/D readiness boundaries; changing status requires actual evidence.
 
 All original rows below, including 001–005 DONE and 006–059 historical BLOCKED
 values, remain unchanged. Historical BLOCKED rows do not override current scoped
-readiness; they are not erased or retrospectively relabeled READY. Legacy 007 has bounded implementation in REVIEW; 008 remains unstarted. No child completion automatically completes a parent.
+readiness; they are not erased or retrospectively relabeled READY. Legacy 007 is bounded DONE; 008 decision preparation is REVIEW. No child completion automatically completes a parent.
 
-## CH-01/C implementation checkpoint — 2026-10-21
+## Historical C implementation checkpoint — 2026-10-21
+
+This REVIEW checkpoint is superseded by the current acceptance above; its preparation evidence is retained.
 
 The owner separately authorized Milestone C only after PR #22 merged at
 `09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7`. Bounded shared transport/schema/client

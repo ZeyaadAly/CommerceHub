@@ -1,7 +1,7 @@
 // Offline checks of operative governance, separately from immutable history.
 import assert from 'node:assert/strict';
 import { execFileSync } from 'node:child_process';
-import { existsSync, readFileSync } from 'node:fs';
+import { existsSync, readFileSync, readdirSync } from 'node:fs';
 import path from 'node:path';
 
 const root = path.resolve(import.meta.dirname, '../../..');
@@ -45,9 +45,9 @@ export function validateStatus(record, definitions, nodes) {
     nodes.map(({ id, parent }) => ({ id, parent })),
   );
   for (const [index, state] of record.milestoneStates.entries()) {
-    const done = state.id === 'F';
-    const review = state.id === 'C';
-    const ready = ['C', 'D'].includes(state.id);
+    const done = ['F', 'C'].includes(state.id);
+    const review = state.id === 'D';
+    const ready = state.id === 'API';
     assert.equal(
       state.status,
       done
@@ -64,23 +64,33 @@ export function validateStatus(record, definitions, nodes) {
     );
     assert.equal(
       state.authorization,
-      done
+      state.id === 'F'
         ? 'HISTORICAL ACCEPTED SCOPE'
-        : review
+        : state.id === 'C'
           ? 'AUTHORIZED: OWNER CH-01/C REQUEST 2026-10-21'
-          : 'NOT AUTHORIZED',
+          : review
+            ? 'AUTHORIZED: OWNER CH-01/D PREPARATION 2026-10-21'
+            : 'NOT AUTHORIZED',
     );
-    if (review) {
+    if (state.id === 'C') {
       assert.equal(state.evidence, 'docs/verification/CH-01-C.md');
+      assert.match(read(state.evidence), /Status: DONE for the bounded/);
+      assert.equal(state.acceptance.pr, 23);
+      assert.equal(state.acceptance.merge, '5c31a735251eeb179ae3a8b174b49f8ac13004d6');
+      assert.equal(state.acceptance.head, 'bded5b2b00029d2f894fa998df54a61c533e330d');
+      assert.equal(state.acceptance.ciRun, 39574385677);
+      assert.equal(state.acceptance.acceptedBy, 'ZeyaadAly');
+    }
+    if (review) {
+      assert.equal(state.evidence, 'docs/architecture/decisions/decision-matrix.md');
       assert.match(read(state.evidence), /Status: REVIEW/);
-      assert.match(read(state.evidence), /09fc6aa04d8df8a20cc5eb6e3752ae25d5e42bd7/);
     }
     assert.deepEqual(
       state.unmetPrerequisites,
-      nodes[index].depends.filter((id) => id !== 'F'),
+      nodes[index].depends.filter((id) => !['F', 'C'].includes(id)),
     );
   }
-  assert.equal(record.firstRecommendedMilestone, 'D');
+  assert.equal(record.firstRecommendedMilestone, 'API');
   assert.deepEqual(record.unchangedSpecialistGates, [
     'FIN-01',
     'FIN-02',
@@ -172,9 +182,109 @@ const protectedFiles = new Set([
 ]);
 for (const file of protectedFiles) {
   if (!canonical.includes(file) && file !== 'AGENTS.md') {
-    assert.equal(read(file), historical(file), `Unapproved policy/evidence change: ${file}`);
+    if (file === 'docs/implementation/gate-register.md') {
+      const [original, appendix, extra] = read(file).split('\n<!-- CH-01-D PREPARATION -->\n');
+      assert.equal(original, historical(file), 'Original gate register changed');
+      assert.equal(extra, undefined);
+      assert.equal(
+        appendix,
+        '\nPreparation checkpoint 2026-10-21: [single decision matrix](../architecture/decisions/decision-matrix.md) and nine PROPOSED ADR packets are REVIEW deliverables. Every original gate row, accountable role and closure obligation above is unchanged. No named specialist sign-off, policy approval or service verification is recorded; all gates remain OPEN.\n',
+      );
+    } else if (file === 'docs/architecture/decisions/README.md') {
+      const [original, appendix, extra] = read(file).split('\n<!-- CH-01-D INDEX -->\n');
+      assert.equal(original, historical(file), 'Original ADR convention changed');
+      assert.equal(extra, undefined);
+      assert.equal(
+        appendix,
+        '\nCurrent CH-01/D preparation: [single decision matrix](decision-matrix.md) indexes nine PROPOSED records and the deferred original ADR identifiers. Preparation is REVIEW, not specialist approval. This appendix leaves the original convention and authority text above unchanged.\n',
+      );
+    } else {
+      assert.equal(read(file), historical(file), `Unapproved policy/evidence change: ${file}`);
+    }
   }
 }
+
+// Current D work may prepare options, never change application/dependency policy.
+const acceptedMerge = '5c31a735251eeb179ae3a8b174b49f8ac13004d6';
+const scope = [
+  'apps',
+  'packages',
+  'scripts',
+  'security',
+  'infrastructure',
+  '.github',
+  'package.json',
+  'pnpm-lock.yaml',
+  'pnpm-workspace.yaml',
+  'tsconfig.base.json',
+];
+assert.equal(
+  execFileSync('git', ['diff', '--name-only', acceptedMerge, '--', ...scope], {
+    cwd: root,
+    encoding: 'utf8',
+  }).trim(),
+  '',
+  'D changed protected implementation/dependencies',
+);
+assert.equal(
+  execFileSync('git', ['ls-files', '--others', '--exclude-standard', '--', ...scope], {
+    cwd: root,
+    encoding: 'utf8',
+  }).trim(),
+  '',
+  'Untracked implementation outside D scope',
+);
+execFileSync(
+  'git',
+  ['merge-base', '--is-ancestor', 'bded5b2b00029d2f894fa998df54a61c533e330d', acceptedMerge],
+  { cwd: root },
+);
+const cReport = read('docs/verification/CH-01-C.md').split(
+  `<!-- CH-01-C IMPLEMENTATION REPORT: ${acceptedMerge} -->\n\n`,
+);
+assert.equal(cReport.length, 2);
+assert.equal(
+  cReport[1],
+  normalize(
+    execFileSync('git', ['show', `${acceptedMerge}:docs/verification/CH-01-C.md`], {
+      cwd: root,
+      encoding: 'utf8',
+    }),
+  ),
+);
+const adrFolder = 'docs/architecture/decisions';
+const adrFiles = readdirSync(path.join(root, adrFolder)).filter((file) => /^ADR-\d{3}-/.test(file));
+assert.deepEqual(adrFiles.map((file) => file.slice(4, 7)).sort(), [
+  '003',
+  '004',
+  '005',
+  '006',
+  '007',
+  '008',
+  '009',
+  '010',
+  '014',
+]);
+for (const file of adrFiles) {
+  const text = read(`${adrFolder}/${file}`);
+  assert.match(text, /^Status: PROPOSED/m);
+  assert.match(text, /^Owner: .+NOT RECORDED/m);
+  assert.match(text, /^Gate: .+OPEN/m);
+  assert.match(text, /Approval date\/signature: NOT RECORDED/);
+  for (const heading of [
+    'Context and approved constraints',
+    'Options and trade-offs',
+    'Recommendation and owner decision',
+    'Security and operational effects',
+    'API and database effects',
+    'Evidence, approval and reversal',
+  ]) {
+    assert.ok(text.includes(`## ${heading}`), `${file}: ${heading}`);
+  }
+}
+const matrix = read(`${adrFolder}/decision-matrix.md`);
+for (let id = 1; id <= 15; id++) assert.ok(matrix.includes(`ADR-${String(id).padStart(3, '0')}`));
+assert.match(matrix, /Status: REVIEW/);
 const instructions = read('AGENTS.md');
 assert.match(instructions, /One authorized milestone at a time/);
 assert.match(instructions, /planning\/backlog-consolidation\/adoption.json/);
@@ -189,7 +299,11 @@ for (const heading of [
 }
 
 let links = 0;
-const markdown = execFileSync('git', ['ls-files', '*.md'], { cwd: root, encoding: 'utf8' })
+const markdown = execFileSync(
+  'git',
+  ['ls-files', '--cached', '--others', '--exclude-standard', '--', '*.md'],
+  { cwd: root, encoding: 'utf8' },
+)
   .trim()
   .split('\n');
 markdown.push(`${folder}adoption-verification.md`);
@@ -224,10 +338,19 @@ for (const mutate of [
     record.ownershipMoves['CH-P0-044'] = 'CH-13';
   },
   (record) => {
-    record.milestoneStates[1].status = 'DONE';
+    record.milestoneStates[1].status = 'REVIEW';
   },
   (record) => {
     record.milestoneStates[2].authorization = 'AUTHORIZED';
+  },
+  (record) => {
+    record.milestoneStates[2].status = 'DONE';
+  },
+  (record) => {
+    record.milestoneStates[1].acceptance.merge = base;
+  },
+  (record) => {
+    record.milestoneStates.find((state) => state.id === 'API').authorization = 'AUTHORIZED';
   },
 ]) {
   const invalid = structuredClone(adoption);
@@ -243,7 +366,8 @@ console.log(
       unchangedHistoricalDocuments: prefixes.size,
       protectedSources: protectedFiles.size,
       repositoryLocalLinks: links,
-      rejectedMutations: 7,
+      rejectedMutations: 10,
+      proposedADRs: adrFiles.length,
       implementationAuthorized: false,
     },
     null,

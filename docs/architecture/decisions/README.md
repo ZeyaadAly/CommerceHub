@@ -7,3 +7,7 @@ No ADR decision is approved by creating this directory. The proposed ADR-001–A
 Create individual ADR-XXX-short-title.md records during a separately authorized decision task, preserving existing identifiers. Include story/requirements, context, alternatives, recommendation, consequences, affected API/data/UX/tests, owners, status, dated human approval evidence, verification stage and reversal conditions. Proposed records must remain PROPOSED until their designated decision owners approve them; task approval and repository merge cannot substitute for specialist sign-off.
 
 CH-P0-008 prepares reviewable options for remaining gates. Use the [gate register](../../implementation/gate-register.md) and [audit](../../implementation/baseline-audit.md); do not infer that resolving the directory convention resolves BA-03–15, financial/security policies or production readiness. No secrets, personal data, credentials or provider payloads belong in ADRs.
+
+<!-- CH-01-D INDEX -->
+
+Current CH-01/D preparation: [single decision matrix](decision-matrix.md) indexes nine PROPOSED records and the deferred original ADR identifiers. Preparation is REVIEW, not specialist approval. This appendix leaves the original convention and authority text above unchanged.
