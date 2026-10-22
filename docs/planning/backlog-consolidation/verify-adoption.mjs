@@ -45,8 +45,8 @@ export function validateStatus(record, definitions, nodes) {
     nodes.map(({ id, parent }) => ({ id, parent })),
   );
   for (const [index, state] of record.milestoneStates.entries()) {
-    const done = ['F', 'C', 'API'].includes(state.id);
-    const review = ['D', 'T'].includes(state.id);
+    const done = ['F', 'C', 'D', 'API'].includes(state.id);
+    const review = state.id === 'T';
     assert.equal(
       state.status,
       done
@@ -80,6 +80,23 @@ export function validateStatus(record, definitions, nodes) {
       assert.equal(state.acceptance.head, 'bded5b2b00029d2f894fa998df54a61c533e330d');
       assert.equal(state.acceptance.ciRun, 39574385677);
       assert.equal(state.acceptance.acceptedBy, 'ZeyaadAly');
+    }
+    if (state.id === 'D') {
+      assert.equal(state.evidence, 'docs/architecture/decisions/decision-matrix.md');
+      assert.deepEqual(state.acceptance, {
+        pr: 24,
+        merge: 'ffa113804b4c38237576e6fafaf637cb50779f01',
+        head: '7c2bffeb4c9dfcfaf5e427372a1c5ec1783e9ac8',
+        ciRun: 39580624120,
+        ciJob: 119157028654,
+        acceptedBy: 'ZeyaadAly',
+        basis:
+          'Owner merge plus explicitly authorized evidence-based bounded preparation acceptance; no specialist policy approval.',
+      });
+      assert.match(
+        read(state.evidence).split('<!-- CH-01-D PREPARATION REPORT:')[0],
+        /D is DONE for bounded CH-P0-008 preparation only/,
+      );
     }
     if (state.id === 'API') {
       assert.equal(state.evidence, 'docs/verification/CH-03-API.md');
@@ -118,10 +135,10 @@ export function validateStatus(record, definitions, nodes) {
     }
     assert.deepEqual(
       state.unmetPrerequisites,
-      nodes[index].depends.filter((id) => !['F', 'C', 'API'].includes(id)),
+      nodes[index].depends.filter((id) => !['F', 'C', 'D', 'API'].includes(id)),
     );
   }
-  assert.equal(record.firstRecommendedMilestone, 'D');
+  assert.equal(record.firstRecommendedMilestone, 'M');
   assert.match(record.nextRecommendedTask, /no independently implementation-ready/);
   assert.deepEqual(record.unchangedSpecialistGates, [
     'FIN-01',
@@ -394,7 +411,17 @@ for (const file of adrFiles) {
     assert.ok(text.includes(`## ${heading}`), `${file}: ${heading}`);
   }
 }
-const matrix = read(`${adrFolder}/decision-matrix.md`);
+const matrixParts = read(`${adrFolder}/decision-matrix.md`).split(
+  '<!-- CH-01-D PREPARATION REPORT: ffa113804b4c38237576e6fafaf637cb50779f01 -->\n\n',
+);
+assert.equal(matrixParts.length, 2);
+const [readiness, matrix] = matrixParts;
+assert.match(readiness, /M NOT STARTED \/ BLOCKED \/ NOT AUTHORIZED/);
+assert.match(readiness, /Nine ADR policies remain PROPOSED\/unsigned/);
+for (const id of ['M-01', 'M-02', 'M-03', 'M-04', 'X-01', 'X-02'])
+  assert.ok(readiness.includes(id));
+assert.match(readiness, /Every decision is PENDING/);
+assert.match(readiness, /Conditional next Codex prompt/);
 assert.equal(
   matrix,
   normalize(
@@ -406,6 +433,25 @@ assert.equal(
 );
 for (let id = 1; id <= 15; id++) assert.ok(matrix.includes(`ADR-${String(id).padStart(3, '0')}`));
 assert.match(matrix, /Status: REVIEW/);
+// PR #24 was squash-merged: exact tree equality proves integrated head content.
+assert.equal(
+  execFileSync('git', ['rev-parse', '7c2bffeb4c9dfcfaf5e427372a1c5ec1783e9ac8^{tree}'], {
+    cwd: root,
+    encoding: 'utf8',
+  }),
+  execFileSync('git', ['rev-parse', 'ffa113804b4c38237576e6fafaf637cb50779f01^{tree}'], {
+    cwd: root,
+    encoding: 'utf8',
+  }),
+);
+// This reconciliation changes no application, dependency or infrastructure bytes.
+assert.equal(
+  execFileSync('git', ['diff', '8865e51524363161122d20e75f5dac9946e20175', '--', ...scope], {
+    cwd: root,
+    encoding: 'utf8',
+  }),
+  '',
+);
 const instructions = read('AGENTS.md');
 assert.match(instructions, /One authorized milestone at a time/);
 assert.match(instructions, /planning\/backlog-consolidation\/adoption.json/);
@@ -443,6 +489,21 @@ for (const file of new Set(markdown)) {
 
 // Mutation checks ensure authority/status/dependency regressions fail closed.
 for (const mutate of [
+  (record) => {
+    record.milestoneStates.find((state) => state.id === 'D').acceptance.head = base;
+  },
+  (record) => {
+    record.milestoneStates.find((state) => state.id === 'D').acceptance.acceptedBy = 'unknown';
+  },
+  (record) => {
+    record.milestoneStates.find((state) => state.id === 'M').unmetPrerequisites = ['D'];
+  },
+  (record) => {
+    record.milestoneStates.find((state) => state.id === 'M').readiness = 'READY FOR AUTHORIZATION';
+  },
+  (record) => {
+    record.milestoneStates.find((state) => state.id === 'M').authorization = 'AUTHORIZED';
+  },
   (record) => {
     record.milestoneStates.find((state) => state.id === 'T').approval.decisions.pop();
   },
@@ -483,7 +544,7 @@ for (const mutate of [
     record.milestoneStates[2].authorization = 'AUTHORIZED';
   },
   (record) => {
-    record.milestoneStates[2].status = 'DONE';
+    record.milestoneStates[2].status = 'REVIEW';
   },
   (record) => {
     record.milestoneStates[1].acceptance.merge = base;
@@ -505,7 +566,7 @@ console.log(
       unchangedHistoricalDocuments: prefixes.size,
       protectedSources: protectedFiles.size,
       repositoryLocalLinks: links,
-      rejectedMutations: 16,
+      rejectedMutations: 21,
       proposedADRs: adrFiles.length,
       implementationAuthorized: false,
     },

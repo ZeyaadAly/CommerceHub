@@ -56,7 +56,7 @@
     {
       "id": "CH-01",
       "status": "IN PROGRESS",
-      "detail": "PARTIALLY IMPLEMENTED: historical 001–005 DONE; C bounded acceptance DONE after verified PR #23 evidence/owner merge; D preparation REVIEW; full 006 BLOCKED."
+      "detail": "PARTIALLY IMPLEMENTED: historical 001–005 DONE; C bounded acceptance DONE after verified PR #23 evidence/owner merge; D bounded preparation DONE; full 006 BLOCKED."
     },
     {
       "id": "CH-02",
@@ -101,7 +101,7 @@
     {
       "id": "CH-10",
       "status": "IN PROGRESS",
-      "detail": "Owner D1–D4 approved 2026-10-21 for bounded tokens/primitives/test compositions/accessibility. T implementation REVIEW, human acceptance/manual assistive-tech and merge evidence outstanding; parent not DONE."
+      "detail": "T remains REVIEW after PR #27 owner merge and exact-head CI; NVDA/screen-reader, physical-device, native browser zoom and final UX/QA acceptance outstanding. Parent incomplete."
     },
     {
       "id": "CH-11",
@@ -190,12 +190,21 @@
     {
       "id": "D",
       "parent": "CH-01",
-      "status": "REVIEW",
+      "status": "DONE",
       "readiness": "SATISFIED",
       "authorization": "AUTHORIZED: OWNER CH-01/D PREPARATION 2026-10-21",
       "unmetPrerequisites": [],
-      "note": "Nine existing-ID PROPOSED ADR packets and single owner/evidence/blocker matrix; no signed policy, service proof or gated implementation. Human acceptance/merge pending.",
-      "evidence": "docs/architecture/decisions/decision-matrix.md"
+      "note": "Bounded preparation accepted after all five inherited clauses, PR #24 owner merge and exact-head CI; nine ADR policies remain PROPOSED/unsigned. No gate closure.",
+      "evidence": "docs/architecture/decisions/decision-matrix.md",
+      "acceptance": {
+        "pr": 24,
+        "merge": "ffa113804b4c38237576e6fafaf637cb50779f01",
+        "head": "7c2bffeb4c9dfcfaf5e427372a1c5ec1783e9ac8",
+        "ciRun": 39580624120,
+        "ciJob": 119157028654,
+        "acceptedBy": "ZeyaadAly",
+        "basis": "Owner merge plus explicitly authorized evidence-based bounded preparation acceptance; no specialist policy approval."
+      }
     },
     {
       "id": "E_DB",
@@ -203,8 +212,8 @@
       "status": "BLOCKED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["D"],
-      "note": "Legacy 006 dev target/config partial evidence retained; disposable isolation, custody, roles and live service proof not established. No DB access authorized."
+      "unmetPrerequisites": [],
+      "note": "D preparation DONE; independent policy/resource blockers remain. Legacy 006 dev target/config partial evidence retained; disposable isolation, custody, roles and live service proof not established. No DB access authorized."
     },
     {
       "id": "E_QUEUE",
@@ -212,8 +221,8 @@
       "status": "BLOCKED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["D"],
-      "note": "Managed Redis/spending DEFERRED; no isolated capability or resource authority established."
+      "unmetPrerequisites": [],
+      "note": "D preparation DONE; independent policy/resource blockers remain. Managed Redis/spending DEFERRED; no isolated capability or resource authority established."
     },
     {
       "id": "M",
@@ -221,8 +230,8 @@
       "status": "NOT STARTED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["D"],
-      "note": "C accepted, D preparation REVIEW; M implementation still waits for accepted D and affected DB/SEC/FIN decisions. No schema execution authority."
+      "unmetPrerequisites": [],
+      "note": "C and D accepted: graph predecessors satisfied. Schema code NOT AUTHORIZED; M-01–M-04 scoped DB/SEC/FIN decisions remain pending in decision-matrix.md. E_DB is not an M predecessor."
     },
     {
       "id": "DB",
@@ -365,7 +374,7 @@
       "status": "NOT STARTED",
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
-      "unmetPrerequisites": ["CART", "ACCOUNT", "D"],
+      "unmetPrerequisites": ["CART", "ACCOUNT"],
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     },
     {
@@ -631,11 +640,11 @@
       "note": "Actual preceding milestones incomplete; applicable gates must be checked for the specific future slice, not treated as a blanket parent BLOCKED status."
     }
   ],
-  "firstRecommendedMilestone": "D",
+  "firstRecommendedMilestone": "M",
   "evidence": {
     "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
     "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
   },
-  "implementationAuthorizationScope": "Current owner task explicitly approves D1–D4 dated 2026-10-21 and authorizes CH-10/T shared tokens/primitives/test compositions/accessibility/testing only. T is REVIEW, not DONE. F/C/API acceptance remains; CH-01 partial, CH-03 incomplete. No feature UX, backend/DB/domain work, specialist gate closure, resources/spending/manual deployment or next milestone. Existing automatic Git previews are acknowledged by this task.",
-  "nextRecommendedTask": "Review existing D proposed decisions and gate evidence independently; no independently implementation-ready successor or standing authority inferred."
+  "implementationAuthorizationScope": "Current owner request authorizes CH-02/M readiness documentation, D/T evidence reconciliation, governance checks, commit/push and open PR only. No schema code, credentials, DB access, SQL/migrations, resources, spending, deployment, specialist gate closure or next milestone. Stop at REVIEW.",
+  "nextRecommendedTask": "Review M-01–M-04 scoped schema decisions in decision-matrix.md; no independently implementation-ready successor or standing authority inferred. E_DB and DB execution remain separately gated."
 }

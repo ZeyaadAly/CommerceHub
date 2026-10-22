@@ -1,3 +1,96 @@
+# CH-02/M readiness and bounded foundation acceptance
+
+Status: REVIEW for this readiness packet. 2026-10-22 (Africa/Cairo). **D preparation DONE; T REVIEW; M NOT STARTED / BLOCKED / NOT AUTHORIZED.** Nine ADR policies remain PROPOSED/unsigned. All specialist gates remain OPEN.
+
+## Verified foundation dispositions
+
+Starting main is `8865e51524363161122d20e75f5dac9946e20175`, verified by fetched origin/main and GitHub branch metadata. [PR #27](https://github.com/ZeyaadAly/CommerceHub/pull/27) was merged by ZeyaadAly on 2026-10-21 at that SHA; its exact head `a9ffeae6fa057eb8f63a46568236bf0883593dd4` passed [commercehub-quality](https://github.com/ZeyaadAly/CommerceHub/actions/runs/39609989177/job/119256040031). Main metadata reports protected=true and that check enforced for everyone; detailed bypass/review-count settings were not independently verified. Reviews APIs for #24/#27 return no separate formal review events; owner merge is the observed human acceptance signal.
+
+**D is DONE for bounded CH-P0-008 preparation only.** [PR #24](https://github.com/ZeyaadAly/CommerceHub/pull/24) owner merge `ffa113804b4c38237576e6fafaf637cb50779f01`, exact head `7c2bffeb4c9dfcfaf5e427372a1c5ec1783e9ac8`, [required CI SUCCESS](https://github.com/ZeyaadAly/CommerceHub/actions/runs/39580624120/job/119157028654), and the original report below support all five inherited clauses: AC1 nine existing-ID packets and complete 15-ID inventory within P0 preparation; AC2 trusted ownership/security/financial/stock/audit constraints retained; AC3 no effects/retries/services and unknown facts explicit; AC4 accepted F plus exact baseline/gate references; AC5 gate audit, negative authority/status mutations, links, lint/security/diff and exact-head CI. No remaining preparation gap found. The current owner request explicitly authorizes this evidence reconciliation. This does not accept any recommended policy or close a gate. Original report preserved verbatim below.
+
+**T remains REVIEW.** [T evidence and manual QA](../../verification/CH-10-T.md) supports bounded implementation and automated testing, but native browser zoom, human NVDA/screen-reader and physical-device checks plus final UX/QA acceptance are outstanding. Merge and axe are insufficient for AC1/AC5 human accessibility acceptance. No new administrative task is required: append results and reconcile T within its existing evidence when complete. CH-01 remains partial, CH-10 IN PROGRESS, full legacy 006 BLOCKED; C/API acceptance unchanged.
+
+## Minimum schema readiness
+
+Unchanged graph: **C + D → M; M + E_DB → DB**. C/D are accepted. M is blocked by affected decisions, not by all of CH-01, T, E_DB, Redis, P1 refunds or live payment selection. [Approved DB baseline](../../05-database-design.md) §§4–6/13–17/20, [architecture](../../04-architecture.md) §§5–8/14/18, [API](../../06-api-design.md) §§2/4/8–9, [PRD](../../02-prd.md) identity/catalog/security scope and [legacy 009 acceptance](../../08-epics-and-stories.md) govern M. BA-03/04/05/06/07/15/19/21 remain scoped findings, not accepted recommendations.
+
+Already approved: backend-only PostgreSQL/Prisma; shared `users` identity with staff membership rather than registration conferring staff authority; separate staff/customer session audiences; Argon2id and opaque revocable digests; default-deny backend permissions; NUMERIC money with explicit EGP and decimal-string wire values; immutable historical order/item/address/pricing snapshots; restricted historical deletion; atomic domain/audit/outbox ownership. Separate physical customer/admin user tables would change DB §4.1, not merely implement audience separation.
+
+The following is the single owner-facing approval table for this slice. **Every decision is PENDING; recommendations are not approval.** Record named approver, date, selected option, exact field/constraint mapping and linked signed evidence. The owner may coordinate reviews but cannot substitute task approval for designated specialist decisions. Execution rows are included to keep future DB work separate; they do not block offline M code.
+
+| Decision / point | Approved constraints | Exact unresolved question | Recommendation and rationale | Alternatives | Gate / approver and evidence | Blocked milestone / independent work |
+| --- | --- | --- | --- | --- | --- | --- |
+| M-01 identity mapping; before affected schema code | DB §§4–5 shared users/credentials, membership-based staff, separate session audiences; no implicit staff from signup | Approve UUID/names/status mappings; email normalization/uniqueness; session/token digest and lifecycle field mapping; canonical RBAC relations (`staff_role_assignments` vs `user_roles`) and capability identifiers? | Retain shared identity + explicit staff membership and audience-specific sessions; approve a field/constraint matrix and normalization collision cases before freezing Prisma. Minimizes baseline deviation and prevents ambiguous privilege joins. No TTL, cookie or delegation value selected. | Separate physical identities only by explicit baseline change; defer unresolved session/RBAC objects under a clearly partial M scope rather than inventing fields/seeds. | SEC-01 / DB-01 / API-01; named Security + Backend/Data, Product/Frontend for affected wire semantics. Signed scoped mapping, normalization examples and audience/privilege denial plan. ADR-004/005 remain unsigned outside exact accepted scope. | M identity/session/RBAC slice; independent nonfinancial catalog contract can proceed after its own approval. Cookie routing/BFF/origin proof blocks AUTH, not unrelated schema relations; digest/lifecycle mapping still needs approval. |
+| M-02 catalog integrity; before affected schema code | DB §6 categories/closure, brands/products/SKUs, normalized axes/selections, archive semantics; §13 indexes | Exact included table inventory, canonical variant combination representation, composite cross-product integrity, primary-image NULL uniqueness, FK/delete/index/check mapping and unsupported-Prisma constraint ownership? | Review all §§4–6 columns/PK/FK/UNIQUE/CHECK/indexes, including category cycle service ownership, SKU uniqueness, product-scoped combinations and RESTRICT history links. Keep Prisma-representable rules in schema and explicitly list later SQL-only constraints with owner/tests; no silent omission. | Explicit narrower approved catalog contract with deferred media linking; service-only constraint alternatives require Data review and concurrency proof, never an undocumented downgrade. | DB-01, DB-0 mapping review; Backend/Data; Security for actor/media references. Signed table/constraint inventory, migration order and negative-case checklist. BA-03/05/15/19. | M catalog slice; identity mapping can proceed independently. Storage vendor/upload workflow remains later CAT/media scope. |
+| M-03 catalog money; before price columns | NUMERIC exact decimal, explicit currency EGP, decimal-string wire values; historical prices survive catalog edits | What precision/range/scale, representable price limits and zero-price policy apply to catalog prices? | Finance/Product + Backend decide a bounded catalog storage contract with accepted/rejected edge values, overflow and no implicit rounding; retain immutable snapshot seams. Do not copy illustrative `19,4`/`19,2`. Full checkout formulas need not be decided to review unrelated identity/catalog metadata. | Approve an explicitly partial nonmonetary schema contract and defer price columns; this is not full M completion. Any unbounded NUMERIC alternative also needs signed limits/validation, not a gate bypass. | FIN-01 scoped decision + DB-01; named Finance/Product + Backend/Data, Legal where applicable. Signed precision/range/zero-price fixtures and exact storage mapping. | M priced catalog; nonfinancial identity/catalog work independent after M-01/02 approval. Tax/rounding/shipping/quote expiry remain blocked before QUOTE/PERSIST, not unrelated metadata. FIN-02 and FIN-01 revision remain later P1. |
+| M-04 migration ownership; before complete M handoff | Immutable financial history, append-only audit/stock/payment evidence; one atomic transaction owner; no provider calls in transactions | Which milestone owns each future table, FK and SQL-only constraint, especially early audit/outbox and order/payment/idempotency references? | Approve an ownership/dependency manifest: M identity/catalog contract; DB applies that baseline; early A owns audit persistence, PERSIST owns coordinated order/payment/idempotency/outbox contributions with named domain owners and explicit FK sequencing. Review against approved graph, with no forward FK to an absent table and no cascade loss. This assigns ownership, not later enums/dispatch/retention values. | Different explicit contribution split after Backend/Data review preserving A-before-privileged-consumers and atomic outbox intent; no movement of approved graph edges without separate approval. | DB-01 / DB-0; Backend/Data + Security for critical audit scope; OPS/LEG decisions only where actual recovery/retention behavior is proposed. ADR-003/008/014, BA-06/07/19. Signed ownership and ordering map. | Complete M handoff; unrelated M tables may proceed after their own approvals. Order/payment state enums, replay retention, inventory TTL, dispatcher/retention and refunds defer to owning milestones. |
+| X-01 database identities/isolation; before access or migration execution | Migration DDL identity separate from restricted API/worker runtime; no frontend credentials, no reused superuser runtime | Approve disposable target/reset boundary, custody, endpoint/TLS/driver compatibility, grants and resource/connection authority? | Prefer separately approved disposable PostgreSQL target using existing native tooling; runtime DDL denial, restricted grants, isolated synthetic data and controlled teardown. No procurement now. | Isolated shared namespace only after explicit threat/custody/reset review; persistent dev configuration alone is not disposable proof. | OPS-01 / SEC-01 / DB-0; named Operations/Security + Backend/Data, explicit owner resource/access authorization; later actual TLS/grant/reset proof in E_DB. ADR-003. | E_DB and DB execution; offline M code/contract review independent. No Docker/WSL or Redis spending prerequisite. |
+| X-02 executable migration review and tests; before execution | Reviewed Prisma mapping/SQL, non-destructive ordering, real disposable PostgreSQL proof; DB §§17–19 tests remain obligations | Approve actual migration SQL, required extensions/checks/indexes, rollout/backout and isolated test procedure for the chosen target? | DB owner reviews generated migration artifact and Prisma limitations against M constraint manifest before any execution; one migration runner, reviewed backout/forward repair, synthetic reset/reapply and FK/unique/check/delete/permission failures on real disposable PostgreSQL. Include concurrent uniqueness and race cases where applicable. M only prepares mapping/test plan. | Approved native local disposable instance or approved isolated remote target; mocks/static schema checks supplement rather than replace persisted proof. | DB-0 / DB-01 / OPS-01 + affected SEC/FIN; Backend/Data + Operations/Security, explicit owner execution approval. E_DB evidence, SQL review, command/result log and DB-001–025 applicability map. | DB requires accepted M + E_DB; M offline validation proceeds independently. No migrate dev/deploy/db push/reset, SQL execution or credential retrieval under M authority. |
+
+M-01–M-04 are the minimum decision requests for full M code/handoff; X-01/X-02 are later execution approvals. Scope-limited approval can permit an independent partial contract, but does not mark full M DONE or close SEC-01/FIN-01/DB gates. A migration review has a contract/mapping stage in M and an executable SQL/application stage in DB. No actual database proof is required to write an authorized offline contract; no static check proves database effects.
+
+Deferred without blocking unrelated M work: PAY-01 attempt/capture/state/replay values and provider fixtures; INV-01 hold TTL/expiry/race policy; FIN-01 full checkout tax/shipping/rounding/quote lifetime before QUOTE/PERSIST; FIN-02 refund rules and FIN-01 revision promotions; PAY-LIVE provider/real funds; JOBS topology/retention/recovery and LEG-01 launch review. Approved immutable snapshots and migration seams remain binding now. All gates remain OPEN through their later verification obligations.
+
+## Conditional next Codex prompt — CH-02/M
+
+```text
+Act as CommerceHub Backend/Data architect. Work only on CH-02 / M (legacy
+CH-P0-009 plus adopted catalog/ownership scope), after the owner explicitly
+authorizes schema-code implementation. Read root/applicable AGENTS.md, approved
+planning sources, unchanged stories/milestones.json, current adoption.json,
+decision-matrix.md and gate/approval registers. Verify current main and the
+review/merge evidence for this readiness PR; do not treat an open PR as accepted.
+
+First verify named, dated, linked scoped approvals for M-01, M-02, M-03 and M-04
+in decision-matrix.md. Missing decisions block only their dependent slice; do
+not invent policy or complete full M from a partial slice. C/D must be accepted.
+Do not require E_DB, full CH-01, T or Redis for offline schema work. Preserve
+all unsigned ADRs and OPEN specialist gates and later proof obligations.
+
+On one short-lived M branch, inspect Git/tooling and nested instructions, then
+state a focused plan and permitted files. Verify supported Prisma/PostgreSQL/
+TypeScript compatibility from official sources before choosing any new pins;
+dependency additions need explicit scoped authority. Create only the reviewed
+backend-owned Prisma identity/catalog schema and safe data contracts matching
+the exact approved decisions. Keep Prisma/database internals out of frontend
+and shared browser packages. No credentials, DB client initialization or auth/
+business handlers. Preserve shared identity with explicit staff eligibility and
+separate audiences unless a signed baseline change says otherwise. No guessed
+permission seeds, cookie behavior, money scale, rounding, state or TTL values.
+
+Document each PK/FK/delete/unique/check/index and any Prisma limitation; assign
+SQL-only enforcement and negative tests explicitly. Include catalog canonical
+combination integrity, monetary currency/range, history-preserving deletion,
+and the signed early audit/order/payment/idempotency/outbox ownership/FK order.
+Do not implement those later domains. Prepare a migration review mapping and
+real disposable PostgreSQL test plan; do not generate or execute migrations
+requiring a datasource/shadow DB. Static schema format/validation and offline
+relation/contract checks must demonstrably avoid connections and real secrets.
+
+Run existing governance, formatting, lint, secret/diff checks and meaningful
+offline schema checks available under approved tooling. Preserve all immutable
+history, 21-story mapping, 48 graph definitions, status assertions and gate
+requirements. Report live PostgreSQL/migration/concurrency proofs NOT RUN and
+carry them to DB, which separately needs M + E_DB, X-01/X-02 and execution
+authority. Legacy 009 migration review/schema-test acceptance must remain
+explicit; do not substitute mocks for persisted effects or declare parent DONE.
+
+Update current acceptance evidence and scoped contracts only. If commit/push/
+PR are explicitly authorized in that session, use the existing protected
+workflow/template and verify commercehub-quality on the exact final head.
+Leave the PR OPEN at REVIEW. Do not merge or start another milestone.
+
+No credential retrieval, PostgreSQL connection, SQL execution, migrations,
+db push/reset, shadow database, hosted operations, provisioning, Docker/WSL
+installation, Redis spending, payment/provider effects or deployment.
+```
+
+## Current readiness verification
+
+Current local results: governance verifier PASS (21 parents, 48 unchanged milestones, 59 legacy IDs, 78 requirements, 295 original clauses, 15 refined criteria, 100 historical edges, 26 findings, 659 local links; 21 rejected authority/status mutations). Lint PASS with zero warnings, including existing shared-package build prerequisites. CI/security-policy tests PASS (63 cases); secret scan PASS (201 files, four existing binaries, zero findings); diff checks PASS. Installed repository-local pnpm was used after the shell PATH alias was unavailable; no tooling installed. Raw full Windows formatting check FAIL only on the same ten unchanged CRLF baseline documents listed in T evidence; exact recorded Git-byte check PASS with original working copies restored in finally. Modified JSON/verifier formatting PASS; historical report/baseline bodies remain exact. Full application build/typecheck/browser suites, live audit, PostgreSQL/schema/migration/concurrency/service checks NOT RUN locally for documentation-only scope. Required remote commercehub-quality must be verified on the final PR head and recorded in the PR, never presumed here. No schema, SQL, credentials or hosted-resource operations authorized or performed. Stop at REVIEW.
+
+<!-- CH-01-D PREPARATION REPORT: ffa113804b4c38237576e6fafaf637cb50779f01 -->
+
 ﻿# CH-01/D decision matrix and preparation evidence
 
 Status: REVIEW. 2026-10-21 (Africa/Cairo). Decision packets are PROPOSED; all specialist gates OPEN. Starting main `5c31a735251eeb179ae3a8b174b49f8ac13004d6`; branch `docs/CH-01-D-architecture-decisions`. This owner-authorized preparation does not implement gated features or approve policies.

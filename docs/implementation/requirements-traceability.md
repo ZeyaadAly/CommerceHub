@@ -20,7 +20,7 @@ execution instructions there are superseded by this adopted header.
 
 ## Current C acceptance and D preparation — 2026-10-21
 
-C/007 is **DONE for bounded scope**, after all five acceptance clauses, package/consumer/security tests, exact-head CI and owner PR #23 merge at `5c31a735251eeb179ae3a8b174b49f8ac13004d6` were checked. CH-01 remains partial, full 006 BLOCKED. D/008 is **REVIEW** for decision preparation only.
+C/007 is **DONE for bounded scope**, after all five acceptance clauses, package/consumer/security tests, exact-head CI and owner PR #23 merge at `5c31a735251eeb179ae3a8b174b49f8ac13004d6` were checked. CH-01 remains partial, full 006 BLOCKED. D/008 is **DONE for bounded preparation only** after verified owner PR #24 merge, all five inherited clauses and exact-head CI; policies remain unsigned.
 
 The [single decision matrix](../architecture/decisions/decision-matrix.md) provides nine PROPOSED ADR packets, all owner/evidence/blocking requests, acceptance/protection visibility limits and deferred decisions. No specialist gate closes. The owner separately authorized CH-03/API transport only; its bounded implementation is now DONE after the separately authorized PR #25 evidence reconciliation, with the API-01 handoff recorded and API-01 still OPEN. CH-03 is IN PROGRESS, never DONE. AUTH/STAFF/DB are unstarted; T has C satisfied and scoped owner D1–D4 approval; bounded implementation is REVIEW, human acceptance remains outstanding. No successor starts. Redis spending remains DEFERRED; Docker/WSL not required.
 
@@ -136,6 +136,11 @@ D/008 and every later milestone unstarted; Redis/spending DEFERRED.
 ## Current CH-10/T implementation — 2026-10-21
 
 Owner explicitly approved D1–D4 for shared tokens/primitives, representative test compositions and accessibility/testing only. [Implementation evidence](../verification/CH-10-T.md) records T REVIEW, CH-10 IN PROGRESS, no feature-page UX or specialist gate closure. The original readiness report is preserved below its own history boundary. C/F/API acceptance, approved 21-story/48-milestone definitions, 59 legacy stories, CH-01 partial, CH-03 incomplete, full 006 BLOCKED, unsigned ADRs, OPEN specialist gates, Redis DEFERRED and security-exception dates remain unchanged. Human assistive-tech/native zoom/device and final acceptance evidence remain outstanding; no next milestone starts.
+
+## CH-02/M readiness reconciliation — 2026-10-22
+
+D bounded preparation DONE; T REVIEW despite PR #27 merge (manual QA outstanding). M remains NOT STARTED / BLOCKED / NOT AUTHORIZED: C/D graph predecessors satisfied, scoped decisions pending. E_DB and DB remain separately gated. See [current decision matrix](../architecture/decisions/decision-matrix.md) for minimum approvals and conditional next prompt; [T evidence](../verification/CH-10-T.md) contains the reproducible manual QA checklist. No parent completion, policy sign-off or schema execution authority.
+
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub requirements traceability

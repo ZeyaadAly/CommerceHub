@@ -20,7 +20,7 @@ execution instructions there are superseded by this adopted header.
 
 ## Current C acceptance and D preparation — 2026-10-21
 
-C/007 is **DONE for bounded scope**, after all five acceptance clauses, package/consumer/security tests, exact-head CI and owner PR #23 merge at `5c31a735251eeb179ae3a8b174b49f8ac13004d6` were checked. CH-01 remains partial, full 006 BLOCKED. D/008 is **REVIEW** for decision preparation only.
+C/007 is **DONE for bounded scope**, after all five acceptance clauses, package/consumer/security tests, exact-head CI and owner PR #23 merge at `5c31a735251eeb179ae3a8b174b49f8ac13004d6` were checked. CH-01 remains partial, full 006 BLOCKED. D/008 is **DONE for bounded preparation only** after verified owner PR #24 merge, all five inherited clauses and exact-head CI; policies remain unsigned.
 
 The [single decision matrix](architecture/decisions/decision-matrix.md) provides nine PROPOSED ADR packets, all owner/evidence/blocking requests, acceptance/protection visibility limits and deferred decisions. No specialist gate closes. The owner separately authorized CH-03/API transport only; its bounded implementation is now DONE after the separately authorized PR #25 evidence reconciliation, with the API-01 handoff recorded and API-01 still OPEN. CH-03 is IN PROGRESS, never DONE. AUTH/STAFF/DB are unstarted; T has C satisfied and scoped owner D1–D4 approval; bounded implementation is REVIEW, human acceptance remains outstanding. No successor starts. Redis spending remains DEFERRED; Docker/WSL not required.
 
