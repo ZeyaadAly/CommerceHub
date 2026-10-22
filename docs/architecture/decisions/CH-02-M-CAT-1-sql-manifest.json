@@ -1,0 +1,119 @@
+{
+  "decision": "CH-02/M-CAT-1",
+  "status": "DESIGNED — NOT IMPLEMENTED",
+  "proofStatus": "NOT RUN — PostgreSQL access not authorized",
+  "obligations": [
+    {
+      "id": "status",
+      "invariant": "status IN ('ACTIVE','HIDDEN','ARCHIVED')",
+      "mechanism": "Immediate CHECK on required TEXT; no default",
+      "owner": "DB",
+      "tests": ["reject unknown/lowercase/NULL status; accept all three approved values"],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "slug",
+      "invariant": "length 1..150 and full canonical ASCII grammar [a-z0-9]+(-[a-z0-9]+)*",
+      "mechanism": "CHECK: slug COLLATE C matches ^[a-z0-9]+(-[a-z0-9]+)*$ AND slug COLLATE C contains no character outside [a-z0-9-]; existing VARCHAR(150) bounds length. Global UNIQUE also covers archived rows. Backend only lowercases ASCII before validation.",
+      "owner": "DB",
+      "tests": [
+        "reject uppercase direct write, Arabic, spaces, CR/LF, punctuation, repeated/edge hyphens, empty and >150; concurrent canonical duplicates yield at most one row"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "parent-self",
+      "invariant": "parent_id IS NULL OR parent_id <> id",
+      "mechanism": "Immediate CHECK; cycle validator handles indirect cycles",
+      "owner": "DB",
+      "tests": ["reject self-parent; accept root and real distinct parent"],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "archive",
+      "invariant": "(status = 'ARCHIVED') = (archived_at IS NOT NULL)",
+      "mechanism": "Immediate CHECK with status NOT NULL; archiving routine records database time",
+      "owner": "DB",
+      "tests": ["reject ARCHIVED/NULL and ACTIVE or HIDDEN/non-NULL; accept coherent pairs"],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "depth",
+      "invariant": "depth >= 0",
+      "mechanism": "Immediate CHECK on required INTEGER",
+      "owner": "DB",
+      "tests": [
+        "reject negative/NULL depth and arithmetic overflow; accept zero and positive depth where structurally correct"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "self-depth",
+      "invariant": "(ancestor_id = descendant_id) = (depth = 0)",
+      "mechanism": "Immediate CHECK; PK alone does not guarantee a self-row exists",
+      "owner": "DB",
+      "tests": ["reject self/nonzero and distinct/zero; accept self/zero and distinct/positive"],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "immutable",
+      "invariant": "categories.id and categories.created_at never change",
+      "mechanism": "BEFORE UPDATE rejection trigger using IS DISTINCT FROM; RESTRICT updates on every FK",
+      "owner": "DB",
+      "tests": [
+        "reject ID or created_at update including direct trusted-writer attempt; ordinary content update succeeds"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "updated-at",
+      "invariant": "every category UPDATE sets updated_at to database statement_timestamp()",
+      "mechanism": "BEFORE UPDATE trigger overrides caller timestamp; no Prisma @updatedAt",
+      "owner": "DB",
+      "tests": [
+        "content/parent update overrides forged timestamp; insert defaults both times; rollback restores previous times"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "closure-exact",
+      "invariant": "acyclic forest; closure equals all parent paths with exact distances and one self-row per category, including hidden/archived categories",
+      "mechanism": "DEFERRABLE INITIALLY DEFERRED constraint triggers on relevant INSERT/UPDATE/DELETE of both tables; cycle-safe recursive parent traversal and equality comparison at final state; no cross-row CHECK",
+      "owner": "DB",
+      "tests": [
+        "commit rejects missing self, missing/excess/misweighted paths, parent-only change, closure-only corruption and indirect cycle; valid intermediate inconsistency repaired before commit succeeds"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "mutation",
+      "invariant": "create/reparent/subtree updates preserve internal paths and atomically replace external paths; no hard-delete category identities",
+      "mechanism": "Reviewed controlled DB helpers; NestJS Catalog API is single transaction/business/permission coordinator; SQL helpers maintain mechanical structure only",
+      "owner": "DB + CAT_API",
+      "tests": [
+        "root/child creation, move to root, same-parent replay, reject descendant parent, depth overflow and fault midway; reread proves full rollback"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "locks",
+      "invariant": "READ COMMITTED; SHARE ROW EXCLUSIVE categories then category_closure, before topology reads/writes, until transaction end; read fresh topology after waiting",
+      "mechanism": "Controlled routines acquire table locks in fixed order; privileged maintenance follows same protocol; later review ensures no unsafe pre-lock snapshots",
+      "owner": "DB + CAT_API",
+      "tests": [
+        "opposing moves cannot form cycle; overlapping moves and concurrent create/reparent match sequential valid topology; blocked writer revalidates after first commits; ordinary reads remain possible"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "privileges",
+      "invariant": "runtime may SELECT and EXECUTE approved helpers, but cannot directly INSERT/UPDATE/DELETE/TRUNCATE, alter tables, disable triggers or bypass helper checks",
+      "mechanism": "Separate nonowner runtime and migration roles; revoke direct DML/TRUNCATE and PUBLIC helper execution; grant only approved runtime EXECUTE; review SECURITY DEFINER ownership, fixed safe search_path and schema CREATE denials; superuser bypass remains operational risk",
+      "owner": "DB; SEC/OPS review at execution",
+      "tests": [
+        "runtime direct DML/TRUNCATE/DDL/trigger-disable and unapproved routine calls denied; allowed reads/helpers work; no PUBLIC execution or search_path substitution"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    }
+  ]
+}
