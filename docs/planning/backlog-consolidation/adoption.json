@@ -61,7 +61,7 @@
     {
       "id": "CH-02",
       "status": "IN PROGRESS",
-      "detail": "M-CAT-1 two-model offline schema at REVIEW; remaining M and DB incomplete, all SQL proof NOT RUN."
+      "detail": "CAT-1 offline schema merged in PR #30; ID-1 approved users-only offline schema at REVIEW. Full M and DB incomplete; SQL/database proof NOT RUN."
     },
     {
       "id": "CH-03",
@@ -229,9 +229,9 @@
       "parent": "CH-02",
       "status": "IN PROGRESS",
       "readiness": "BLOCKED",
-      "authorization": "AUTHORIZED: OWNER CH-02/M-CAT-1 OFFLINE SUBSET 2026-10-22",
+      "authorization": "AUTHORIZED: OWNER CH-02/M-CAT-1 AND CH-02/M-ID-1 OFFLINE SUBSETS 2026-10-22",
       "unmetPrerequisites": [],
-      "note": "C/D accepted. Categories/closure exact contract approved by owner acting as Backend/Data reviewer. Offline subset REVIEW; remaining M-01/M-02/M-03/M-04 pending and full M blocked/incomplete. No DB access or gate closure."
+      "note": "C/D accepted. CAT-1 merged PR #30; ID-1 owner Product/Backend/Data/Security approval and offline users implementation at REVIEW. Full M-01, remaining M-02/M-03/wider M-04 incomplete. No DB access or gate closure."
     },
     {
       "id": "DB",
@@ -645,8 +645,8 @@
     "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
     "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
   },
-  "implementationAuthorizationScope": "Owner 2026-10-22 explicitly approves CH-02/M-CAT-1 and authorizes exactly categories/category_closure offline Prisma tooling, tests, evidence and commit/push/open PR. No runtime client, DB access, SQL/migrations, resources/spending/deployment, next milestone or merge. No blanket implementation authorization.",
-  "nextRecommendedTask": "Review this bounded offline category PR; then obtain a separately approved M-01 users identity mapping before further schema implementation. No next slice started.",
+  "implementationAuthorizationScope": "Owner 2026-10-22 authorizes approved CAT-1 and ID-1 offline schemas only: categories/category_closure/users, pure slug/email helpers, exact API required-displayName amendment, tests/governance/evidence and commit/push/open PR. No runtime client, AUTH/session/RBAC/staff handlers, SQL/migrations, DB/credential access, resources/spending/deployment, merge or next milestone. No blanket authority.",
+  "nextRecommendedTask": "Review and accept this users-only offline PR; then separately review a bounded UserCredentials contract before any next schema implementation. No next slice started.",
   "ownerDecisionRecords": [
     {
       "id": "M-01",
@@ -709,5 +709,20 @@
     "sqlManifest": "docs/architecture/decisions/CH-02-M-CAT-1-sql-manifest.json",
     "databaseProof": "NOT RUN",
     "gatesClosed": []
-  }
+  },
+  "boundedUserContract": {
+    "decision": "CH-02/M-ID-1",
+    "date": "2026-10-22",
+    "by": "ZeyaadAly",
+    "capacities": ["Product/Project Owner", "Backend/Data", "Security"],
+    "technicalApproval": "APPROVED",
+    "independentSecondReviewer": false,
+    "implementation": "OFFLINE USER-ONLY SUBSET AT REVIEW",
+    "models": ["users"],
+    "evidence": "docs/architecture/decisions/CH-02-M-ID-1.md",
+    "sqlManifest": "docs/architecture/decisions/CH-02-M-ID-1-sql-manifest.json",
+    "databaseProof": "NOT RUN",
+    "gatesClosed": []
+  },
+  "ownerDecisionRecordsInterpretation": "Earlier full-packet direction/pending records are history; boundedCategoryContract and boundedUserContract supersede only their exact signed subsets. Full identity/security/catalog/financial/ownership packets remain incomplete."
 }
