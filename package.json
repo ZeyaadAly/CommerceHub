@@ -13,7 +13,7 @@
     "dev:api": "pnpm --filter @commercehub/api dev",
     "build": "pnpm -r --workspace-concurrency=1 build",
     "typecheck": "pnpm build:packages && pnpm -r typecheck",
-    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs scripts/code-quality.test.mjs scripts/ci.test.mjs scripts/dependency-audit.test.mjs scripts/environment.test.mjs scripts/connectivity.test.mjs scripts/contracts.test.mjs apps/api/test/transport.test.mjs apps/api/test/category-schema.test.mjs && pnpm test:ui",
+    "test": "node --test scripts/scaffold.test.mjs scripts/workspace.test.mjs scripts/code-quality.test.mjs scripts/ci.test.mjs scripts/dependency-audit.test.mjs scripts/environment.test.mjs scripts/connectivity.test.mjs scripts/contracts.test.mjs apps/api/test/transport.test.mjs apps/api/test/category-schema.test.mjs apps/api/test/user-schema.test.mjs && pnpm test:ui",
     "test:smoke": "node scripts/smoke.mjs",
     "check:architecture": "node --test scripts/workspace.test.mjs",
     "lint": "pnpm build:packages && eslint . --max-warnings=0",
@@ -31,7 +31,8 @@
     "test:ui": "pnpm --filter @commercehub/ui test:tokens && pnpm --filter @commercehub/ui test",
     "test:ui:browser": "pnpm --filter @commercehub/ui test:browser",
     "test:ui:apps": "pnpm --filter @commercehub/ui test:apps",
-    "test:category-schema": "pnpm --filter @commercehub/api build && node --test apps/api/test/category-schema.test.mjs"
+    "test:category-schema": "pnpm --filter @commercehub/api build && node --test apps/api/test/category-schema.test.mjs",
+    "test:user-schema": "pnpm build:packages && pnpm --filter @commercehub/api build && node --test apps/api/test/user-schema.test.mjs apps/api/test/category-schema.test.mjs"
   },
   "devDependencies": {
     "@eslint/js": "9.39.5",

@@ -106,7 +106,7 @@ No contract permits mass assignment: strip/reject `roleIds`, `isPaid`, `stock`, 
 
 | Method | Endpoint | Identity | Request fields / notes | Response / errors |
 |---|---|---|---|---|
-| POST | `/auth/register` | Guest | `email`, `password`, `displayName?` | `202` neutral confirmation; `422`; no account enumeration |
+| POST | `/auth/register` | Guest | `email`, `password`, `displayName` | `202` neutral confirmation; `422`; no account enumeration |
 | POST | `/auth/login` | Guest | `email`, `password` | `200` public current user plus session cookie; `401`, `429` |
 | POST | `/auth/logout` | Session | CSRF header; revoke current session | `204`, expire cookie; idempotent safe logout behavior |
 | POST | `/auth/email-verification/request` | Guest/session | `email?` | `202` generic message; rate limited |

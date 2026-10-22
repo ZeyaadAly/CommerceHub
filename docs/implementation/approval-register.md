@@ -141,6 +141,66 @@ CH-02/M IN PROGRESS/incomplete, bounded subset REVIEW; DB blocked. SEC-01,
 DB-0/DB-01 and all other gates OPEN. CH-10/T human acceptance outstanding;
 full 006 BLOCKED, Redis DEFERRED, Docker/WSL not mandatory.
 
+## CH-02/M-ID-1 bounded review — 2026-10-22
+
+The current “User Identity Schema Review and Conditional Implementation” request
+authorizes the [users-only contract review](../architecture/decisions/CH-02-M-ID-1.md).
+Shared identity direction remains approved. Security and Backend/Data exact
+mapping/signatures remain PENDING; no attributable approval was supplied, so no
+User Prisma model, normalization helper, dependency or runtime change is
+authorized yet. The contract records proposed mappings, affected Product/API
+decisions, future SQL/negative proofs and signature checklist, not specialist
+acceptance. CAT-1 implementation and historical evidence remain unchanged.
+M-01 pending, M-02 partial, M-03 and wider M-04 pending, full M incomplete,
+DB blocked and all specialist gates OPEN. No schema PR/commit, DB/credential
+access, SQL/migration, infrastructure, spending, deployment or merge follows.
+
+## CH-02/M-ID-1 Product policy approval only — 2026-10-22
+
+Source: owner's “Identity Schema Technical Approval” follow-up. Product policy
+APPROVED for ASCII-only email/lowercase case-insensitive identity keys; atomic
+verified replacement retaining current email until proof; DEACTIVATED iff
+deactivated_at non-NULL; optional nonunique canonical E.164 phone; initial
+version 1 with controlled increments/expected-version checks; required
+registration displayName. The last decision expressly amends only
+[API §4 registration](../06-api-design.md) from displayName? to displayName.
+No fallback name or auth handler is introduced. Required negative cases remain
+future requirements, not passing-test evidence.
+
+[Users contract and checklists](../architecture/decisions/CH-02-M-ID-1.md)
+distinguish these six policies from the unsigned exact technical mapping.
+Backend/Data reviewer identity/role/date/signature PENDING; Security reviewer
+identity/role/date/signature PENDING; exceptions none approved. M-01 is approved
+at Product policy level only. Offline Prisma implementation explicitly NOT
+AUTHORIZED, superseding the earlier conditional workflow until further authority.
+No database/SQL/migration/Supabase/credential/infrastructure activity authorized.
+Full M incomplete, DB blocked, all specialist gates including SEC-01/DB-0/DB-01
+OPEN; all unrelated scope/statuses unchanged. Earlier pending policy record above
+is preserved history, superseded only by these exact six Product decisions.
+
+## CH-02/M-ID-1 bounded technical approval and implementation — 2026-10-22
+
+Source: owner's “Finalize Approved User Contract and Implement Offline Prisma
+Model” request. Reviewer ZeyaadAly expressly acts as Product/Project Owner,
+Backend/Data reviewer and Security reviewer for this bounded users decision.
+All three capacities APPROVED on 2026-10-22; no independent second human review
+is claimed. [Final eleven-column mapping](../architecture/decisions/CH-02-M-ID-1.md)
+and [deferred SQL/service enforcement](../architecture/decisions/CH-02-M-ID-1-sql-manifest.json)
+record precise grammar, normalization/collision, status/phone/display-name,
+UUID/timestamp/version/index and historical-ownership rules. Exceptions: no
+bounded mapping exception; future workflow/security decisions and PostgreSQL
+proof remain deferred, not waived or claimed complete.
+
+Exactly User → users offline model, pure email helper, tests, governance/evidence
+and normal commit/push/open PR authorized. This supersedes the earlier unsigned
+and explicitly no-implementation records for this subset only. Existing category
+models unchanged. No other model, auth/session/RBAC/staff handler, PrismaClient,
+SQL/migration, database/credential/Supabase access, resource, spending, deployment,
+merge or next milestone authorized. SQL obligations DESIGNED — NOT IMPLEMENTED.
+M-01 users subset at REVIEW; full M-01/remaining M-02/M-03/wider M-04 pending,
+CH-02/M incomplete, DB blocked. SEC-01/DB-0/DB-01 and all gates OPEN; T manual
+acceptance outstanding, full 006 BLOCKED, Redis DEFERRED, Docker/WSL not mandatory.
+
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub approval register

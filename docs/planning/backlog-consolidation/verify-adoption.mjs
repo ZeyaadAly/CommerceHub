@@ -83,6 +83,24 @@ const expectedOwnerDecisions = [
 
 export function validateStatus(record, definitions, nodes) {
   assert.deepEqual(
+    record.boundedUserContract,
+    {
+      decision: 'CH-02/M-ID-1',
+      date: '2026-10-22',
+      by: 'ZeyaadAly',
+      capacities: ['Product/Project Owner', 'Backend/Data', 'Security'],
+      technicalApproval: 'APPROVED',
+      independentSecondReviewer: false,
+      implementation: 'OFFLINE USER-ONLY SUBSET AT REVIEW',
+      models: ['users'],
+      evidence: 'docs/architecture/decisions/CH-02-M-ID-1.md',
+      sqlManifest: 'docs/architecture/decisions/CH-02-M-ID-1-sql-manifest.json',
+      databaseProof: 'NOT RUN',
+      gatesClosed: [],
+    },
+    'User-only approval cannot fabricate reviewers, proof or broader scope',
+  );
+  assert.deepEqual(
     record.boundedCategoryContract,
     {
       decision: 'CH-02/M-CAT-1',
@@ -150,7 +168,7 @@ export function validateStatus(record, definitions, nodes) {
             : state.id === 'API'
               ? 'AUTHORIZED: OWNER CH-03/API REQUEST 2026-10-21'
               : state.id === 'M'
-                ? 'AUTHORIZED: OWNER CH-02/M-CAT-1 OFFLINE SUBSET 2026-10-22'
+                ? 'AUTHORIZED: OWNER CH-02/M-CAT-1 AND CH-02/M-ID-1 OFFLINE SUBSETS 2026-10-22'
                 : state.id === 'T'
                   ? 'AUTHORIZED: OWNER CH-10/T IMPLEMENTATION 2026-10-21'
                   : 'NOT AUTHORIZED',
@@ -312,9 +330,25 @@ const protectedFiles = new Set([
   'security/dependency-exceptions.json',
   '.github/workflows/ci.yml',
 ]);
+// Owner 2026-10-22 ID-1 Product decision 6 approves this one API cell only.
+function validateRegistrationAmendment(text) {
+  const before =
+    '| POST | `/auth/register` | Guest | `email`, `password`, `displayName?` | `202` neutral confirmation; `422`; no account enumeration |';
+  const original = historical('docs/06-api-design.md');
+  assert.equal(original.split(before).length, 2);
+  assert.equal(
+    text,
+    original.replace(before, before.replace('displayName?', 'displayName')),
+    'Only the owner-approved required displayName amendment is allowed',
+  );
+}
+assert.throws(() => validateRegistrationAmendment(historical('docs/06-api-design.md')));
+assert.throws(() => validateRegistrationAmendment(read('docs/06-api-design.md') + '\n'));
 for (const file of protectedFiles) {
   if (!canonical.includes(file) && file !== 'AGENTS.md') {
-    if (file === 'docs/implementation/gate-register.md') {
+    if (file === 'docs/06-api-design.md') {
+      validateRegistrationAmendment(read(file));
+    } else if (file === 'docs/implementation/gate-register.md') {
       const [original, appendix, extra] = read(file).split('\n<!-- CH-01-D PREPARATION -->\n');
       assert.equal(original, historical(file), 'Original gate register changed');
       assert.equal(extra, undefined);
@@ -363,6 +397,8 @@ const scope = [
 ];
 const implementationStart = 'e96b7c410b6183edb6bf9bde1c002df4a9c4a9b8';
 const allowed = new Set([
+  'apps/api/src/identity/user-email.ts',
+  'apps/api/test/user-schema.test.mjs',
   'apps/api/package.json',
   'apps/api/prisma.config.mjs',
   'apps/api/prisma/schema.prisma',
@@ -552,8 +588,10 @@ assert.equal(
     encoding: 'utf8',
   }),
 );
-// This reconciliation changes no application, dependency or infrastructure bytes.
+// Preserve accepted bytes outside the exact approved offline schema/tooling paths.
 const categoryScope = [
+  'apps/api/src/identity/user-email.ts',
+  'apps/api/test/user-schema.test.mjs',
   'apps/api/package.json',
   'apps/api/prisma.config.mjs',
   'apps/api/prisma/schema.prisma',
@@ -590,7 +628,27 @@ for (const file of execFileSync('git', ['diff', '--name-only', categoryStart, '-
   .trim()
   .split('\n')
   .filter(Boolean))
-  assert.ok(categoryScope.includes(file), `Outside CAT-1: ${file}`);
+  assert.ok(categoryScope.includes(file), `Outside CAT-1/ID-1: ${file}`);
+// ID-1 cannot modify category configuration, dependencies or other runtime code.
+const userStart = 'c6b96f26d3db947619ac4d1a71b3b01e912c21ff';
+const userScope = new Set([
+  'apps/api/prisma/schema.prisma',
+  'apps/api/src/identity/user-email.ts',
+  'apps/api/test/user-schema.test.mjs',
+  'apps/api/test/category-schema.test.mjs',
+  'package.json',
+]);
+for (const args of [
+  ['diff', '--name-only', userStart, '--', ...scope],
+  ['ls-files', '--others', '--exclude-standard', '--', ...scope],
+]) {
+  for (const file of execFileSync('git', args, { cwd: root, encoding: 'utf8' })
+    .trim()
+    .split('\n')
+    .filter(Boolean)) {
+    assert.ok(userScope.has(file), `Outside ID-1 code scope: ${file}`);
+  }
+}
 const apiManifest = JSON.parse(read('apps/api/package.json'));
 const previousApi = JSON.parse(
   execFileSync('git', ['show', `${categoryStart}:apps/api/package.json`], {
@@ -645,6 +703,18 @@ for (const file of new Set(markdown)) {
 
 // Mutation checks ensure authority/status/dependency regressions fail closed.
 for (const mutate of [
+  (record) => {
+    record.boundedUserContract.models.push('sessions');
+  },
+  (record) => {
+    record.boundedUserContract.databaseProof = 'PASS';
+  },
+  (record) => {
+    record.boundedUserContract.gatesClosed.push('SEC-01');
+  },
+  (record) => {
+    record.boundedUserContract.independentSecondReviewer = true;
+  },
   (record) => {
     record.boundedCategoryContract.models.push('users');
   },
@@ -755,7 +825,8 @@ console.log(
       unchangedHistoricalDocuments: prefixes.size,
       protectedSources: protectedFiles.size,
       repositoryLocalLinks: links,
-      rejectedMutations: 32,
+      rejectedMutations: 36,
+      rejectedApiAmendmentMutations: 2,
       proposedADRs: adrFiles.length,
       implementationAuthorized: false,
     },

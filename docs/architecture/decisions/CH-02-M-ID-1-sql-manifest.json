@@ -1,0 +1,130 @@
+{
+  "decision": "CH-02/M-ID-1",
+  "status": "DESIGNED — NOT IMPLEMENTED",
+  "proofStatus": "NOT RUN — PostgreSQL/SQL not authorized",
+  "allowedStatuses": ["ACTIVE", "SUSPENDED", "DEACTIVATED"],
+  "initialVersion": 1,
+  "maximumVersion": 2147483647,
+  "obligations": [
+    {
+      "id": "email-canonical",
+      "invariant": "Approved ASCII dot-atom/DNS-label grammar, local <=64 octets, total <=254, normalized key is explicit ASCII A-Z to a-z translation of email; preserve local spelling, lowercase domain in display email; no trimming/alias merging",
+      "mechanism": "DB reviewed CHECK/immutable normalization function; backend independently validates same grammar. Reject a mismatched supplied canonical key. No citext/provider alias rules or Unicode folding.",
+      "owner": "DB + later AUTH/ACCOUNT",
+      "tests": [
+        "reject non-ASCII, whitespace/controls, bad labels/atoms, overlong values and mismatched raw/key direct writes; dots/plus-tags remain significant"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "email-collation",
+      "invariant": "email_normalized VARCHAR(320) uses deterministic C collation",
+      "mechanism": "DB sets explicit column collation in reviewed SQL; Prisma cannot represent it",
+      "owner": "DB",
+      "tests": [
+        "inspect installed column/index collation; identity comparisons independent of database locale"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "email-unique",
+      "invariant": "One global normalized identity, including suspended/deactivated accounts",
+      "mechanism": "DB applies immediate users_email_normalized_key UNIQUE; offline Prisma declares it but no database object exists yet; no active-only partial unique, recycling or account merging",
+      "owner": "DB",
+      "tests": [
+        "concurrent case-variant creates/renames yield at most one committed identity; conflict never transfers historical ownership; outward registration/recovery response stays neutral"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "status",
+      "invariant": "status IN ('ACTIVE','SUSPENDED','DEACTIVATED'), required VARCHAR(20), no default",
+      "mechanism": "DB immediate CHECK; services authorize transitions, ACTIVE never grants staff privilege",
+      "owner": "DB + later AUTH/ACCOUNT/STAFF_API",
+      "tests": [
+        "reject unknown/lowercase/NULL status, forged customer status, and attempts to bypass last-active-Super-Admin policy"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "deactivation",
+      "invariant": "(status = 'DEACTIVATED') = (deactivated_at IS NOT NULL)",
+      "mechanism": "DB immediate CHECK; controlled deactivation records database time and retains identity/email reservation; no restoration/retention policy inferred",
+      "owner": "DB + later AUTH/ACCOUNT/STAFF_API",
+      "tests": [
+        "reject both incoherent status/time combinations; deactivation leaves history unchanged and cannot bypass privileged-user safeguards"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "phone",
+      "invariant": "phone_e164 IS NULL or literal + then 1..15 ASCII digits, first digit nonzero; no uniqueness",
+      "mechanism": "DB CHECK with complete input consumption/character exclusion; trusted backend validates independently; contact shape is not possession or recovery authority",
+      "owner": "DB + later ACCOUNT",
+      "tests": [
+        "allow duplicate canonical contact phones and NULL; reject empty, spaces, extensions, controls, >15 digits, missing + or leading zero; never guess country prefix"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "display-name",
+      "invariant": "Required display_name VARCHAR(160), no fallback; reject empty name; registration requires displayName",
+      "mechanism": "DB required column, length and nonempty CHECK; later API validates independently. Whitespace/Unicode presentation normalization beyond nonempty remains a later reviewed UX/API detail, no silent ASCII-only name policy.",
+      "owner": "DB + later AUTH/ACCOUNT",
+      "tests": [
+        "reject missing/empty/overlong name and unauthorized fallback; allowed Unicode names not restricted by email ASCII policy"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "version",
+      "invariant": "Initial 1, version >=1; each controlled UPDATE requires NEW.version = OLD.version+1; no wrap/reset, reject INTEGER overflow",
+      "mechanism": "DB default/check and BEFORE UPDATE rejection guard; trusted writer supplies the increment. Stored version is never mass-assigned from DTO.",
+      "owner": "DB + later AUTH/ACCOUNT",
+      "tests": [
+        "reject zero/negative/skipped/unchanged/decreased version, forged assignment and overflow; rollback preserves old version"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "expected-version",
+      "invariant": "Sensitive writes use id + expectedVersion precondition; stale updates have no effect",
+      "mechanism": "Trusted transactional update predicate and controlled writer protocol; row lock/re-read for multi-step identity changes. Increment trigger alone cannot enforce the caller's expected read version.",
+      "owner": "Later AUTH/ACCOUNT with DB contribution",
+      "tests": [
+        "two same-version updates produce at most one successful effect; no silent edit retry/lost update; fault after side effect rolls back identity/audit consistently"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "timestamps-immutable",
+      "invariant": "id and created_at immutable; updated_at = statement_timestamp() on UPDATE",
+      "mechanism": "DB BEFORE UPDATE guards, no Prisma @updatedAt or UUID default; trusted backend supplies UUID v4",
+      "owner": "DB",
+      "tests": [
+        "reject immutable-field changes, override forged update timestamp, verify defaults/precision and rollback"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "verified-replacement",
+      "invariant": "Keep current email until one-time proof of replacement; activation atomically changes email/key/verification with expected version and uniqueness recheck",
+      "mechanism": "Later AUTH controlled challenge consumption/finalization and same-transaction audit through A; runtime cannot directly forge email_verified_at. No challenge/session tables or TTLs chosen here.",
+      "owner": "Later AUTH/ACCOUNT + A + DB; scoped Security review for session consequences",
+      "tests": [
+        "unverified, wrong-user/target/version, expired/replayed proof, duplicate target and mid-operation fault cannot change current identity; review notification/reauth/session-revocation behavior before AUTH"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    },
+    {
+      "id": "privileges-history",
+      "invariant": "No ordinary runtime DELETE/TRUNCATE or protected-field bypass; retain historical identities and prohibit user-supplied privilege claims",
+      "mechanism": "DB reviewed role grants/denials and controlled sensitive write routines with safe ownership/search_path; future actual user FKs RESTRICT deletion/update under M-04. No fake FK, staff flag, credentials or sessions in User.",
+      "owner": "DB + later AUTH/ACCOUNT/STAFF_API; A for audit; later referencing schema owners",
+      "tests": [
+        "runtime destructive/privileged direct writes denied; customer role/admin/status/verification mass assignment denied; later historical FK restrictions proven; separate audiences/memberships/resource policies still required"
+      ],
+      "status": "DESIGNED — NOT IMPLEMENTED"
+    }
+  ]
+}

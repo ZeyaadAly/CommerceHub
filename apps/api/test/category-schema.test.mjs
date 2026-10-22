@@ -34,14 +34,14 @@ const canonicalFields = {
 };
 function verifyFields(datamodel) {
   assert.deepEqual(
-    datamodel.models.map((m) => [m.name, m.dbName]),
+    datamodel.models.filter((m) => m.name !== 'User').map((m) => [m.name, m.dbName]),
     [
       ['Category', 'categories'],
       ['CategoryClosure', 'category_closure'],
     ],
   );
   assert.deepEqual(datamodel.enums, []);
-  for (const model of datamodel.models) {
+  for (const model of datamodel.models.filter((m) => m.name !== 'User')) {
     assert.deepEqual(
       model.fields
         .filter((f) => f.kind === 'scalar')
@@ -58,12 +58,14 @@ function verifyFields(datamodel) {
     assert.ok(model.fields.every((f) => !f.isUpdatedAt && !f.isGenerated));
   }
 }
-test('Prisma parser proves exactly two mapped models, native columns, nullability and defaults', () => {
+test('Prisma parser preserves both category mappings, native columns, nullability and defaults', () => {
   verifyFields(parsed);
 });
 test('Prisma parser proves exact PK, unique and ordered index inventory', () => {
   assert.deepEqual(
-    parsed.indexes.map((i) => [i.dbName, i.model, i.type, i.fields.map((f) => f.name)]),
+    parsed.indexes
+      .filter((i) => i.model !== 'User')
+      .map((i) => [i.dbName, i.model, i.type, i.fields.map((f) => f.name)]),
     [
       ['categories_pkey', 'Category', 'id', ['id']],
       ['categories_slug_key', 'Category', 'unique', ['slug']],

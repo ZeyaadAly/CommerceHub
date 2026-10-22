@@ -1,3 +1,22 @@
+# CH-02/M-ID-1 current approved offline subset
+
+2026-10-22: owner ZeyaadAly explicitly approves the [exact users contract](CH-02-M-ID-1.md)
+in Product, Backend/Data and Security capacities and authorizes offline User-only
+implementation at REVIEW. No independent second reviewer claimed. Earlier
+Product-only/pending checkpoints below are history for this exact subset.
+[SQL manifest](CH-02-M-ID-1-sql-manifest.json) DESIGNED — NOT IMPLEMENTED;
+full M-01/M-04 beyond users pending, M incomplete, DB blocked, all gates OPEN.
+No AUTH/session/staff, SQL/migration/database or next milestone authority.
+
+# CH-02/M-ID-1 current Product policy checkpoint
+
+2026-10-22: the [users-only contract](CH-02-M-ID-1.md) records six explicit
+Product policy approvals and the scoped required-displayName API amendment.
+Security and Backend/Data reviewer identities/dates/signatures remain PENDING;
+offline User implementation explicitly NOT AUTHORIZED. No gate closure or
+database authority. Earlier owner-direction records below remain history outside
+these exact Product choices. Full M incomplete; remaining statuses unchanged.
+
 # CH-02/M-CAT-1 current bounded implementation
 
 2026-10-22: [category contract](CH-02-M-CAT-1.md) explicitly approved by owner

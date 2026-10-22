@@ -39,3 +39,21 @@ model CategoryClosure {
   @@index([descendantId, ancestorId], map: "category_closure_descendant_ancestor_idx")
   @@map("category_closure")
 }
+
+// CH-02/M-ID-1: SQL checks, collation, immutability and update guards deferred.
+// See docs/architecture/decisions/CH-02-M-ID-1-sql-manifest.json.
+model User {
+  id              String    @id(map: "users_pkey") @db.Uuid
+  email           String    @db.VarChar(320)
+  emailNormalized String    @unique(map: "users_email_normalized_key") @map("email_normalized") @db.VarChar(320)
+  emailVerifiedAt DateTime? @map("email_verified_at") @db.Timestamptz(6)
+  displayName     String    @map("display_name") @db.VarChar(160)
+  phoneE164       String?   @map("phone_e164") @db.VarChar(20)
+  status          String    @db.VarChar(20)
+  createdAt       DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt       DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
+  deactivatedAt   DateTime? @map("deactivated_at") @db.Timestamptz(6)
+  version         Int       @default(1) @db.Integer
+
+  @@map("users")
+}
