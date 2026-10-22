@@ -10,13 +10,26 @@ Starting main is `8865e51524363161122d20e75f5dac9946e20175`, verified by fetched
 
 **T remains REVIEW.** [T evidence and manual QA](../../verification/CH-10-T.md) supports bounded implementation and automated testing, but native browser zoom, human NVDA/screen-reader and physical-device checks plus final UX/QA acceptance are outstanding. Merge and axe are insufficient for AC1/AC5 human accessibility acceptance. No new administrative task is required: append results and reconcile T within its existing evidence when complete. CH-01 remains partial, CH-10 IN PROGRESS, full legacy 006 BLOCKED; C/API acceptance unchanged.
 
+## Current owner choices — 2026-10-22
+
+The owner explicitly selected the following directions on 2026-10-22. [Approval record](../../implementation/approval-register.md) is canonical for scope, exclusions, identity/date and evidence; [specialist review packet](CH-02-M-specialist-review.md) contains the detailed unsigned inventories/tests. Nine ADR policies remain PROPOSED/unsigned; these scoped owner directions do not sign entire ADRs. No Prisma implementation authorized.
+
+| Decision | Exact owner option | Current readiness status | Required remaining review |
+| --- | --- | --- | --- |
+| M-01 | `shared` | OWNER DIRECTION APPROVED / TECHNICAL MAPPING PENDING | Security + Backend/Data; Product/Frontend for affected API semantics; specialist sign-off PENDING |
+| M-02 | `normalized` | OWNER DIRECTION APPROVED / CONSTRAINT REVIEW PENDING | Backend/Data + Product; Security for actor/media references; specialist sign-off PENDING |
+| M-03 | `review` | OWNER REQUESTED FINANCIAL REVIEW / POLICY PENDING | Finance/Product + Backend/Data; Legal where applicable; specialist sign-off PENDING |
+| M-04 | `split` | OWNER DIRECTION APPROVED / DETAILED OWNERSHIP REVIEW PENDING | Backend/Data + Security; Finance/Payments/Inventory/Operations/Legal where affected; specialist sign-off PENDING |
+
+Owner direction is distinct from technical approval and later proof. M stays NOT STARTED / BLOCKED / NOT AUTHORIZED; graph C/D prerequisites remain satisfied. The first independent identity or nonmonetary catalog subset still requires its applicable exact field/constraint and ownership approvals plus separate implementation authority. Price columns require M-03 policy. E_DB/DB execution remain separately gated.
+
 ## Minimum schema readiness
 
 Unchanged graph: **C + D → M; M + E_DB → DB**. C/D are accepted. M is blocked by affected decisions, not by all of CH-01, T, E_DB, Redis, P1 refunds or live payment selection. [Approved DB baseline](../../05-database-design.md) §§4–6/13–17/20, [architecture](../../04-architecture.md) §§5–8/14/18, [API](../../06-api-design.md) §§2/4/8–9, [PRD](../../02-prd.md) identity/catalog/security scope and [legacy 009 acceptance](../../08-epics-and-stories.md) govern M. BA-03/04/05/06/07/15/19/21 remain scoped findings, not accepted recommendations.
 
 Already approved: backend-only PostgreSQL/Prisma; shared `users` identity with staff membership rather than registration conferring staff authority; separate staff/customer session audiences; Argon2id and opaque revocable digests; default-deny backend permissions; NUMERIC money with explicit EGP and decimal-string wire values; immutable historical order/item/address/pricing snapshots; restricted historical deletion; atomic domain/audit/outbox ownership. Separate physical customer/admin user tables would change DB §4.1, not merely implement audience separation.
 
-The following is the single owner-facing approval table for this slice. **Every decision is PENDING; recommendations are not approval.** Record named approver, date, selected option, exact field/constraint mapping and linked signed evidence. The owner may coordinate reviews but cannot substitute task approval for designated specialist decisions. Execution rows are included to keep future DB work separate; they do not block offline M code.
+The following is the technical decision request table for this slice. **Specialist review for every decision is PENDING; recommendations are not approval.** Owner structural choices are recorded separately below; alternatives in this technical table are not a reopening or expansion of those choices. Record named approver, date, selected option, exact field/constraint mapping and linked signed evidence. The owner may coordinate reviews but cannot substitute task approval for designated specialist decisions. Execution rows are included to keep future DB work separate; they do not block offline M code.
 
 | Decision / point | Approved constraints | Exact unresolved question | Recommendation and rationale | Alternatives | Gate / approver and evidence | Blocked milestone / independent work |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -27,7 +40,7 @@ The following is the single owner-facing approval table for this slice. **Every 
 | X-01 database identities/isolation; before access or migration execution | Migration DDL identity separate from restricted API/worker runtime; no frontend credentials, no reused superuser runtime | Approve disposable target/reset boundary, custody, endpoint/TLS/driver compatibility, grants and resource/connection authority? | Prefer separately approved disposable PostgreSQL target using existing native tooling; runtime DDL denial, restricted grants, isolated synthetic data and controlled teardown. No procurement now. | Isolated shared namespace only after explicit threat/custody/reset review; persistent dev configuration alone is not disposable proof. | OPS-01 / SEC-01 / DB-0; named Operations/Security + Backend/Data, explicit owner resource/access authorization; later actual TLS/grant/reset proof in E_DB. ADR-003. | E_DB and DB execution; offline M code/contract review independent. No Docker/WSL or Redis spending prerequisite. |
 | X-02 executable migration review and tests; before execution | Reviewed Prisma mapping/SQL, non-destructive ordering, real disposable PostgreSQL proof; DB §§17–19 tests remain obligations | Approve actual migration SQL, required extensions/checks/indexes, rollout/backout and isolated test procedure for the chosen target? | DB owner reviews generated migration artifact and Prisma limitations against M constraint manifest before any execution; one migration runner, reviewed backout/forward repair, synthetic reset/reapply and FK/unique/check/delete/permission failures on real disposable PostgreSQL. Include concurrent uniqueness and race cases where applicable. M only prepares mapping/test plan. | Approved native local disposable instance or approved isolated remote target; mocks/static schema checks supplement rather than replace persisted proof. | DB-0 / DB-01 / OPS-01 + affected SEC/FIN; Backend/Data + Operations/Security, explicit owner execution approval. E_DB evidence, SQL review, command/result log and DB-001–025 applicability map. | DB requires accepted M + E_DB; M offline validation proceeds independently. No migrate dev/deploy/db push/reset, SQL execution or credential retrieval under M authority. |
 
-M-01–M-04 are the minimum decision requests for full M code/handoff; X-01/X-02 are later execution approvals. Scope-limited approval can permit an independent partial contract, but does not mark full M DONE or close SEC-01/FIN-01/DB gates. A migration review has a contract/mapping stage in M and an executable SQL/application stage in DB. No actual database proof is required to write an authorized offline contract; no static check proves database effects.
+The outstanding technical portions of M-01–M-04 are the minimum decision requests for full M code/handoff; X-01/X-02 are later execution approvals. Scope-limited approval can permit an independent partial contract, but does not mark full M DONE or close SEC-01/FIN-01/DB gates. A migration review has a contract/mapping stage in M and an executable SQL/application stage in DB. No actual database proof is required to write an authorized offline contract; no static check proves database effects.
 
 Deferred without blocking unrelated M work: PAY-01 attempt/capture/state/replay values and provider fixtures; INV-01 hold TTL/expiry/race policy; FIN-01 full checkout tax/shipping/rounding/quote lifetime before QUOTE/PERSIST; FIN-02 refund rules and FIN-01 revision promotions; PAY-LIVE provider/real funds; JOBS topology/retention/recovery and LEG-01 launch review. Approved immutable snapshots and migration seams remain binding now. All gates remain OPEN through their later verification obligations.
 
@@ -41,8 +54,10 @@ planning sources, unchanged stories/milestones.json, current adoption.json,
 decision-matrix.md and gate/approval registers. Verify current main and the
 review/merge evidence for this readiness PR; do not treat an open PR as accepted.
 
-First verify named, dated, linked scoped approvals for M-01, M-02, M-03 and M-04
-in decision-matrix.md. Missing decisions block only their dependent slice; do
+First verify named, dated, linked specialist approvals for the exact affected
+technical portions of M-01, M-02, M-03 and M-04. Owner shared/normalized/split
+directions are not those technical sign-offs; M-03 review is not policy approval.
+Read approval-register.md and CH-02-M-specialist-review.md with the matrix. Missing decisions block only their dependent slice; do
 not invent policy or complete full M from a partial slice. C/D must be accepted.
 Do not require E_DB, full CH-01, T or Redis for offline schema work. Preserve
 all unsigned ADRs and OPEN specialist gates and later proof obligations.

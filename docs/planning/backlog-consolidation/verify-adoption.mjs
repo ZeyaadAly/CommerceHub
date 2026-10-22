@@ -24,7 +24,69 @@ const stories = json('stories.json');
 const milestones = json('milestones.json');
 const inventory = json('inventory.json');
 
+const expectedOwnerDecisions = [
+  {
+    id: 'M-01',
+    option: 'shared',
+    date: '2026-10-22',
+    by: 'ZeyaadAly',
+    status: 'OWNER DIRECTION APPROVED / TECHNICAL MAPPING PENDING',
+    scope:
+      'Shared users identity, explicit staff membership, separate storefront/admin audiences only.',
+    notApproved:
+      'Email normalization, final field/constraint mapping, token/session lifecycle, permission identifiers/delegation and Security/Backend/Data sign-offs NOT APPROVED.',
+    specialistReview: 'PENDING',
+    evidence: 'docs/implementation/approval-register.md',
+    packet: 'docs/architecture/decisions/CH-02-M-specialist-review.md',
+  },
+  {
+    id: 'M-02',
+    option: 'normalized',
+    date: '2026-10-22',
+    by: 'ZeyaadAly',
+    status: 'OWNER DIRECTION APPROVED / CONSTRAINT REVIEW PENDING',
+    scope: 'Normalized relational catalog tables and applicable database-enforced integrity only.',
+    notApproved:
+      'Final field/constraint/index/composite/SQL-only mapping and specialist sign-offs NOT APPROVED; no service-only integrity substitute.',
+    specialistReview: 'PENDING',
+    evidence: 'docs/implementation/approval-register.md',
+    packet: 'docs/architecture/decisions/CH-02-M-specialist-review.md',
+  },
+  {
+    id: 'M-03',
+    option: 'review',
+    date: '2026-10-22',
+    by: 'ZeyaadAly',
+    status: 'OWNER REQUESTED FINANCIAL REVIEW / POLICY PENDING',
+    scope: 'Financial review requested; no precision, scale, range or zero-price selection.',
+    notApproved:
+      'All monetary column implementation and financial policy NOT APPROVED, including illustrative NUMERIC(19,4).',
+    specialistReview: 'PENDING',
+    evidence: 'docs/implementation/approval-register.md',
+    packet: 'docs/architecture/decisions/CH-02-M-specialist-review.md',
+  },
+  {
+    id: 'M-04',
+    option: 'split',
+    date: '2026-10-22',
+    by: 'ZeyaadAly',
+    status: 'OWNER DIRECTION APPROVED / DETAILED OWNERSHIP REVIEW PENDING',
+    scope:
+      'M offline identity/catalog contracts; DB reviewed baseline application; A early durable audit; PERSIST order/payment/idempotency/outbox coordination only; graph unchanged.',
+    notApproved:
+      'Detailed table/FK/order/SQL-only contribution mapping, state enums, retention and specialist sign-offs NOT APPROVED.',
+    specialistReview: 'PENDING',
+    evidence: 'docs/implementation/approval-register.md',
+    packet: 'docs/architecture/decisions/CH-02-M-specialist-review.md',
+  },
+];
+
 export function validateStatus(record, definitions, nodes) {
+  assert.deepEqual(
+    record.ownerDecisionRecords,
+    expectedOwnerDecisions,
+    'Owner direction cannot stand in for specialist approval',
+  );
   assert.equal(record.state, 'ADOPTED');
   assert.equal(record.ownerApprovalDate, '2026-10-21');
   assert.equal(record.proposalPR, 21);
@@ -420,7 +482,25 @@ assert.match(readiness, /M NOT STARTED \/ BLOCKED \/ NOT AUTHORIZED/);
 assert.match(readiness, /Nine ADR policies remain PROPOSED\/unsigned/);
 for (const id of ['M-01', 'M-02', 'M-03', 'M-04', 'X-01', 'X-02'])
   assert.ok(readiness.includes(id));
-assert.match(readiness, /Every decision is PENDING/);
+assert.match(readiness, /Specialist review for every decision is PENDING/);
+const approvalRegister = read('docs/implementation/approval-register.md').split(marker)[0];
+const specialistPacket = read('docs/architecture/decisions/CH-02-M-specialist-review.md');
+for (const decision of expectedOwnerDecisions) {
+  assert.ok(readiness.includes(decision.status));
+  assert.ok(approvalRegister.includes(decision.status));
+  assert.ok(approvalRegister.includes(decision.scope));
+  assert.ok(approvalRegister.includes(decision.notApproved));
+  assert.ok(approvalRegister.includes('`' + decision.option + '`'));
+}
+assert.match(approvalRegister, /2026-10-22/);
+assert.match(approvalRegister, /ZeyaadAly/);
+assert.match(approvalRegister, /technical sign-off PENDING/);
+assert.match(
+  specialistPacket,
+  /Named specialist reviewer\/signature\/date for each packet: \*\*PENDING \/ NOT RECORDED/,
+);
+assert.match(specialistPacket, /No Prisma models, SQL, migrations or database tests executed/);
+assert.match(specialistPacket, /RECOMMENDATION ONLY/);
 assert.match(readiness, /Conditional next Codex prompt/);
 assert.equal(
   matrix,
@@ -489,6 +569,27 @@ for (const file of new Set(markdown)) {
 
 // Mutation checks ensure authority/status/dependency regressions fail closed.
 for (const mutate of [
+  (record) => {
+    record.ownerDecisionRecords[0].option = 'separate';
+  },
+  (record) => {
+    record.ownerDecisionRecords[1].status = 'APPROVED';
+  },
+  (record) => {
+    record.ownerDecisionRecords[2].specialistReview = 'APPROVED';
+  },
+  (record) => {
+    record.ownerDecisionRecords[2].scope = 'NUMERIC(19,4) approved';
+  },
+  (record) => {
+    record.ownerDecisionRecords[3].date = '2026-10-21';
+  },
+  (record) => {
+    record.ownerDecisionRecords[3].by = 'specialist';
+  },
+  (record) => {
+    record.ownerDecisionRecords[0].notApproved = '';
+  },
   (record) => {
     record.milestoneStates.find((state) => state.id === 'D').acceptance.head = base;
   },
@@ -566,7 +667,7 @@ console.log(
       unchangedHistoricalDocuments: prefixes.size,
       protectedSources: protectedFiles.size,
       repositoryLocalLinks: links,
-      rejectedMutations: 21,
+      rejectedMutations: 28,
       proposedADRs: adrFiles.length,
       implementationAuthorized: false,
     },
