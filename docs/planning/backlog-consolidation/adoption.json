@@ -231,7 +231,7 @@
       "readiness": "BLOCKED",
       "authorization": "NOT AUTHORIZED",
       "unmetPrerequisites": [],
-      "note": "C and D accepted: graph predecessors satisfied. Schema code NOT AUTHORIZED; M-01–M-04 scoped DB/SEC/FIN decisions remain pending in decision-matrix.md. E_DB is not an M predecessor."
+      "note": "C/D accepted. Owner shared/normalized/split directions recorded 2026-10-22; M-01 mapping, M-02 constraints, M-03 financial policy and M-04 detailed ownership specialist reviews PENDING. M code NOT AUTHORIZED; E_DB is not an M predecessor."
     },
     {
       "id": "DB",
@@ -645,6 +645,56 @@
     "legacy": "Exact tracker rows/specifications and prior merge evidence retained in inventory and the legacy sections; no new completion inferred.",
     "partial006": "PR #20 merge 107da8c70adc71cbbd861a430d7758a13f00e1df integrates exact owner-approved target validation only. Actual authentication/TLS/custody/grants/isolation/bootstrap/Redis remain unverified or deferred."
   },
-  "implementationAuthorizationScope": "Current owner request authorizes CH-02/M readiness documentation, D/T evidence reconciliation, governance checks, commit/push and open PR only. No schema code, credentials, DB access, SQL/migrations, resources, spending, deployment, specialist gate closure or next milestone. Stop at REVIEW.",
-  "nextRecommendedTask": "Review M-01–M-04 scoped schema decisions in decision-matrix.md; no independently implementation-ready successor or standing authority inferred. E_DB and DB execution remain separately gated."
+  "implementationAuthorizationScope": "Owner 2026-10-22 authorizes M-01–M-04 owner-direction recording, technical review packets, governance checks and commit/push/open PR only. No Prisma code/packages, DB access, credentials, SQL/migrations, resources/spending/deployment, specialist sign-off or next milestone. Stop at REVIEW.",
+  "nextRecommendedTask": "Obtain bounded M-01/M-02/M-04 technical sign-offs and M-03 financial policy review using the specialist packet; no independently implementation-ready successor or standing authority inferred.",
+  "ownerDecisionRecords": [
+    {
+      "id": "M-01",
+      "option": "shared",
+      "date": "2026-10-22",
+      "by": "ZeyaadAly",
+      "status": "OWNER DIRECTION APPROVED / TECHNICAL MAPPING PENDING",
+      "scope": "Shared users identity, explicit staff membership, separate storefront/admin audiences only.",
+      "notApproved": "Email normalization, final field/constraint mapping, token/session lifecycle, permission identifiers/delegation and Security/Backend/Data sign-offs NOT APPROVED.",
+      "specialistReview": "PENDING",
+      "evidence": "docs/implementation/approval-register.md",
+      "packet": "docs/architecture/decisions/CH-02-M-specialist-review.md"
+    },
+    {
+      "id": "M-02",
+      "option": "normalized",
+      "date": "2026-10-22",
+      "by": "ZeyaadAly",
+      "status": "OWNER DIRECTION APPROVED / CONSTRAINT REVIEW PENDING",
+      "scope": "Normalized relational catalog tables and applicable database-enforced integrity only.",
+      "notApproved": "Final field/constraint/index/composite/SQL-only mapping and specialist sign-offs NOT APPROVED; no service-only integrity substitute.",
+      "specialistReview": "PENDING",
+      "evidence": "docs/implementation/approval-register.md",
+      "packet": "docs/architecture/decisions/CH-02-M-specialist-review.md"
+    },
+    {
+      "id": "M-03",
+      "option": "review",
+      "date": "2026-10-22",
+      "by": "ZeyaadAly",
+      "status": "OWNER REQUESTED FINANCIAL REVIEW / POLICY PENDING",
+      "scope": "Financial review requested; no precision, scale, range or zero-price selection.",
+      "notApproved": "All monetary column implementation and financial policy NOT APPROVED, including illustrative NUMERIC(19,4).",
+      "specialistReview": "PENDING",
+      "evidence": "docs/implementation/approval-register.md",
+      "packet": "docs/architecture/decisions/CH-02-M-specialist-review.md"
+    },
+    {
+      "id": "M-04",
+      "option": "split",
+      "date": "2026-10-22",
+      "by": "ZeyaadAly",
+      "status": "OWNER DIRECTION APPROVED / DETAILED OWNERSHIP REVIEW PENDING",
+      "scope": "M offline identity/catalog contracts; DB reviewed baseline application; A early durable audit; PERSIST order/payment/idempotency/outbox coordination only; graph unchanged.",
+      "notApproved": "Detailed table/FK/order/SQL-only contribution mapping, state enums, retention and specialist sign-offs NOT APPROVED.",
+      "specialistReview": "PENDING",
+      "evidence": "docs/implementation/approval-register.md",
+      "packet": "docs/architecture/decisions/CH-02-M-specialist-review.md"
+    }
+  ]
 }
