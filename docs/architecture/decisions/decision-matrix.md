@@ -1,3 +1,14 @@
+# CH-02/M-CAT-1 current bounded implementation
+
+2026-10-22: [category contract](CH-02-M-CAT-1.md) explicitly approved by owner
+acting as Backend/Data reviewer; offline two-model implementation authorized and
+at REVIEW. [Deferred SQL manifest](CH-02-M-CAT-1-sql-manifest.json) remains
+DESIGNED — NOT IMPLEMENTED. This supersedes the pending category subset below
+only. Full M remains incomplete, DB blocked, every specialist gate OPEN. No
+independent second reviewer, runtime client, database proof or next milestone.
+Earlier readiness/unsigned packet and owner-direction records are historical
+outside this exact signed subset; no other M-01–M-04 approval is inferred.
+
 # CH-02/M readiness and bounded foundation acceptance
 
 Status: REVIEW for this readiness packet. 2026-10-22 (Africa/Cairo). **D preparation DONE; T REVIEW; M NOT STARTED / BLOCKED / NOT AUTHORIZED.** Nine ADR policies remain PROPOSED/unsigned. All specialist gates remain OPEN.

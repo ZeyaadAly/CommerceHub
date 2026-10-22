@@ -4,6 +4,8 @@ packages:
 minimumReleaseAgeExclude:
   - postcss@8.5.31
 allowBuilds:
+  '@prisma/engines@7.10.1': true
+  prisma@7.10.1: true
   esbuild@0.28.2: true
   '@scarf/scarf@1.4.0': false
 engineStrict: true

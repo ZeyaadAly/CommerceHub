@@ -1,0 +1,41 @@
+// CH-02/M-CAT-1: offline contract only. Mandatory SQL guards are NOT IMPLEMENTED.
+// See docs/architecture/decisions/CH-02-M-CAT-1-sql-manifest.json.
+// No generator: no client generation or runtime integration is authorized here.
+datasource db {
+  provider     = "postgresql"
+  relationMode = "foreignKeys"
+}
+
+model Category {
+  id          String    @id(map: "categories_pkey") @db.Uuid
+  parentId    String?   @map("parent_id") @db.Uuid
+  slug        String    @unique(map: "categories_slug_key") @db.VarChar(150)
+  name        String    @db.VarChar(160)
+  description String?   @db.Text
+  sortOrder   Int       @default(0) @map("sort_order") @db.Integer
+  status      String    @db.Text
+  createdAt   DateTime  @default(now()) @map("created_at") @db.Timestamptz(6)
+  updatedAt   DateTime  @default(now()) @map("updated_at") @db.Timestamptz(6)
+  archivedAt  DateTime? @map("archived_at") @db.Timestamptz(6)
+
+  parent      Category?         @relation("CategoryHierarchy", fields: [parentId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "categories_parent_id_fkey")
+  children    Category[]        @relation("CategoryHierarchy")
+  descendants CategoryClosure[] @relation("CategoryAncestor")
+  ancestors   CategoryClosure[] @relation("CategoryDescendant")
+
+  @@index([parentId, sortOrder, id], map: "categories_parent_sort_id_idx")
+  @@map("categories")
+}
+
+model CategoryClosure {
+  ancestorId   String @map("ancestor_id") @db.Uuid
+  descendantId String @map("descendant_id") @db.Uuid
+  depth        Int    @db.Integer
+
+  ancestor   Category @relation("CategoryAncestor", fields: [ancestorId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "category_closure_ancestor_id_fkey")
+  descendant Category @relation("CategoryDescendant", fields: [descendantId], references: [id], onDelete: Restrict, onUpdate: Restrict, map: "category_closure_descendant_id_fkey")
+
+  @@id([ancestorId, descendantId], map: "category_closure_pkey")
+  @@index([descendantId, ancestorId], map: "category_closure_descendant_ancestor_idx")
+  @@map("category_closure")
+}

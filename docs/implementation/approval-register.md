@@ -84,6 +84,63 @@ Decision source: current project-owner instruction, “Record CH-02/M Owner Deci
 
 These owner directions are APPROVED only within their stated scope; M-03 is a review request. [Canonical decision matrix](../architecture/decisions/decision-matrix.md) tracks status and independent slices; [single technical packet](../architecture/decisions/CH-02-M-specialist-review.md) contains the exact field/constraint inventories, candidates, unsigned detailed manifest and planned tests. Specialist approval requires named reviewer, date, signed exact subset and evidence link; no such sign-off is recorded. All SEC/FIN/DB/OPS and other gates remain OPEN. CH-02/M remains NOT STARTED / BLOCKED / NOT AUTHORIZED for schema code. Full legacy 009 acceptance is retained. Older checkpoints above/below are historical where superseded by this record.
 
+## CH-02/M bounded nonmonetary review authorization — October 22, 2026
+
+The owner's “Approve and Implement the Bounded Nonmonetary Catalog Schema”
+request authorizes technical review and offline Prisma implementation only after
+all applicable specialist mapping approvals are explicitly recorded. See the
+[bounded technical review](../architecture/decisions/CH-02-M-nonmonetary-review.md)
+for table findings, proposed constraints, negative specifications and smallest
+approvable slice. This supplements the earlier documentation-only authority;
+no specialist signature was supplied. M-02 constraint review and applicable
+M-04 ownership approval remain PENDING; no schema section is eligible yet.
+M-01/M-03, full M-04, CH-02/M completion and all gates remain unresolved.
+No database access, credentials, SQL/migrations, provisioning, spending,
+deployment, next milestone or merge is authorized. No empty feature PR is
+created when all schema implementation is blocked by missing specialist review.
+
+## CH-02/M category hierarchy direction — October 22, 2026
+
+Source: owner's “CommerceHub CH-02/M — Category Schema Decision” follow-up.
+**OWNER-APPROVED DIRECTION; BACKEND/DATA TECHNICAL SIGN-OFF PENDING.**
+Approved bounded direction: categories with UUID PK, nullable parent FK,
+unique slug, name/description/sort/status and lifecycle timestamps;
+category_closure with composite ancestor/descendant PK, category FKs,
+nonnegative integer depth and reverse index; FK deletion RESTRICT; no cycles;
+atomic parent/closure updates; no frontend substitute for DB-enforceable integrity.
+M defines the offline contract, DB applies approved migrations, and Catalog API
+owns hierarchy mutations. See the [category decision and remaining technical
+review](../architecture/decisions/CH-02-M-nonmonetary-review.md).
+
+Final nullability, status representation, slug normalization, closure self-row
+and completeness invariants, concurrent subtree protection and SQL-only
+enforcement ownership require Backend/Data confirmation before implementation.
+No attributable technical signature is supplied. Financial/identity/RBAC schema,
+database connections, SQL execution, migrations, provisioning and gate closure
+are not authorized. CH-02/M remains incomplete; all specialist gates remain OPEN.
+
+## CH-02/M-CAT-1 technical approval and offline implementation — 2026-10-22
+
+Decision ID **CH-02/M-CAT-1**: Product/Owner approval RECORDED; Backend/Data
+technical approval explicitly given by project owner ZeyaadAly acting as that
+reviewer. Source: current “First Offline Prisma Schema Implementation” request,
+which explicitly accepts the complete preceding conversation contract. No second
+independent specialist identity/review is claimed. Exact approved [technical
+contract](../architecture/decisions/CH-02-M-CAT-1.md) and [mandatory deferred SQL
+manifest](../architecture/decisions/CH-02-M-CAT-1-sql-manifest.json).
+
+Approval includes lowercase ASCII slug grammar, archive status/timestamp
+equivalence, backend UUID v4, exact two-table fields/relations/indexes, closure
+and concurrency invariants and bounded M/DB/Catalog API ownership. Offline models,
+tooling/tests/evidence and commit/push/open PR are authorized. No SQL/migration,
+DB/credential access, client initialization/generation, resources, spending,
+deployment, next milestone or merge. All SQL guards DESIGNED — NOT IMPLEMENTED.
+Prior pending records above describe earlier checkpoints; only this category
+subset is now signed. M-01, remaining M-02, M-03 and full M-04 remain pending.
+CH-02/M IN PROGRESS/incomplete, bounded subset REVIEW; DB blocked. SEC-01,
+DB-0/DB-01 and all other gates OPEN. CH-10/T human acceptance outstanding;
+full 006 BLOCKED, Redis DEFERRED, Docker/WSL not mandatory.
+
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 
 # CommerceHub approval register

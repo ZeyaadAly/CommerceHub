@@ -29,7 +29,7 @@ The [single decision matrix](../architecture/decisions/decision-matrix.md) provi
 | Operative story | Phase | Status      | Delivery                                                |
 | --------------- | ----- | ----------- | ------------------------------------------------------- |
 | CH-01           | P0    | IN PROGRESS | Foundation, environments, tooling, CI and decision work |
-| CH-02           | P0    | NOT STARTED | Reviewed PostgreSQL schema and migration foundations    |
+| CH-02           | P0    | IN PROGRESS | Reviewed PostgreSQL schema and migration foundations    |
 | CH-03           | P0    | IN PROGRESS | Identity, secure sessions and staff governance          |
 | CH-04           | P0    | NOT STARTED | Catalog administration, variants, media and public APIs |
 | CH-05           | P0    | NOT STARTED | Inventory balances, movements and staff stock tools     |
@@ -94,6 +94,9 @@ Owner explicitly approved D1–D4 for shared tokens/primitives, representative t
 ## CH-02/M readiness reconciliation — 2026-10-22
 
 D bounded preparation DONE; T REVIEW despite PR #27 merge (manual QA outstanding). M remains NOT STARTED / BLOCKED / NOT AUTHORIZED: C/D graph predecessors satisfied, scoped decisions pending. E_DB and DB remain separately gated. See [current decision matrix](../architecture/decisions/decision-matrix.md) for minimum approvals and conditional next prompt; [T evidence](../verification/CH-10-T.md) contains the reproducible manual QA checklist. No parent completion, policy sign-off or schema execution authority.
+
+
+CH-02/M-CAT-1: approved two-table offline category contract at REVIEW; full M incomplete and DB blocked. [Current evidence](../architecture/decisions/CH-02-M-CAT-1.md). No SQL/database proof or gate closure.
 
 <!-- LEGACY BASELINE: 8543df03c23423ff58d383dde0de2a5192725dbb -->
 

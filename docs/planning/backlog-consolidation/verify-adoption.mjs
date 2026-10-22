@@ -83,6 +83,23 @@ const expectedOwnerDecisions = [
 
 export function validateStatus(record, definitions, nodes) {
   assert.deepEqual(
+    record.boundedCategoryContract,
+    {
+      decision: 'CH-02/M-CAT-1',
+      date: '2026-10-22',
+      by: 'ZeyaadAly',
+      capacity: 'Project Owner/Product and Backend/Data reviewer; no independent second reviewer',
+      technicalApproval: 'APPROVED',
+      implementation: 'OFFLINE TWO-MODEL SUBSET AT REVIEW',
+      models: ['categories', 'category_closure'],
+      evidence: 'docs/architecture/decisions/CH-02-M-CAT-1.md',
+      sqlManifest: 'docs/architecture/decisions/CH-02-M-CAT-1-sql-manifest.json',
+      databaseProof: 'NOT RUN',
+      gatesClosed: [],
+    },
+    'Bounded category approval cannot expand scope or claim database proof',
+  );
+  assert.deepEqual(
     record.ownerDecisionRecords,
     expectedOwnerDecisions,
     'Owner direction cannot stand in for specialist approval',
@@ -100,7 +117,7 @@ export function validateStatus(record, definitions, nodes) {
     definitions.map(({ id }) => id),
   );
   for (const [index, parent] of record.parentStates.entries()) {
-    assert.equal(parent.status, [0, 2, 9].includes(index) ? 'IN PROGRESS' : 'NOT STARTED');
+    assert.equal(parent.status, [0, 1, 2, 9].includes(index) ? 'IN PROGRESS' : 'NOT STARTED');
   }
   assert.deepEqual(
     record.milestoneStates.map(({ id, parent }) => ({ id, parent })),
@@ -113,11 +130,13 @@ export function validateStatus(record, definitions, nodes) {
       state.status,
       done
         ? 'DONE'
-        : review
-          ? 'REVIEW'
-          : ['E_DB', 'E_QUEUE'].includes(state.id)
-            ? 'BLOCKED'
-            : 'NOT STARTED',
+        : state.id === 'M'
+          ? 'IN PROGRESS'
+          : review
+            ? 'REVIEW'
+            : ['E_DB', 'E_QUEUE'].includes(state.id)
+              ? 'BLOCKED'
+              : 'NOT STARTED',
     );
     assert.equal(state.readiness, done || review ? 'SATISFIED' : 'BLOCKED');
     assert.equal(
@@ -130,9 +149,11 @@ export function validateStatus(record, definitions, nodes) {
             ? 'AUTHORIZED: OWNER CH-01/D PREPARATION 2026-10-21'
             : state.id === 'API'
               ? 'AUTHORIZED: OWNER CH-03/API REQUEST 2026-10-21'
-              : state.id === 'T'
-                ? 'AUTHORIZED: OWNER CH-10/T IMPLEMENTATION 2026-10-21'
-                : 'NOT AUTHORIZED',
+              : state.id === 'M'
+                ? 'AUTHORIZED: OWNER CH-02/M-CAT-1 OFFLINE SUBSET 2026-10-22'
+                : state.id === 'T'
+                  ? 'AUTHORIZED: OWNER CH-10/T IMPLEMENTATION 2026-10-21'
+                  : 'NOT AUTHORIZED',
     );
     if (state.id === 'C') {
       assert.equal(state.evidence, 'docs/verification/CH-01-C.md');
@@ -201,7 +222,7 @@ export function validateStatus(record, definitions, nodes) {
     );
   }
   assert.equal(record.firstRecommendedMilestone, 'M');
-  assert.match(record.nextRecommendedTask, /no independently implementation-ready/);
+  assert.match(record.nextRecommendedTask, /No next slice started/);
   assert.deepEqual(record.unchangedSpecialistGates, [
     'FIN-01',
     'FIN-02',
@@ -342,6 +363,13 @@ const scope = [
 ];
 const implementationStart = 'e96b7c410b6183edb6bf9bde1c002df4a9c4a9b8';
 const allowed = new Set([
+  'apps/api/package.json',
+  'apps/api/prisma.config.mjs',
+  'apps/api/prisma/schema.prisma',
+  'apps/api/src/catalog/category-slug.ts',
+  'apps/api/test/category-schema.test.mjs',
+  'apps/api/test/offline-network-guard.cjs',
+  'pnpm-workspace.yaml',
   'package.json',
   'pnpm-lock.yaml',
   '.github/workflows/ci.yml',
@@ -369,7 +397,7 @@ for (const args of [
   for (const file of files)
     assert.ok(
       allowed.has(file) || /^packages\/ui\/(?:src\/(?:components|styles|lib)|test)\//.test(file),
-      'Outside T scope: ' + file,
+      'Outside authorized T/CAT-1 scope: ' + file,
     );
 }
 const handoffParts = read('docs/design/CH-10-T-handoff.md').split(
@@ -525,13 +553,61 @@ assert.equal(
   }),
 );
 // This reconciliation changes no application, dependency or infrastructure bytes.
+const categoryScope = [
+  'apps/api/package.json',
+  'apps/api/prisma.config.mjs',
+  'apps/api/prisma/schema.prisma',
+  'apps/api/src/catalog/category-slug.ts',
+  'apps/api/test/category-schema.test.mjs',
+  'apps/api/test/offline-network-guard.cjs',
+  'package.json',
+  'pnpm-lock.yaml',
+  'pnpm-workspace.yaml',
+];
 assert.equal(
-  execFileSync('git', ['diff', '8865e51524363161122d20e75f5dac9946e20175', '--', ...scope], {
+  execFileSync(
+    'git',
+    [
+      'diff',
+      '8865e51524363161122d20e75f5dac9946e20175',
+      '--',
+      ...scope,
+      ...categoryScope.map((file) => `:(exclude)${file}`),
+    ],
+    {
+      cwd: root,
+      encoding: 'utf8',
+    },
+  ),
+  '',
+);
+// Only these exact newly authorized paths may differ from the accepted start.
+const categoryStart = '334178d0a9610d3a4792a8e5029c08171ac69929';
+for (const file of execFileSync('git', ['diff', '--name-only', categoryStart, '--', ...scope], {
+  cwd: root,
+  encoding: 'utf8',
+})
+  .trim()
+  .split('\n')
+  .filter(Boolean))
+  assert.ok(categoryScope.includes(file), `Outside CAT-1: ${file}`);
+const apiManifest = JSON.parse(read('apps/api/package.json'));
+const previousApi = JSON.parse(
+  execFileSync('git', ['show', `${categoryStart}:apps/api/package.json`], {
     cwd: root,
     encoding: 'utf8',
   }),
-  '',
 );
+assert.deepEqual(
+  apiManifest.dependencies,
+  previousApi.dependencies,
+  'Runtime dependencies changed',
+);
+assert.equal(apiManifest.devDependencies.prisma, '7.10.1');
+assert.equal(apiManifest.devDependencies['@prisma/internals'], '7.10.1');
+const sqlManifest = JSON.parse(read('docs/architecture/decisions/CH-02-M-CAT-1-sql-manifest.json'));
+assert.equal(sqlManifest.status, 'DESIGNED — NOT IMPLEMENTED');
+assert.ok(sqlManifest.obligations.every((item) => item.status === 'DESIGNED — NOT IMPLEMENTED'));
 const instructions = read('AGENTS.md');
 assert.match(instructions, /One authorized milestone at a time/);
 assert.match(instructions, /planning\/backlog-consolidation\/adoption.json/);
@@ -569,6 +645,18 @@ for (const file of new Set(markdown)) {
 
 // Mutation checks ensure authority/status/dependency regressions fail closed.
 for (const mutate of [
+  (record) => {
+    record.boundedCategoryContract.models.push('users');
+  },
+  (record) => {
+    record.boundedCategoryContract.databaseProof = 'PASS';
+  },
+  (record) => {
+    record.boundedCategoryContract.gatesClosed.push('DB-01');
+  },
+  (record) => {
+    record.boundedCategoryContract.technicalApproval = 'AI APPROVED';
+  },
   (record) => {
     record.ownerDecisionRecords[0].option = 'separate';
   },
@@ -667,7 +755,7 @@ console.log(
       unchangedHistoricalDocuments: prefixes.size,
       protectedSources: protectedFiles.size,
       repositoryLocalLinks: links,
-      rejectedMutations: 28,
+      rejectedMutations: 32,
       proposedADRs: adrFiles.length,
       implementationAuthorized: false,
     },
